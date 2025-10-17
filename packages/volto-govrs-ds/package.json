@@ -31,11 +31,14 @@
   "peerDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "semantic-ui-react": "*",
     "@plone/registry": "workspace:*",
-    "@plone/types": "workspace:*"
+    "@plone/types": "workspace:*",
+    "@plone/volto": "workspace:*"
   },
   "devDependencies": {
     "@plone/scripts": "workspace:*",
+    "@types/react": "^18.2.0",
     "release-it": "^17.1.1"
   }
 }
