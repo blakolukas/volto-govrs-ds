@@ -13,6 +13,14 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      order: [
+        'Typography',
+        ['Headers', 'Paragraphs', 'Lists'],
+      ],
+    },
+  },
 };
 
 export const decorators = [

@@ -1,0 +1,19 @@
+@import '../variables.scss';
+
+.input-placeholder {
+  &::placeholder {
+    color: $color-black;
+    font-family: $font-family-base;
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 1;
+  }
+}
+
+.placeholder-demo {
+  display: grid;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 8px 16px;
+  grid-template-columns: 1fr 160px;
+}

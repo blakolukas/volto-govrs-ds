@@ -1,0 +1,18 @@
+@import '../variables.scss';
+
+.label-base,
+.label-base * {
+  color: $color-black;
+  font-family: $font-family-base;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.label-tab,
+.label-tab * {
+  color: $color-black;
+  font-family: $font-family-base;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+}
