@@ -4,14 +4,23 @@ type Props = {
   DarkMode?: boolean;
   Circle?: boolean;
   OnClick?: () => void;
-  Class: 1 | 2 | 3 ;
+  Class: 1 | 2 | 3;
   Size?: 'small' | 'large';
   Block?: boolean;
   State?: 'loading' | 'disabled' | 'active';
   children?: React.ReactNode;
 };
 
-function Button({ DarkMode, Circle, OnClick, Class, Size, Block, State, children } : Props) {
+function Button({
+  DarkMode,
+  Circle,
+  OnClick,
+  Class,
+  Size,
+  Block,
+  State,
+  children,
+}: Props) {
   const classes = [
     'br-button',
     Block && 'block',
@@ -21,17 +30,19 @@ function Button({ DarkMode, Circle, OnClick, Class, Size, Block, State, children
     DarkMode && 'dark-mode',
     Size,
     State !== 'disabled' && State,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-      <button
+    <button
       className={classes}
       type="button"
       onClick={OnClick}
       disabled={State === 'disabled'}
-      >
-        {children}
-      </button>
+    >
+      {children}
+    </button>
   );
 }
 

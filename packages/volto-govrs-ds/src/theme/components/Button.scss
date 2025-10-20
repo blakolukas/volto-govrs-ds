@@ -5,24 +5,24 @@
   --button-medium: 40px;
   --button-large: 48px;
   --button-size: var(--button-medium);
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  width: auto;
+  height: var(--button-size);
   align-items: center;
-  background-color: transparent;
+  justify-content: center;
+  padding: 0 var(--spacing-scale-3x, 24px);
   border: 0;
   border-radius: var(--button-radius);
+  background-color: transparent;
   color: var(--interactive, #1351b4); /* Fallback if variable not loaded */
   cursor: pointer;
-  display: inline-flex;
   font-size: var(--font-size-scale-up-01, 1rem);
   font-weight: var(--font-weight-semi-bold, 600);
-  height: var(--button-size);
-  justify-content: center;
-  overflow: hidden;
-  padding: 0 var(--spacing-scale-3x, 24px);
-  position: relative;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
-  width: auto;
 }
 .br-button.block {
   width: 100%;
@@ -59,48 +59,70 @@
     width: auto;
   }
 }
-.br-button.circle, .br-button[circle], .br-button.is-circle {
-  border-radius: 50%;
-  padding: 0;
+.br-button.circle,
+.br-button[circle],
+.br-button.is-circle {
   width: var(--button-size);
+  padding: 0;
+  border-radius: 50%;
 }
-.br-button.xsmall, .br-button[xsmall], .br-button.is-xsmall {
+.br-button.xsmall,
+.br-button[xsmall],
+.br-button.is-xsmall {
   --button-size: var(--button-xsmall);
 }
-.br-button.small, .br-button[small], .br-button.is-small {
+.br-button.small,
+.br-button[small],
+.br-button.is-small {
   --button-size: var(--button-small);
 }
-.br-button.medium, .br-button[medium], .br-button.is-medium {
+.br-button.medium,
+.br-button[medium],
+.br-button.is-medium {
   --button-size: var(--button-medium);
 }
-.br-button.large, .br-button[large], .br-button.is-large {
+.br-button.large,
+.br-button[large],
+.br-button.is-large {
   --button-size: var(--button-large);
 }
-.br-button.primary, .br-button[primary], .br-button.is-primary {
+.br-button.primary,
+.br-button[primary],
+.br-button.is-primary {
   --interactive-rgb: var(--color-dark-rgb);
   background-color: var(--interactive-light);
   color: var(--color-light);
 }
-.br-button.secondary, .br-button[secondary], .br-button.is-secondary {
-  background-color: var(--background-light);
+.br-button.secondary,
+.br-button[secondary],
+.br-button.is-secondary {
   border: 1px solid var(--interactive);
+  background-color: var(--background-light);
 }
-.br-button.danger, .br-button[danger], .br-button.is-danger {
+.br-button.danger,
+.br-button[danger],
+.br-button.is-danger {
   background-color: var(--danger);
   --interactive-rgb: var(--color-dark-rgb);
   color: var(--color-dark);
 }
-.br-button.success, .br-button[success], .br-button.is-success {
+.br-button.success,
+.br-button[success],
+.br-button.is-success {
   background-color: var(--success);
   --interactive-rgb: var(--color-dark-rgb);
   color: var(--color-dark);
 }
-.br-button.warning, .br-button[warning], .br-button.is-warning {
+.br-button.warning,
+.br-button[warning],
+.br-button.is-warning {
   background-color: var(--warning);
   --interactive-rgb: var(--color-light-rgb);
   color: var(--color-light);
 }
-.br-button.info, .br-button[info], .br-button.is-info {
+.br-button.info,
+.br-button[info],
+.br-button.is-info {
   background-color: var(--info);
   --interactive-rgb: var(--color-dark-rgb);
   color: var(--color-dark);
@@ -114,45 +136,54 @@
 .br-button:not(:disabled):focus {
   outline: none;
 }
-.br-button:not(:disabled).focus-visible, .br-button:not(:disabled):focus-visible {
+.br-button:not(:disabled).focus-visible,
+.br-button:not(:disabled):focus-visible {
   outline-color: var(--focus);
   outline-offset: var(--focus-offset);
   outline-style: var(--focus-style);
   outline-width: var(--focus-width);
 }
 .br-button:not(:disabled):not(:disabled):hover {
-  background-image: linear-gradient(rgba(var(--interactive-rgb), var(--hover)), rgba(var(--interactive-rgb), var(--hover)));
+  background-image: linear-gradient(
+    rgba(var(--interactive-rgb), var(--hover)),
+    rgba(var(--interactive-rgb), var(--hover))
+  );
 }
 .br-button:not(:disabled):not(:disabled):active {
-  background-image: linear-gradient(rgba(var(--interactive-rgb), var(--pressed)), rgba(var(--interactive-rgb), var(--pressed)));
+  background-image: linear-gradient(
+    rgba(var(--interactive-rgb), var(--pressed)),
+    rgba(var(--interactive-rgb), var(--pressed))
+  );
 }
-.br-button.active, .br-button.is-active, .br-button[active] {
+.br-button.active,
+.br-button.is-active,
+.br-button[active] {
   --hover: var(--hover-dark);
   background-color: var(--active);
   color: var(--color-dark);
 }
 .br-button.loading {
+  position: relative;
   color: transparent !important;
   cursor: progress;
   pointer-events: none;
-  position: relative;
 }
 .br-button.loading:not(:disabled):hover {
   background-image: none;
 }
 .br-button.loading::before {
-  content: '';
   position: absolute;
-  width: 16px;
-  height: 16px;
   top: 50%;
   left: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--interactive, #1351b4);
+  border-radius: 50%;
+  border-right-color: transparent;
   margin-top: -8px;
   margin-left: -8px;
-  border: 2px solid var(--interactive, #1351b4);
-  border-right-color: transparent;
-  border-radius: 50%;
   animation: button-spin 0.6s linear infinite;
+  content: '';
 }
 .br-button.loading.primary::before,
 .br-button.loading.danger::before,
@@ -171,7 +202,10 @@
     transform: rotate(360deg);
   }
 }
-.br-button.inverted, .br-button.is-inverted, .br-button[inverted], .br-button.dark-mode {
+.br-button.inverted,
+.br-button.is-inverted,
+.br-button[inverted],
+.br-button.dark-mode {
   --color: var(--color-dark);
   --color-rgb: var(--color-dark-rgb);
   --text-color: var(--color-dark);
@@ -184,15 +218,40 @@
   --focus: var(--focus-color-dark);
   color: var(--interactive-dark);
 }
-.br-button.inverted.primary, .br-button.inverted[primary], .br-button.inverted.is-primary, .br-button.is-inverted.primary, .br-button.is-inverted[primary], .br-button.is-inverted.is-primary, .br-button[inverted].primary, .br-button[inverted][primary], .br-button[inverted].is-primary, .br-button.dark-mode.primary, .br-button.dark-mode[primary], .br-button.dark-mode.is-primary {
+.br-button.inverted.primary,
+.br-button.inverted[primary],
+.br-button.inverted.is-primary,
+.br-button.is-inverted.primary,
+.br-button.is-inverted[primary],
+.br-button.is-inverted.is-primary,
+.br-button[inverted].primary,
+.br-button[inverted][primary],
+.br-button[inverted].is-primary,
+.br-button.dark-mode.primary,
+.br-button.dark-mode[primary],
+.br-button.dark-mode.is-primary {
   --interactive-rgb: var(--background-dark-rgb);
   background-color: var(--interactive-dark);
   color: var(--background-dark);
 }
-.br-button.inverted.secondary, .br-button.inverted[secondary], .br-button.inverted.is-secondary, .br-button.is-inverted.secondary, .br-button.is-inverted[secondary], .br-button.is-inverted.is-secondary, .br-button[inverted].secondary, .br-button[inverted][secondary], .br-button[inverted].is-secondary, .br-button.dark-mode.secondary, .br-button.dark-mode[secondary], .br-button.dark-mode.is-secondary {
+.br-button.inverted.secondary,
+.br-button.inverted[secondary],
+.br-button.inverted.is-secondary,
+.br-button.is-inverted.secondary,
+.br-button.is-inverted[secondary],
+.br-button.is-inverted.is-secondary,
+.br-button[inverted].secondary,
+.br-button[inverted][secondary],
+.br-button[inverted].is-secondary,
+.br-button.dark-mode.secondary,
+.br-button.dark-mode[secondary],
+.br-button.dark-mode.is-secondary {
   background-color: var(--background-dark);
 }
-.br-button.inverted.active, .br-button.is-inverted.active, .br-button[inverted].active, .br-button.dark-mode.active {
+.br-button.inverted.active,
+.br-button.is-inverted.active,
+.br-button[inverted].active,
+.br-button.dark-mode.active {
   --hover: var(--hover-light);
   --interactive-rgb: var(--active-rgb);
   background-color: var(--background-light);
@@ -203,5 +262,3 @@ a.br-button {
   font-weight: var(--font-weight-semi-bold);
   text-decoration: none !important;
 }
-
-/*# sourceMappingURL=button.css.map*/

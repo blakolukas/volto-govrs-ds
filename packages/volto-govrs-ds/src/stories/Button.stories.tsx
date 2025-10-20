@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button';
+import Button from './../components/widgets/Button/Button';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -185,19 +185,17 @@ export const DarkModeSecondary: Story = {
   },
 };
 
-// Interactive Example
-export const Interactive: Story = {
-  args: {
-    Class: 1,
-    children: 'Click Me!',
-    OnClick: () => alert('Button clicked!'),
-  },
-};
-
 // All Variants Showcase
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '500px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        maxWidth: '500px',
+      }}
+    >
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
         <Button Class={1}>Primary</Button>
         <Button Class={2}>Secondary</Button>
@@ -205,27 +203,70 @@ export const AllVariants: Story = {
       </div>
 
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        <Button Class={1} Size="small">Small</Button>
+        <Button Class={1} Size="small">
+          Small
+        </Button>
         <Button Class={1}>Normal</Button>
-        <Button Class={1} Size="large">Large</Button>
+        <Button Class={1} Size="large">
+          Large
+        </Button>
       </div>
 
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        <Button Class={1} State="loading">Loading</Button>
-        <Button Class={1} State="disabled">Disabled</Button>
-        <Button Class={1} State="active">Active</Button>
+        <Button Class={1} State="loading">
+          Loading
+        </Button>
+        <Button Class={1} State="disabled">
+          Disabled
+        </Button>
+        <Button Class={1} State="active">
+          Active
+        </Button>
       </div>
 
       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-        <Button Class={1} Circle>+</Button>
-        <Button Class={2} Circle>−</Button>
-        <Button Class={3} Circle>×</Button>
+        <Button Class={1} Circle>
+          +
+        </Button>
+        <Button Class={2} Circle>
+          −
+        </Button>
+        <Button Class={3} Circle>
+          ×
+        </Button>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        <Button Class={1} Block>Block Primary</Button>
-        <Button Class={2} Block>Block Secondary</Button>
+        <Button Class={1} Block>
+          Block Primary
+        </Button>
+        <Button Class={2} Block>
+          Block Secondary
+        </Button>
       </div>
     </div>
   ),
+};
+
+function InteractiveDemoPanel() {
+  const [msg, setMsg] = React.useState('');
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        maxWidth: '320px',
+      }}
+    >
+      <Button Class={1} OnClick={() => setMsg('Button clicked!')}>
+        Click Me!
+      </Button>
+      <div style={{ minHeight: 20, color: '#222', fontSize: 13 }}>{msg}</div>
+    </div>
+  );
+}
+
+export const Interactive: Story = {
+  render: () => <InteractiveDemoPanel />,
 };
