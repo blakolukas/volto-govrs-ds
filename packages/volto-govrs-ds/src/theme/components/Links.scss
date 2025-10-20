@@ -1,0 +1,25 @@
+
+.external{
+    color: var(--green-rs-60);
+}
+
+main a{
+    color: var(--green-rs-60) !important;
+    text-decoration: none !important;
+}
+
+main a:hover{
+    color: var(--green-rs-60) !important;
+    text-decoration: underline !important;
+}
+
+.external::after{
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-image: url('../../../public/Vector.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 4px;
+}
