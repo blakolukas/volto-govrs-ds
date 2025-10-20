@@ -1,5 +1,5 @@
 import React from 'react';
-import '../theme/HeadersETextos/Paragraphs.scss';
+import '../../theme/HeadersETextos/Paragraphs.scss';
 
 export default {
   title: 'Typography/Paragraphs',

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../theme/HeadersETextos/Label.scss';
+import '../../theme/HeadersETextos/Label.scss';
 
 export default {
   title: 'Typography/Labels',

@@ -1,7 +1,6 @@
 import React from 'react';
-import Button from './../components/widgets/Button/Button';
-import type { Meta, StoryObj } from '@storybook/react';
-
+import Button from './Button';
+// Note: avoid importing Storybook types here to keep this file runnable in JS environments
 const meta = {
   title: 'Widgets/Button',
   component: Button,
@@ -42,20 +41,19 @@ const meta = {
       description: 'Click handler',
     },
   },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
 
 // Primary Buttons
-export const Primary: Story = {
+export const Primary = {
   args: {
     Class: 1,
     children: 'Primary Button',
   },
 };
 
-export const PrimarySmall: Story = {
+export const PrimarySmall = {
   args: {
     Class: 1,
     Size: 'small',
@@ -63,7 +61,7 @@ export const PrimarySmall: Story = {
   },
 };
 
-export const PrimaryLarge: Story = {
+export const PrimaryLarge = {
   args: {
     Class: 1,
     Size: 'large',
@@ -72,14 +70,14 @@ export const PrimaryLarge: Story = {
 };
 
 // Secondary Buttons
-export const Secondary: Story = {
+export const Secondary = {
   args: {
     Class: 2,
     children: 'Secondary Button',
   },
 };
 
-export const SecondarySmall: Story = {
+export const SecondarySmall = {
   args: {
     Class: 2,
     Size: 'small',
@@ -87,7 +85,7 @@ export const SecondarySmall: Story = {
   },
 };
 
-export const SecondaryLarge: Story = {
+export const SecondaryLarge = {
   args: {
     Class: 2,
     Size: 'large',
@@ -96,7 +94,7 @@ export const SecondaryLarge: Story = {
 };
 
 // Tertiary Buttons
-export const Tertiary: Story = {
+export const Tertiary = {
   args: {
     Class: 3,
     children: 'Tertiary Button',
@@ -104,7 +102,7 @@ export const Tertiary: Story = {
 };
 
 // Button States
-export const Loading: Story = {
+export const Loading = {
   args: {
     Class: 1,
     State: 'loading',
@@ -112,7 +110,7 @@ export const Loading: Story = {
   },
 };
 
-export const Disabled: Story = {
+export const Disabled = {
   args: {
     Class: 1,
     State: 'disabled',
@@ -120,7 +118,7 @@ export const Disabled: Story = {
   },
 };
 
-export const Active: Story = {
+export const Active = {
   args: {
     Class: 1,
     State: 'active',
@@ -129,7 +127,7 @@ export const Active: Story = {
 };
 
 // Circle Buttons
-export const Circle: Story = {
+export const Circle = {
   args: {
     Class: 1,
     Circle: true,
@@ -137,7 +135,7 @@ export const Circle: Story = {
   },
 };
 
-export const CircleSecondary: Story = {
+export const CircleSecondary = {
   args: {
     Class: 2,
     Circle: true,
@@ -146,7 +144,7 @@ export const CircleSecondary: Story = {
 };
 
 // Block Buttons
-export const Block: Story = {
+export const Block = {
   args: {
     Class: 1,
     Block: true,
@@ -154,7 +152,7 @@ export const Block: Story = {
   },
 };
 
-export const BlockSecondary: Story = {
+export const BlockSecondary = {
   args: {
     Class: 2,
     Block: true,
@@ -163,7 +161,7 @@ export const BlockSecondary: Story = {
 };
 
 // Dark Mode
-export const DarkMode: Story = {
+export const DarkMode = {
   args: {
     Class: 1,
     DarkMode: true,
@@ -174,7 +172,7 @@ export const DarkMode: Story = {
   },
 };
 
-export const DarkModeSecondary: Story = {
+export const DarkModeSecondary = {
   args: {
     Class: 2,
     DarkMode: true,
@@ -186,7 +184,7 @@ export const DarkModeSecondary: Story = {
 };
 
 // All Variants Showcase
-export const AllVariants: Story = {
+export const AllVariants = {
   render: () => (
     <div
       style={{
@@ -267,6 +265,6 @@ function InteractiveDemoPanel() {
   );
 }
 
-export const Interactive: Story = {
+export const Interactive = {
   render: () => <InteractiveDemoPanel />,
 };

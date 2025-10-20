@@ -1,5 +1,5 @@
 import React from 'react';
-import '../theme/HeadersETextos/Listas.scss';
+import '../../theme/HeadersETextos/Listas.scss';
 
 export default {
   title: 'Typography/Lists',

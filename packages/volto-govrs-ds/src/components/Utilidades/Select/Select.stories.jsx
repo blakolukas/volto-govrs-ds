@@ -1,6 +1,6 @@
 import React from 'react';
-import '../theme/Formularios/Select.scss';
-import Select from '../components/Utilidades/Select';
+import '../../../theme/Formularios/Select.scss';
+import Select from '.';
 
 export default {
   title: 'Forms/Select',

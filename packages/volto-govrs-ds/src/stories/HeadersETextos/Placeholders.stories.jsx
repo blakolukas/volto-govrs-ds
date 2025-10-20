@@ -1,5 +1,5 @@
 import React from 'react';
-import '../theme/HeadersETextos/Placeholder.scss';
+import '../../theme/HeadersETextos/Placeholder.scss';
 
 export default {
   title: 'Typography/Placeholders',
