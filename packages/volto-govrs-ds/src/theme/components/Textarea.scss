@@ -1,0 +1,230 @@
+/* Gov.br DS Textarea - Isolated from Plone/Volto styles */
+.br-textarea {
+  --textarea-padding: var(--textarea-medium);
+  --textarea-small: var(--spacing-scale-base);
+  --textarea-medium: var(--spacing-scale-base);
+  --textarea-large: var(--spacing-scale-2x);
+  --border-color-alternative: var(--gray-20, #cccccc);
+  --surface-width-md: 1px;
+
+  color: var(--color) !important;
+  font-family: var(--font-family-base) !important;
+  box-sizing: border-box !important;
+  position: relative;
+
+  /* Ensure this container does not inherit problematic styles */
+  * {
+    box-sizing: border-box !important;
+  }
+}
+
+.br-textarea > label {
+  display: inline-block !important;
+  margin: 0 0 var(--spacing-scale-half) 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-scale-up-01) !important;
+  font-weight: var(--font-weight-medium) !important;
+  line-height: var(--line-height-medium) !important;
+  color: var(--color) !important;
+  text-align: left !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  cursor: default !important;
+  width: auto !important;
+  max-width: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+.br-textarea > div {
+  position: relative;
+}
+
+.br-textarea > div > textarea {
+  background: var(--background-light) !important;
+  border: 1px solid var(--border-color-alternative) !important;
+  border-radius: 6px !important;
+  color: var(--color) !important;
+  display: block !important;
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-scale-up-01) !important;
+  font-weight: var(--font-weight-medium) !important;
+  line-height: var(--line-height-medium) !important;
+  padding: var(--textarea-padding) !important;
+  width: 100% !important;
+  min-height: 120px !important;
+  max-height: none !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  resize: vertical !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+
+  /* Reset inherited text styles */
+  text-align: left !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  word-spacing: normal !important;
+  text-indent: 0 !important;
+
+  /* Ensure proper text wrapping */
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+
+  /* Reset any inherited appearances */
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+}
+
+.br-textarea.small > div > textarea,
+.br-textarea[data-small] > div > textarea {
+  --textarea-padding: var(--textarea-small);
+  min-height: 5em !important;
+}
+
+.br-textarea.medium > div > textarea,
+.br-textarea[data-medium] > div > textarea {
+  --textarea-padding: var(--textarea-medium);
+}
+
+.br-textarea.large > div > textarea,
+.br-textarea[data-large] > div > textarea {
+  --textarea-padding: var(--textarea-large);
+}
+
+.br-textarea.success > div > textarea,
+.br-textarea[data-success] > div > textarea {
+  border-color: var(--success) !important;
+  border-width: 2px !important;
+}
+
+.br-textarea.danger > div > textarea,
+.br-textarea[data-danger] > div > textarea {
+  border-color: var(--danger) !important;
+  border-width: 2px !important;
+}
+
+.br-textarea.warning > div > textarea,
+.br-textarea[data-warning] > div > textarea {
+  border-color: var(--warning) !important;
+  border-width: 2px !important;
+}
+
+.br-textarea.info > div > textarea,
+.br-textarea[data-info] > div > textarea {
+  border-color: var(--info) !important;
+  border-width: 2px !important;
+}
+
+.br-textarea > div > textarea:focus,
+.br-textarea > div > textarea:focus-visible,
+.br-textarea > div > textarea.focus-visible {
+  border-color: var(--focus) !important;
+  box-shadow: 0 0 0 var(--surface-width-md) var(--focus) !important;
+  outline: none !important;
+}
+
+.br-textarea > div > textarea:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.br-textarea > div > textarea:hover:not(:disabled) {
+  background-image: linear-gradient(
+    rgba(var(--color-rgb), var(--hover)),
+    rgba(var(--color-rgb), var(--hover))
+  ) !important;
+}
+
+.br-textarea.inverted,
+.br-textarea.inverted > label,
+.br-textarea.dark-mode,
+.br-textarea.dark-mode > label {
+  --color: var(--color-light);
+  --focus-color: var(--focus-color-dark);
+}
+
+.br-textarea.inverted > div > textarea,
+.br-textarea.dark-mode > div > textarea {
+  color: var(--color-dark) !important;
+}
+
+/* Helper text styles (for description and errors) */
+.br-textarea > div > small {
+  display: block !important;
+  margin-top: var(--spacing-scale-half) !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  font-size: var(--font-size-scale-down-01) !important;
+  line-height: var(--line-height-medium) !important;
+  font-family: var(--font-family-base) !important;
+}
+
+.br-textarea .text-danger {
+  color: var(--danger) !important;
+  font-weight: var(--font-weight-medium) !important;
+}
+
+/* Feedback messages */
+.br-textarea .feedback {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: var(--spacing-scale-half) !important;
+  margin-top: var(--spacing-scale-half) !important;
+  font-size: var(--font-size-scale-down-01) !important;
+  font-weight: var(--font-weight-semi-bold) !important;
+  line-height: var(--line-height-medium) !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  font-style: italic !important;
+}
+
+.br-textarea .feedback.success {
+  color: var(--color-light) !important;
+  background-color: var(--success) !important;
+}
+
+.br-textarea .feedback.danger,
+.br-textarea .feedback.error {
+  color: var(--color-light) !important;
+  background-color: var(--danger) !important;
+}
+
+.br-textarea .feedback.warning {
+  color: var(--color-dark) !important;
+  background-color: var(--warning) !important;
+}
+
+.br-textarea .feedback.info {
+  color: var(--color-light) !important;
+  background-color: var(--info) !important;
+}
+
+.br-textarea .feedback svg {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
+  display: inline-block !important;
+}
+
+/* Left variant - label positioned on the left side */
+.br-textarea.left {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: var(--spacing-scale-2x) !important;
+}
+
+.br-textarea.left > label {
+  flex-shrink: 0 !important;
+  min-width: 150px !important;
+  margin-top: var(--spacing-scale-base) !important;
+  margin-bottom: 0 !important;
+}
+
+.br-textarea.left > div {
+  flex: 1 !important;
+}
+
+/*# sourceMappingURL=textarea.css.map*/
