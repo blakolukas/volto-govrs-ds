@@ -22,7 +22,8 @@ export const Default = {
   parameters: {
     docs: {
       description: {
-        story: 'Este é o exemplo básico do componente CustomTextarea, mostrando sua configuração mínima necessária. O componente requer apenas as propriedades obrigatórias: `id`, `title`, `value` e `onChange`.',
+        story:
+          'Este é o exemplo básico do componente CustomTextarea, mostrando sua configuração mínima necessária. O componente requer apenas as propriedades obrigatórias: `id`, `title`, `value` e `onChange`.',
       },
     },
   },
@@ -44,7 +45,8 @@ export const WithValue = {
   parameters: {
     docs: {
       description: {
-        story: 'Este exemplo demonstra como inicializar o componente com um valor pré-preenchido. Útil em cenários de edição onde o usuário precisa modificar um conteúdo existente, como formulários de atualização de perfil ou edição de comentários.',
+        story:
+          'Este exemplo demonstra como inicializar o componente com um valor pré-preenchido. Útil em cenários de edição onde o usuário precisa modificar um conteúdo existente, como formulários de atualização de perfil ou edição de comentários.',
       },
     },
   },
@@ -65,7 +67,8 @@ export const WithDescription = {
   parameters: {
     docs: {
       description: {
-        story: 'Exemplo que mostra como adicionar um texto descritivo abaixo do campo usando a propriedade `description`. As descrições são fundamentais para melhorar a usabilidade do formulário, orientando o usuário sobre o que deve ser preenchido.',
+        story:
+          'Exemplo que mostra como adicionar um texto descritivo abaixo do campo usando a propriedade `description`. As descrições são fundamentais para melhorar a usabilidade do formulário, orientando o usuário sobre o que deve ser preenchido.',
       },
     },
   },
@@ -87,7 +90,8 @@ export const WithMaxLength = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstra como aplicar um limite máximo de caracteres usando a propriedade `maxLength`. O componente exibe um contador e impede a digitação de caracteres adicionais quando o limite é atingido.',
+        story:
+          'Demonstra como aplicar um limite máximo de caracteres usando a propriedade `maxLength`. O componente exibe um contador e impede a digitação de caracteres adicionais quando o limite é atingido.',
       },
     },
   },
@@ -110,7 +114,8 @@ export const Disabled = {
   parameters: {
     docs: {
       description: {
-        story: 'Mostra o textarea no estado desabilitado através da propriedade `isDisabled`. Quando desabilitado, o campo não permite interação e recebe um estilo visual diferenciado para indicar que está inativo.',
+        story:
+          'Mostra o textarea no estado desabilitado através da propriedade `isDisabled`. Quando desabilitado, o campo não permite interação e recebe um estilo visual diferenciado para indicar que está inativo.',
       },
     },
   },
@@ -130,7 +135,8 @@ export const WithPlaceholder = {
   parameters: {
     docs: {
       description: {
-        story: 'Destaca o uso da propriedade `placeholder` para exibir um texto de dica quando o campo está vazio. Use placeholders para exemplos concretos e descrições para instruções mais detalhadas.',
+        story:
+          'Destaca o uso da propriedade `placeholder` para exibir um texto de dica quando o campo está vazio. Use placeholders para exemplos concretos e descrições para instruções mais detalhadas.',
       },
     },
   },
@@ -151,7 +157,8 @@ export const Required = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstra como marcar um campo como obrigatório adicionando um asterisco (*) ao título. Esta é uma convenção visual amplamente reconhecida. Combine indicadores visuais com validação programática.',
+        story:
+          'Demonstra como marcar um campo como obrigatório adicionando um asterisco (*) ao título. Esta é uma convenção visual amplamente reconhecida. Combine indicadores visuais com validação programática.',
       },
     },
   },
@@ -173,7 +180,8 @@ export const Left = {
   parameters: {
     docs: {
       description: {
-        story: 'Mostra uma variante de layout onde o rótulo é posicionado à esquerda do campo usando a propriedade `left`. Este layout horizontal é útil quando você tem restrições de espaço vertical ou deseja criar formulários mais compactos.',
+        story:
+          'Mostra uma variante de layout onde o rótulo é posicionado à esquerda do campo usando a propriedade `left`. Este layout horizontal é útil quando você tem restrições de espaço vertical ou deseja criar formulários mais compactos.',
       },
     },
   },
@@ -194,7 +202,8 @@ export const Small = {
   parameters: {
     docs: {
       description: {
-        story: 'Variante de tamanho pequeno definida pela propriedade `size="small"`. Esta versão possui padding interno reduzido e altura mínima menor, ideal para interfaces compactas ou quando o espaço é limitado.',
+        story:
+          'Variante de tamanho pequeno definida pela propriedade `size="small"`. Esta versão possui padding interno reduzido e altura mínima menor, ideal para interfaces compactas ou quando o espaço é limitado.',
       },
     },
   },
@@ -215,7 +224,8 @@ export const Large = {
   parameters: {
     docs: {
       description: {
-        story: 'Variante de tamanho grande definida pela propriedade `size="large"`. Perfeita para campos que requerem entrada de textos mais longos e detalhados, como descrições, comentários ou conteúdo de artigos.',
+        story:
+          'Variante de tamanho grande definida pela propriedade `size="large"`. Perfeita para campos que requerem entrada de textos mais longos e detalhados, como descrições, comentários ou conteúdo de artigos.',
       },
     },
   },
@@ -238,7 +248,8 @@ export const Success = {
   parameters: {
     docs: {
       description: {
-        story: 'Estado de sucesso aplicado através da propriedade `State="success"`. Exibe borda verde e uma mensagem de feedback positivo para confirmar que o campo foi preenchido corretamente e passou na validação.',
+        story:
+          'Estado de sucesso aplicado através da propriedade `State="success"`. Exibe borda verde e uma mensagem de feedback positivo para confirmar que o campo foi preenchido corretamente e passou na validação.',
       },
     },
   },
@@ -261,7 +272,8 @@ export const Error = {
   parameters: {
     docs: {
       description: {
-        story: 'Estado de erro aplicado através da propriedade `State="error"`. Exibe borda vermelha e uma mensagem de feedback negativo para indicar que há um problema com o valor inserido. Use quando a validação falhar.',
+        story:
+          'Estado de erro aplicado através da propriedade `State="error"`. Exibe borda vermelha e uma mensagem de feedback negativo para indicar que há um problema com o valor inserido. Use quando a validação falhar.',
       },
     },
   },
@@ -284,7 +296,8 @@ export const Warning = {
   parameters: {
     docs: {
       description: {
-        story: 'Estado de aviso aplicado através da propriedade `State="warning"`. Exibe borda amarela e uma mensagem de atenção para alertar sobre algo que requer cuidado, mas não necessariamente impede o envio do formulário.',
+        story:
+          'Estado de aviso aplicado através da propriedade `State="warning"`. Exibe borda amarela e uma mensagem de atenção para alertar sobre algo que requer cuidado, mas não necessariamente impede o envio do formulário.',
       },
     },
   },
@@ -307,7 +320,8 @@ export const Info = {
   parameters: {
     docs: {
       description: {
-        story: 'Estado informativo aplicado através da propriedade `State="info"`. Exibe borda azul e uma mensagem informativa para fornecer contexto adicional, dicas úteis ou informações complementares sobre o campo.',
+        story:
+          'Estado informativo aplicado através da propriedade `State="info"`. Exibe borda azul e uma mensagem informativa para fornecer contexto adicional, dicas úteis ou informações complementares sobre o campo.',
       },
     },
   },
@@ -318,7 +332,9 @@ export const Info = {
  */
 export const DarkMode = {
   render: () => (
-    <div style={{ background: '#071d41', padding: '2rem', borderRadius: '4px' }}>
+    <div
+      style={{ background: '#071d41', padding: '2rem', borderRadius: '4px' }}
+    >
       <TextareaStory
         id="textarea-dark"
         title="Modo escuro"
@@ -332,7 +348,8 @@ export const DarkMode = {
   parameters: {
     docs: {
       description: {
-        story: 'Variante otimizada para fundos escuros ativada pela propriedade `darkMode={true}`. Esta versão ajusta cores, contrastes e opacidades para garantir legibilidade e acessibilidade em seções com fundo escuro.',
+        story:
+          'Variante otimizada para fundos escuros ativada pela propriedade `darkMode={true}`. Esta versão ajusta cores, contrastes e opacidades para garantir legibilidade e acessibilidade em seções com fundo escuro.',
       },
     },
     backgrounds: {
@@ -357,7 +374,8 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
   parameters: {
     docs: {
       description: {
-        story: 'Exemplo demonstrando o comportamento do componente quando preenchido com texto longo e múltiplas linhas. O textarea se ajusta automaticamente ao conteúdo, expandindo verticalmente conforme necessário.',
+        story:
+          'Exemplo demonstrando o comportamento do componente quando preenchido com texto longo e múltiplas linhas. O textarea se ajusta automaticamente ao conteúdo, expandindo verticalmente conforme necessário.',
       },
     },
   },
@@ -380,7 +398,8 @@ export const MaxLengthWithError = {
   parameters: {
     docs: {
       description: {
-        story: 'Demonstra o comportamento quando o campo já é inicializado com um valor que excede o limite de caracteres. O componente exibe uma mensagem de erro e impede a adição de novos caracteres, mas permite deletar.',
+        story:
+          'Demonstra o comportamento quando o campo já é inicializado com um valor que excede o limite de caracteres. O componente exibe uma mensagem de erro e impede a adição de novos caracteres, mas permite deletar.',
       },
     },
   },
@@ -407,7 +426,8 @@ export const Playground = {
   parameters: {
     docs: {
       description: {
-        story: 'Experimente todas as propriedades do componente de forma interativa usando os controles abaixo. Altere valores, estados e tamanhos para ver como o componente reage.',
+        story:
+          'Experimente todas as propriedades do componente de forma interativa usando os controles abaixo. Altere valores, estados e tamanhos para ver como o componente reage.',
       },
     },
   },
@@ -418,7 +438,10 @@ export default {
   component: CustomTextarea,
   decorators: [
     (Story) => (
-      <div className="ui segment form attached" style={{ width: '600px', padding: '2rem' }}>
+      <div
+        className="ui segment form attached"
+        style={{ width: '600px', padding: '2rem' }}
+      >
         <Story />
       </div>
     ),
@@ -426,7 +449,8 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'O componente CustomTextarea é um campo de entrada de texto multilinha totalmente estilizado e acessível, seguindo as diretrizes do Design System do Governo do Rio Grande do Sul. Oferece suporte a validação, estados visuais, feedback contextual e múltiplas variantes de tamanho e layout.',
+        component:
+          'O componente CustomTextarea é um campo de entrada de texto multilinha totalmente estilizado e acessível, seguindo as diretrizes do Design System do Governo do Rio Grande do Sul. Oferece suporte a validação, estados visuais, feedback contextual e múltiplas variantes de tamanho e layout.',
       },
     },
     layout: 'centered',
@@ -458,7 +482,8 @@ export default {
     },
     onChange: {
       action: 'changed',
-      description: 'Função callback chamada quando o valor muda. Recebe o novo valor como string.',
+      description:
+        'Função callback chamada quando o valor muda. Recebe o novo valor como string.',
       table: {
         type: { summary: '(value: string) => void' },
         category: 'Obrigatório',
@@ -466,7 +491,8 @@ export default {
     },
     description: {
       control: 'text',
-      description: 'Texto descritivo opcional exibido abaixo do textarea para orientar o usuário',
+      description:
+        'Texto descritivo opcional exibido abaixo do textarea para orientar o usuário',
       table: {
         type: { summary: 'string' },
         category: 'Opcional',
@@ -484,7 +510,8 @@ export default {
     },
     maxLength: {
       control: 'number',
-      description: 'Número máximo de caracteres permitidos. Exibe mensagem de erro quando excedido.',
+      description:
+        'Número máximo de caracteres permitidos. Exibe mensagem de erro quando excedido.',
       table: {
         type: { summary: 'number' },
         category: 'Opcional',
@@ -503,7 +530,8 @@ export default {
     size: {
       control: 'select',
       options: [undefined, 'small', 'large'],
-      description: 'Variante de tamanho do textarea. Afeta o padding interno e altura mínima.',
+      description:
+        'Variante de tamanho do textarea. Afeta o padding interno e altura mínima.',
       table: {
         type: { summary: "'small' | 'large'" },
         category: 'Opcional',
@@ -513,7 +541,8 @@ export default {
     State: {
       control: 'select',
       options: [undefined, 'success', 'error', 'warning', 'info'],
-      description: 'Estado visual do textarea. Altera a cor da borda e exibe mensagem de feedback com ícone.',
+      description:
+        'Estado visual do textarea. Altera a cor da borda e exibe mensagem de feedback com ícone.',
       table: {
         type: { summary: "'success' | 'error' | 'warning' | 'info'" },
         category: 'Opcional',
@@ -522,7 +551,8 @@ export default {
     },
     darkMode: {
       control: 'boolean',
-      description: 'Ativa o estilo de modo escuro para o textarea (para fundos escuros)',
+      description:
+        'Ativa o estilo de modo escuro para o textarea (para fundos escuros)',
       table: {
         type: { summary: 'boolean' },
         category: 'Opcional',
@@ -531,7 +561,8 @@ export default {
     },
     left: {
       control: 'boolean',
-      description: 'Posiciona o rótulo à esquerda do textarea ao invés de acima',
+      description:
+        'Posiciona o rótulo à esquerda do textarea ao invés de acima',
       table: {
         type: { summary: 'boolean' },
         category: 'Opcional',

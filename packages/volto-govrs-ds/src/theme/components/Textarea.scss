@@ -6,11 +6,11 @@
   --textarea-large: var(--spacing-scale-2x);
   --border-color-alternative: var(--gray-20, #cccccc);
   --surface-width-md: 1px;
+  position: relative;
+  box-sizing: border-box !important;
 
   color: var(--color) !important;
   font-family: var(--font-family-base) !important;
-  box-sizing: border-box !important;
-  position: relative;
 
   /* Ensure this container does not inherit problematic styles */
   * {
@@ -20,21 +20,21 @@
 
 .br-textarea > label {
   display: inline-block !important;
-  margin: 0 0 var(--spacing-scale-half) 0 !important;
+  width: auto !important;
+  max-width: none !important;
   padding: 0 !important;
+  border: none !important;
+  margin: 0 0 var(--spacing-scale-half) 0 !important;
+  background: none !important;
+  color: var(--color) !important;
+  cursor: default !important;
   font-family: var(--font-family-base) !important;
   font-size: var(--font-size-scale-up-01) !important;
   font-weight: var(--font-weight-medium) !important;
+  letter-spacing: normal !important;
   line-height: var(--line-height-medium) !important;
-  color: var(--color) !important;
   text-align: left !important;
   text-transform: none !important;
-  letter-spacing: normal !important;
-  cursor: default !important;
-  width: auto !important;
-  max-width: none !important;
-  border: none !important;
-  background: none !important;
 }
 
 .br-textarea > div {
@@ -42,40 +42,42 @@
 }
 
 .br-textarea > div > textarea {
-  background: var(--background-light) !important;
-  border: 1px solid var(--border-color-alternative) !important;
-  border-radius: 6px !important;
-  color: var(--color) !important;
   display: block !important;
-  font-family: var(--font-family-base) !important;
-  font-size: var(--font-size-scale-up-01) !important;
-  font-weight: var(--font-weight-medium) !important;
-  line-height: var(--line-height-medium) !important;
-  padding: var(--textarea-padding) !important;
   width: 100% !important;
   min-height: 120px !important;
   max-height: none !important;
-  margin: 0 !important;
   box-sizing: border-box !important;
+  padding: var(--textarea-padding) !important;
+  border: 1px solid var(--border-color-alternative) !important;
+  border-radius: 6px !important;
+  margin: 0 !important;
+
+  /* Reset any inherited appearances */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--background-light) !important;
+  color: var(--color) !important;
+  font-family: var(--font-family-base) !important;
+  font-size: var(--font-size-scale-up-01) !important;
+  font-weight: var(--font-weight-medium) !important;
+  letter-spacing: normal !important;
+  line-height: var(--line-height-medium) !important;
+  overflow-wrap: break-word !important;
   resize: vertical !important;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
 
   /* Reset inherited text styles */
   text-align: left !important;
-  text-transform: none !important;
-  letter-spacing: normal !important;
-  word-spacing: normal !important;
   text-indent: 0 !important;
+  text-transform: none !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease !important;
 
   /* Ensure proper text wrapping */
   white-space: pre-wrap !important;
+  word-spacing: normal !important;
   word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
-
-  /* Reset any inherited appearances */
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
 }
 
 .br-textarea.small > div > textarea,
@@ -96,26 +98,26 @@
 
 .br-textarea.success > div > textarea,
 .br-textarea[data-success] > div > textarea {
-  border-color: var(--success) !important;
   border-width: 2px !important;
+  border-color: var(--success) !important;
 }
 
 .br-textarea.danger > div > textarea,
 .br-textarea[data-danger] > div > textarea {
-  border-color: var(--danger) !important;
   border-width: 2px !important;
+  border-color: var(--danger) !important;
 }
 
 .br-textarea.warning > div > textarea,
 .br-textarea[data-warning] > div > textarea {
-  border-color: var(--warning) !important;
   border-width: 2px !important;
+  border-color: var(--warning) !important;
 }
 
 .br-textarea.info > div > textarea,
 .br-textarea[data-info] > div > textarea {
-  border-color: var(--info) !important;
   border-width: 2px !important;
+  border-color: var(--info) !important;
 }
 
 .br-textarea > div > textarea:focus,
@@ -127,8 +129,8 @@
 }
 
 .br-textarea > div > textarea:disabled {
-  opacity: 0.5 !important;
   cursor: not-allowed !important;
+  opacity: 0.5 !important;
 }
 
 .br-textarea > div > textarea:hover:not(:disabled) {
@@ -154,12 +156,12 @@
 /* Helper text styles (for description and errors) */
 .br-textarea > div > small {
   display: block !important;
+  padding: 0 !important;
   margin-top: var(--spacing-scale-half) !important;
   margin-bottom: 0 !important;
-  padding: 0 !important;
+  font-family: var(--font-family-base) !important;
   font-size: var(--font-size-scale-down-01) !important;
   line-height: var(--line-height-medium) !important;
-  font-family: var(--font-family-base) !important;
 }
 
 .br-textarea .text-danger {
@@ -171,42 +173,42 @@
 .br-textarea .feedback {
   display: inline-flex !important;
   align-items: center !important;
-  gap: var(--spacing-scale-half) !important;
-  margin-top: var(--spacing-scale-half) !important;
-  font-size: var(--font-size-scale-down-01) !important;
-  font-weight: var(--font-weight-semi-bold) !important;
-  line-height: var(--line-height-medium) !important;
   padding: 6px 12px !important;
   border-radius: 4px !important;
+  margin-top: var(--spacing-scale-half) !important;
+  font-size: var(--font-size-scale-down-01) !important;
   font-style: italic !important;
+  font-weight: var(--font-weight-semi-bold) !important;
+  gap: var(--spacing-scale-half) !important;
+  line-height: var(--line-height-medium) !important;
 }
 
 .br-textarea .feedback.success {
-  color: var(--color-light) !important;
   background-color: var(--success) !important;
+  color: var(--color-light) !important;
 }
 
 .br-textarea .feedback.danger,
 .br-textarea .feedback.error {
-  color: var(--color-light) !important;
   background-color: var(--danger) !important;
+  color: var(--color-light) !important;
 }
 
 .br-textarea .feedback.warning {
-  color: var(--color-dark) !important;
   background-color: var(--warning) !important;
+  color: var(--color-dark) !important;
 }
 
 .br-textarea .feedback.info {
-  color: var(--color-light) !important;
   background-color: var(--info) !important;
+  color: var(--color-light) !important;
 }
 
 .br-textarea .feedback svg {
+  display: inline-block !important;
   width: 16px !important;
   height: 16px !important;
   flex-shrink: 0 !important;
-  display: inline-block !important;
 }
 
 /* Left variant - label positioned on the left side */
@@ -217,8 +219,8 @@
 }
 
 .br-textarea.left > label {
-  flex-shrink: 0 !important;
   min-width: 150px !important;
+  flex-shrink: 0 !important;
   margin-top: var(--spacing-scale-base) !important;
   margin-bottom: 0 !important;
 }
@@ -226,5 +228,3 @@
 .br-textarea.left > div {
   flex: 1 !important;
 }
-
-/*# sourceMappingURL=textarea.css.map*/

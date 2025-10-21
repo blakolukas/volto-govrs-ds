@@ -3,7 +3,6 @@ import FilterSection from './DatePicker';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-
 const meta: Meta<typeof FilterSection> = {
   title: 'Widgets/DatePicker',
   component: FilterSection,
@@ -13,24 +12,26 @@ const meta: Meta<typeof FilterSection> = {
   tags: ['autodocs'],
   argTypes: {
     mode: {
-      control: 'select', 
+      control: 'select',
       options: ['single', 'range', 'multiple'],
-      description: 'Modo de seleção: "single" (data única), "range" (intervalo), "multiple" (múltiplas datas)',
+      description:
+        'Modo de seleção: "single" (data única), "range" (intervalo), "multiple" (múltiplas datas)',
       defaultValue: 'range',
     },
     enableTime: {
-      control: 'boolean', 
+      control: 'boolean',
       description: 'Habilita seleção de horário junto com a data',
       defaultValue: false,
     },
     noCalendar: {
-      control: 'boolean', 
+      control: 'boolean',
       description: 'Oculta o calendário e exibe apenas o seletor de horário',
       defaultValue: false,
     },
     maxDate: {
-      control: 'text', 
-      description: 'Data máxima selecionável (ex: "today", "2025-12-31" ou objeto Date). Se não definido, não há limite',
+      control: 'text',
+      description:
+        'Data máxima selecionável (ex: "today", "2025-12-31" ou objeto Date). Se não definido, não há limite',
     },
     minDate: {
       control: 'text',
@@ -52,7 +53,10 @@ const DateDisplay = ({ dates }: { dates: Date[] | null }) => {
 
   return (
     <div style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
-      <strong>Data{dates.length > 1 ? 's' : ''} selecionada{dates.length > 1 ? 's' : ''}:</strong>
+      <strong>
+        Data{dates.length > 1 ? 's' : ''} selecionada
+        {dates.length > 1 ? 's' : ''}:
+      </strong>
       <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
         {dates.map((date: Date, index: number) => (
           <li key={index}>{date.toLocaleDateString('pt-BR')}</li>
@@ -61,7 +65,6 @@ const DateDisplay = ({ dates }: { dates: Date[] | null }) => {
     </div>
   );
 };
-
 
 export const Playground: Story = {
   args: {
@@ -90,7 +93,6 @@ export const Playground: Story = {
   },
 };
 
-
 export const DateRange: Story = {
   render: () => {
     const Wrapper = () => {
@@ -112,7 +114,6 @@ export const DateRange: Story = {
   },
 };
 
-
 export const SingleDate: Story = {
   render: () => {
     const Wrapper = () => {
@@ -133,7 +134,6 @@ export const SingleDate: Story = {
     return <Wrapper />;
   },
 };
-
 
 export const MultipleDates: Story = {
   render: () => {
@@ -159,8 +159,6 @@ export const MultipleDates: Story = {
   },
 };
 
-
-
 export const TimePicker: Story = {
   render: () => {
     const Wrapper = () => {
@@ -184,7 +182,6 @@ export const TimePicker: Story = {
   },
 };
 
-
 export const DateTimePicker: Story = {
   render: () => {
     const Wrapper = () => {
@@ -207,7 +204,6 @@ export const DateTimePicker: Story = {
   },
 };
 
-
 export const DateTimeRange: Story = {
   render: () => {
     const Wrapper = () => {
@@ -229,7 +225,6 @@ export const DateTimeRange: Story = {
     return <Wrapper />;
   },
 };
-
 
 export const WithoutMaxDate: Story = {
   render: () => {
@@ -255,7 +250,6 @@ export const WithoutMaxDate: Story = {
     return <Wrapper />;
   },
 };
-
 
 export const WithDateRestrictions: Story = {
   render: () => {

@@ -51,7 +51,6 @@ const InfoIcon = () => (
   </svg>
 );
 
-
 const stateFeedback = {
   success: { icon: CheckIcon, message: 'Campo correto' },
   error: { icon: ErrorIcon, message: 'Campo com erro' },
@@ -85,7 +84,7 @@ function CustomTextarea({
   State,
   maxLength,
   placeholder,
-  left= false,
+  left = false,
   isDisabled = false,
 }: CustomTextareaProps) {
   const [lengthError, setLengthError] = useState('');
@@ -103,7 +102,7 @@ function CustomTextarea({
   const classes = [
     'br-textarea',
     size,
-    State === 'error' ? 'danger' : State, 
+    State === 'error' ? 'danger' : State,
     darkMode && 'dark-mode',
     left && 'left',
   ]
@@ -123,7 +122,10 @@ function CustomTextarea({
           disabled={isDisabled}
         />
         {State && stateFeedback[State] && (
-          <span className={`feedback ${State === 'error' ? 'danger' : State}`} role="alert">
+          <span
+            className={`feedback ${State === 'error' ? 'danger' : State}`}
+            role="alert"
+          >
             {React.createElement(stateFeedback[State].icon)}{' '}
             <span>{stateFeedback[State].message}</span>
           </span>
