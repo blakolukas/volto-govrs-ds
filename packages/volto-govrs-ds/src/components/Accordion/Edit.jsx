@@ -56,7 +56,7 @@ const Edit = (props) => {
 
   const intl = useIntl();
   const properties = isEmpty(data?.data?.blocks)
-    ? emptyAccordion(1)
+    ? emptyAccordion(data?.initialPanels || 1)
     : data.data;
   const metadata = props.metadata || props.properties;
   const [currentUid, setCurrentUid] = useState('');

@@ -79,6 +79,14 @@ const messages = defineMessages({
     id: 'Enable filtering',
     defaultMessage: 'Enable filtering',
   },
+  initialPanels: {
+    id: 'Initial number of panels',
+    defaultMessage: 'Initial number of panels',
+  },
+  initialPanels_description: {
+    id: 'Number of panels to create when the accordion is empty',
+    defaultMessage: 'Number of panels to create when the accordion is empty',
+  },
   Theme: {
     id: 'Theme',
     defaultMessage: 'Theme',
@@ -143,6 +151,7 @@ export const AccordionBlockSchema = ({ intl }) => ({
         'collapsed',
         'non_exclusive',
         'filtering',
+        'initialPanels',
       ],
     },
   ],
@@ -204,6 +213,14 @@ export const AccordionBlockSchema = ({ intl }) => ({
       title: intl.formatMessage(messages.filtering),
       type: 'boolean',
       default: false,
+    },
+    initialPanels: {
+      title: intl.formatMessage(messages.initialPanels),
+      description: intl.formatMessage(messages.initialPanels_description),
+      type: 'number',
+      minimum: 1,
+      maximum: 10,
+      default: 1,
     },
   },
   required: [],
