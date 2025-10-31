@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../../theme/Formularios/Input.scss';
-import Upload from './Input';
+import '../../../theme/Formularios/Upload.scss';
+import Upload from './Upload';
 
 export default {
   title: 'Forms/Upload',
