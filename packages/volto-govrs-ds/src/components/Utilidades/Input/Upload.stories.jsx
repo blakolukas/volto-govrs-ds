@@ -1,6 +1,7 @@
 import React from 'react';
-import '../../../theme/Formularios/Input.scss';
-import Upload from './Input';
+import '../../../theme/Formularios/Upload.scss';
+import Upload from './Upload';
+import Badges from '../../Badges/Badges';
 
 export default {
   title: 'Forms/Upload',
@@ -130,45 +131,85 @@ export const UploadDocumentacao = () => (
       </div>
 
       <div style={{ marginTop: 12 }}>
-        <h4 style={{ margin: '8px 0' }}>Comportamentos</h4>
-
-        <h5 style={{ margin: '8px 0' }}>Badge de feedback</h5>
+        <h5 style={{ margin: '8px 0' }}>
+          disabled{' '}
+          <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
+        </h5>
         <p>
-          A badge de feedback aparece abaixo do botão para indicar o estado do
-          campo. Ela passa a exibir mensagens específicas quando o campo está
-          inválido (por exemplo, mensagens de tamanho, formato ou erro de
-          upload). A badge usa <code>role="status"</code> para anunciar mudanças
-          a leitores de tela.
+          Quando <code>disabled</code> é verdadeiro, o controle visual fica
+          desabilitado e não aceita interação do usuário (comportamento igual ao
+          do atributo nativo <code>disabled</code>). O input nativo também
+          recebe o atributo <code>disabled</code>, garantindo que o campo não
+          seja enviado em formulários.
         </p>
 
-        <div
+        <pre
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-            marginTop: 8,
+            background: '#f7f7f7',
+            padding: 12,
+            borderRadius: 4,
+            overflowX: 'auto',
           }}
         >
-          <div
-            className="upload-feedback upload-feedback--valid"
-            style={{ alignSelf: 'flex-start' }}
-          >
-            Campo correto
-          </div>
+          <code>{`<Upload disabled />`}</code>
+        </pre>
 
-          <div
-            className="upload-feedback upload-feedback--invalid"
-            style={{ alignSelf: 'flex-start' }}
-          >
-            O arquivo excede o tamanho máximo de 2 MB
-          </div>
+        <div style={{ marginTop: 8 }}>
+          <Upload disabled maxFiles={3} maxFileSize={2} onChange={() => {}} />
+        </div>
+      </div>
 
-          <div
-            className="upload-feedback upload-feedback--disabled"
-            style={{ alignSelf: 'flex-start' }}
-          >
-            Campo desabilitado
-          </div>
+      <div style={{ marginTop: 12 }}>
+        <h5 style={{ margin: '8px 0' }}>
+          renderFeedback{' '}
+          <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
+        </h5>
+        <p>
+          Função que permite ao consumidor renderizar o elemento de feedback
+          (por exemplo, uma <code>Badge</code>) usando o estado interno do
+          componente Upload. A função recebe um objeto com informações úteis
+          (arquivos selecionados, flags de validade, mensagens de erro, etc.) e
+          deve retornar um nó React a ser exibido abaixo do botão.
+        </p>
+
+        <pre
+          style={{
+            background: '#f7f7f7',
+            padding: 12,
+            borderRadius: 4,
+            overflowX: 'auto',
+          }}
+        >
+          <code>{`<Upload renderFeedback={({ invalid, error, valid, disabled }) => {
+  if (invalid) return <Badges variant="error" message={error} />;
+  if (valid) return <Badges variant="success" message="Campo correto" />;
+  if (disabled) return <Badges variant="warning" message="Campo desabilitado" />;
+  return null;
+}} />`}</code>
+        </pre>
+
+        <div style={{ marginTop: 8 }}>
+          <Upload
+            maxFiles={3}
+            maxFileSize={2}
+            onChange={() => {}}
+            renderFeedback={({ invalid, error, valid, disabled }) => {
+              if (invalid)
+                return (
+                  <Badges
+                    variant="error"
+                    message={error || 'Arquivo inválido'}
+                  />
+                );
+              if (valid)
+                return <Badges variant="success" message="Campo correto" />;
+              if (disabled)
+                return (
+                  <Badges variant="warning" message="Campo desabilitado" />
+                );
+              return null;
+            }}
+          />
         </div>
       </div>
     </div>

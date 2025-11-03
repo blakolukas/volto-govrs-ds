@@ -19,6 +19,7 @@ export default function Select({
   className = '',
   name,
   id,
+  renderFeedback,
 }) {
   const [open, setOpen] = useState(false);
   const optionValues = useMemo(() => options.map((o) => o.value), [options]);
@@ -139,9 +140,21 @@ export default function Select({
       ) ?? null
     : options.find((o) => o.value === value) ?? null;
 
+  const feedbackNode =
+    typeof renderFeedback === 'function'
+      ? renderFeedback({
+          value,
+          values: value,
+          isDisabled: !!disabled,
+          selectedOption,
+          options,
+          multiple,
+        })
+      : null;
+
   return (
     <div
-      className={`br-select ${multiple ? 'br-select--multiple' : ''} ${className ?? ''} ${disabled ? 'br-select--disabled' : ''}`}
+      className={`br-select ${multiple ? 'br-select--multiple' : ''} ${className ?? ''}`}
     >
       <div
         className="br-select__control"
@@ -150,6 +163,7 @@ export default function Select({
         aria-haspopup="listbox"
         aria-expanded={open}
         tabIndex={disabled ? -1 : 0}
+        aria-disabled={disabled}
         onClick={toggleOpen}
         onKeyDown={onKeyDown}
         ref={controlRef}
@@ -240,13 +254,23 @@ export default function Select({
           type="hidden"
           name={resolvedName}
           value={value != null ? value : ''}
+          disabled={disabled}
         />
       )}
       {multiple &&
         Array.isArray(value) &&
         value.map((v) => (
-          <input key={v} type="hidden" name={resolvedName} value={v} />
+          <input
+            key={v}
+            type="hidden"
+            name={resolvedName}
+            value={v}
+            disabled={disabled}
+          />
         ))}
+      {feedbackNode && (
+        <div className="br-select__feedback">{feedbackNode}</div>
+      )}
     </div>
   );
 }
