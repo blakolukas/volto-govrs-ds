@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import '../../../theme/Formularios/Upload.scss';
+import Badges from '../../Badges/Badges';
 
 const UploadInput = ({
   id,
@@ -12,6 +13,7 @@ const UploadInput = ({
   onUpload,
   maxFileSize,
   maxFiles,
+  renderFeedback,
 }) => {
   const generatedIdRef = useRef(null);
   if (generatedIdRef.current == null) {
@@ -19,7 +21,6 @@ const UploadInput = ({
   }
   const inputId = id || generatedIdRef.current;
   const inputRef = useRef(null);
-  const [hasFiles, setHasFiles] = useState(false);
   const [valid, setValid] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const [message, setMessage] = useState('');
@@ -46,7 +47,6 @@ const UploadInput = ({
         if (name.toLowerCase().endsWith(p.toLowerCase())) return true;
         continue;
       }
-      // mime type exact match
       if (type === p) return true;
     }
     return false;
@@ -61,23 +61,50 @@ const UploadInput = ({
 
   const clearSelection = () => {
     if (inputRef.current) inputRef.current.value = '';
-    setHasFiles(false);
   };
 
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
+  const prevCountRef = useRef(uploadedFiles.length);
+
+  useEffect(() => {
+    const prev = prevCountRef.current;
+    const cur = uploadedFiles.length;
+    if (cur < prev) {
+      setInvalid(false);
+      setValid(false);
+      setMessage('');
+      setLiveMessage('');
+      setInternalLoading(false);
+    }
+    prevCountRef.current = cur;
+  }, [uploadedFiles]);
+
   const handleChange = async (e) => {
     const files = e.target.files ? Array.from(e.target.files) : [];
 
-    if (maxFiles && files.length > maxFiles) {
-      const msg = `Número máximo de arquivos: ${maxFiles}`;
-      setInvalid(true);
-      setValid(false);
-      setMessage(msg);
-      setLiveMessage(msg);
-      clearSelection();
-      if (onChange) onChange([]);
-      return;
+    if (maxFiles) {
+      const projectedCount = multiple
+        ? (uploadedFiles ? uploadedFiles.length : 0) + files.length
+        : Math.max(uploadedFiles ? uploadedFiles.length : 0, files.length);
+
+      if (projectedCount > maxFiles) {
+        const remaining = Math.max(
+          0,
+          maxFiles - (uploadedFiles ? uploadedFiles.length : 0),
+        );
+        const msg =
+          remaining > 0
+            ? `Número máximo de arquivos: ${maxFiles} (restam ${remaining})`
+            : `Número máximo de arquivos: ${maxFiles}`;
+        setInvalid(true);
+        setValid(false);
+        setMessage(msg);
+        setLiveMessage(msg);
+        clearSelection();
+        if (onChange) onChange([]);
+        return;
+      }
     }
 
     const maxFileSizeBytes = convertMBToBytes(maxFileSize);
@@ -110,18 +137,21 @@ const UploadInput = ({
     }
 
     if (files.length > 0) {
+      const newFiles = multiple ? files : files.slice(0, 1);
+
       if (typeof onUpload === 'function') {
         try {
           setInternalLoading(true);
-          await Promise.resolve(onUpload(files));
-          setUploadedFiles((prev) => [...prev, ...files]);
-          setHasFiles(true);
+          await Promise.resolve(onUpload(newFiles));
+          setUploadedFiles((prev) =>
+            multiple ? [...prev, ...newFiles] : [...newFiles],
+          );
           setValid(true);
           setInvalid(false);
           const okMsg = 'Upload concluído';
           setMessage(okMsg);
           setLiveMessage(okMsg);
-          if (onChange) onChange(files);
+          if (onChange) onChange(newFiles);
         } catch (err) {
           const errMsg =
             err && err.message
@@ -137,14 +167,20 @@ const UploadInput = ({
           clearSelection();
         }
       } else {
-        setUploadedFiles((prev) => [...prev, ...files]);
-        setHasFiles(files.length > 0);
-        setValid(files.length > 0);
+        setUploadedFiles((prev) =>
+          multiple ? [...prev, ...newFiles] : [...newFiles],
+        );
+        setValid(newFiles.length > 0);
         setInvalid(false);
-        const okMsg = files.length > 0 ? 'Arquivos selecionados' : '';
+        const okMsg =
+          newFiles.length > 0
+            ? multiple
+              ? 'Arquivos selecionados'
+              : 'Arquivo selecionado'
+            : '';
         setMessage(okMsg);
         setLiveMessage(okMsg);
-        if (onChange) onChange(files);
+        if (onChange) onChange(newFiles);
         clearSelection();
       }
     }
@@ -152,10 +188,33 @@ const UploadInput = ({
 
   const feedbackId = `${inputId}-feedback`;
 
+  const feedbackNode =
+    typeof renderFeedback === 'function'
+      ? renderFeedback({
+          files: uploadedFiles,
+          isUploading: internalLoading,
+          error: invalid ? message : null,
+          valid,
+          invalid,
+          disabled,
+          maxFileSize,
+          maxFiles,
+          accept,
+        })
+      : null;
+
+  const defaultBadge = !feedbackNode ? (
+    disabled ? (
+      <Badges variant="warning" message="Campo desabilitado" />
+    ) : invalid ? (
+      <Badges variant="error" message={message || 'Arquivo inválido'} />
+    ) : valid ? (
+      <Badges variant="success" message="Campo correto" />
+    ) : null
+  ) : null;
+
   return (
-    <div
-      className={`upload-root ${className || ''} ${invalid ? 'upload-root--invalid' : ''} ${disabled ? 'upload-root--disabled' : ''}`}
-    >
+    <div className={`upload-root ${className || ''}`}>
       <input
         id={inputId}
         ref={inputRef}
@@ -173,7 +232,8 @@ const UploadInput = ({
 
       <label
         htmlFor={inputId}
-        className={`upload-btn ${hasFiles ? 'hover-like' : ''}`}
+        className={`upload-btn ${uploadedFiles && uploadedFiles.length > 0 ? 'hover-like' : ''}`}
+        aria-disabled={disabled}
       >
         <span className="upload-icon" aria-hidden="true">
           <svg
@@ -196,28 +256,18 @@ const UploadInput = ({
         </div>
       )}
 
-      <div
-        className="upload-live"
-        aria-live="polite"
-        style={{ position: 'absolute', left: -9999 }}
-      >
+      <div className="upload-live" aria-live="polite">
         {liveMessage}
       </div>
 
       <div style={{ marginTop: 8 }}>
         <div
           id={feedbackId}
-          className={`upload-feedback ${valid ? 'upload-feedback--valid' : ''} ${invalid ? 'upload-feedback--invalid' : ''} ${disabled ? 'upload-feedback--disabled' : ''}`}
+          className="upload-feedback"
           role="status"
           aria-live="polite"
         >
-          {invalid
-            ? message
-            : valid
-              ? 'Campo correto'
-              : disabled
-                ? 'Campo desabilitado'
-                : ''}
+          {feedbackNode || defaultBadge || ''}
         </div>
       </div>
 

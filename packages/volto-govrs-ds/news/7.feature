@@ -1,0 +1,1 @@
+Adicional das Badges e Alerts e ajuste de Select, Upload e TextArea para usá-las(@henrique-saenger)

@@ -1,33 +1,10 @@
 import React, { useState } from 'react';
-import '../../../theme/Formularios/Input.scss';
+import '../../../theme/Formularios/Upload.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCheck,
-  faXmark,
-  faTriangleExclamation,
-  faInfoCircle,
-  faEye,
-  faEyeSlash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-interface StateConfig {
-  icon: IconDefinition;
-  defaultMessage: string | null;
-}
-
-const stateConfig: Record<StateType, StateConfig> = {
-  danger: { icon: faXmark, defaultMessage: 'Campo inválido' },
-  success: { icon: faCheck, defaultMessage: 'Campo correto' },
-  disabled: {
-    icon: faTriangleExclamation,
-    defaultMessage: 'Campo Desabilitado',
-  },
-  warning: { icon: faTriangleExclamation, defaultMessage: null },
-  info: { icon: faInfoCircle, defaultMessage: null },
-};
-
-type StateType = 'danger' | 'success' | 'disabled' | 'warning' | 'info';
+type StateType = 'danger' | 'success' | 'warning' | 'info';
 
 type InputProps = {
   id: string;
@@ -38,9 +15,13 @@ type InputProps = {
   auxiliaryText?: string;
   leftIcon?: IconDefinition;
   isPassword?: boolean;
-  State?: StateType;
-  feedbackMessage?: string;
-  isDisabled?: boolean;
+  State?: StateType | null;
+  disabled?: boolean;
+  renderFeedback?: (args: {
+    value: string | string[] | null;
+    disabled: boolean;
+    state?: StateType | null;
+  }) => React.ReactNode;
 };
 
 function Input({
@@ -52,35 +33,30 @@ function Input({
   auxiliaryText,
   leftIcon,
   isPassword = false,
-  State,
-  feedbackMessage,
-  isDisabled = false,
+  State = null,
+  disabled = false,
+  renderFeedback,
 }: InputProps) {
   const [isVisible, setIsVisible] = useState(false);
 
-  const finalState = isDisabled ? 'disabled' : State;
-
-  const classes = ['br-input', finalState].filter(Boolean).join(' ');
-
+  const finalState: StateType | null = State ?? null;
+  const classes = ['br-input', disabled ? 'disabled' : finalState]
+    .filter(Boolean)
+    .join(' ');
   const inputType = isPassword ? (isVisible ? 'text' : 'password') : 'text';
 
-  const currentConfig = finalState ? stateConfig[finalState] : null;
+  const renderedFeedback =
+    typeof renderFeedback === 'function'
+      ? renderFeedback({
+          value: value ?? null,
+          disabled: !!disabled,
+          state: finalState ?? null,
+        })
+      : null;
 
-  let finalFeedbackMessage: string | null = null;
-  let showFeedback = false;
-
-  if (currentConfig && feedbackMessage) {
-    finalFeedbackMessage = feedbackMessage;
-    showFeedback = true;
-  }
-
-  let inputClasses = [];
-  if (!leftIcon) {
-    inputClasses.push('padding-default');
-  }
-  if (!isPassword) {
-    inputClasses.push('padding-default-no-eye');
-  }
+  const inputClasses: string[] = [];
+  if (!leftIcon) inputClasses.push('padding-default');
+  if (!isPassword) inputClasses.push('padding-default-no-eye');
   const inputClassName = inputClasses.join(' ');
 
   return (
@@ -100,9 +76,9 @@ function Input({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          disabled={isDisabled}
+          disabled={disabled}
           className={inputClassName}
-          readOnly={finalState === 'disabled' && !isDisabled}
+          aria-describedby={renderedFeedback ? `${id}-feedback` : undefined}
         />
 
         {isPassword && (
@@ -111,7 +87,7 @@ function Input({
             className="visibility-toggle"
             onClick={() => setIsVisible(!isVisible)}
             aria-label={isVisible ? 'Ocultar senha' : 'Mostrar senha'}
-            disabled={isDisabled}
+            disabled={disabled}
           >
             <FontAwesomeIcon
               icon={isVisible ? faEyeSlash : faEye}
@@ -121,11 +97,15 @@ function Input({
         )}
       </div>
 
-      {showFeedback && currentConfig && finalFeedbackMessage && (
-        <span className={`feedback-message ${finalState}`} role="alert">
-          <FontAwesomeIcon icon={currentConfig.icon} />
-          <span>{finalFeedbackMessage}</span>
-        </span>
+      {renderedFeedback && (
+        <div
+          id={`${id}-feedback`}
+          className="br-input__feedback"
+          role="status"
+          aria-live="polite"
+        >
+          {renderedFeedback}
+        </div>
       )}
 
       {auxiliaryText && (

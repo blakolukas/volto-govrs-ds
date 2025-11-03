@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../../theme/Formularios/Select.scss';
 import Select from '.';
+import Badges from '../../Badges/Badges';
 
 export default {
   title: 'Forms/Select',
@@ -162,10 +163,15 @@ const [v, setV] = useState('1');
       </div>
 
       <div style={{ marginTop: 12 }}>
-        <h5 style={{ margin: '8px 0' }}>className / modifier classes</h5>
+        <h5 style={{ margin: '8px 0' }}>renderFeedback</h5>
         <p>
-          Adicione classes ao wrapper para estados visuais (ex.:{' '}
-          <code>br-select--invalid</code>).
+          Passe uma função <code>renderFeedback</code> que recebe o estado atual
+          do componente e deve retornar um componente Badge (
+          <code>{'<Badges />'}</code>).
+          <br />
+          Observação: se <code>renderFeedback</code> não for informado, o
+          componente <strong>não exibirá nenhum feedback</strong> por padrão.
+          Isso serve para o caso de qualquer opção ser válida.
         </p>
         <pre
           style={{
@@ -175,11 +181,78 @@ const [v, setV] = useState('1');
             overflowX: 'auto',
           }}
         >
-          <code>{`<div className="br-select br-select--invalid">
-  <label className="br-select__label">Label</label>
-  <Select className="br-select--invalid" options={options} />
-</div>`}</code>
+          <code>{`//somente opções > 3 são válidas
+const options = [1,2,3,4,5].map(n => ({ value: String(n), label: String(n) }));
+
+<Select
+  options={options}
+  renderFeedback={({ value, isDisabled }) => {
+    if (isDisabled) return <Badges variant="warning" message="Desabilitado" />;
+    if (!value) return null;
+    const num = Number(value);
+    if (Number.isNaN(num)) return null;
+    return num > 3
+      ? <Badges variant="success" message="Valor válido" />
+      : <Badges variant="error" message="Valor inválido" />;
+  }}
+/>`}</code>
         </pre>
+
+        <div style={{ marginTop: 8 }}>
+          <h5 style={{ margin: '8px 0' }}>disabled</h5>
+          <p>
+            Para desabilitar o componente utilize a prop <code>disabled</code>{' '}
+            (booleano). Quando a prop <code>disabled</code> estiver ativa, o
+            Select aplica <code>aria-disabled="true"</code> no controle e os
+            inputs ocultos gerados para submissão no formulário recebem{' '}
+            <code>disabled</code>, portanto os valores não serão enviados no
+            submit, reproduzindo o comportamento de um{' '}
+            <code>&lt;select disabled&gt;</code> nativo.
+          </p>
+          <pre
+            style={{
+              background: '#f7f7f7',
+              padding: 12,
+              borderRadius: 4,
+              overflowX: 'auto',
+            }}
+          >
+            <code>{`// desabilitado
+<Select disabled options={[{ value: '1', label: '1' }]} />`}</code>
+          </pre>
+        </div>
+
+        <div style={{ marginTop: 8 }}>
+          {(() => {
+            const options = [1, 2, 3, 4, 5].map((n) => ({
+              value: String(n),
+              label: String(n),
+            }));
+            return (
+              <div style={{ width: 160 }}>
+                <Select
+                  ariaLabel="Select numbers"
+                  placeholder="Escolha um número"
+                  options={options}
+                  renderFeedback={({ value, isDisabled }) => {
+                    if (isDisabled)
+                      return (
+                        <Badges variant="warning" message="Desabilitado" />
+                      );
+                    if (!value) return null;
+                    const num = Number(value);
+                    if (Number.isNaN(num)) return null;
+                    return num > 3 ? (
+                      <Badges variant="success" message="Valor válido" />
+                    ) : (
+                      <Badges variant="error" message="Valor inválido" />
+                    );
+                  }}
+                />
+              </div>
+            );
+          })()}
+        </div>
       </div>
 
       <div style={{ marginTop: 12 }}>
@@ -216,7 +289,6 @@ const [v, setV] = useState('1');
         </ul>
         <h4 style={{ margin: '4px 0' }}>Garantia de Unicidade</h4>
 
-        {/* Explicação curta (fora do snippet): problema e solução */}
         <div style={{ marginTop: 12 }}>
           <p style={{ marginBottom: 8 }}>
             O componente resolve o atributo <code>name</code> usado nos inputs
@@ -310,39 +382,6 @@ export const SelectInterativo = (args) => {
         { value: 'invalid', label: 'Opção inválida' },
       ];
 
-  const isInvalid = multiple
-    ? Array.isArray(value) && value.includes('invalid')
-    : value === 'invalid';
-  const isValid = multiple
-    ? Array.isArray(value) &&
-      value.some((v) => v && v.toString().startsWith('valid'))
-    : value === 'valid';
-
-  let wrapperClass = 'br-select';
-  if (disabled) wrapperClass += ' br-select--disabled';
-  else if (isInvalid) wrapperClass += ' br-select--invalid';
-  else if (isValid) wrapperClass += ' br-select--valid';
-
-  let feedback = null;
-  if (disabled)
-    feedback = (
-      <div className="br-select__feedback br-select__feedback--disabled">
-        Campo desabilitado
-      </div>
-    );
-  else if (isInvalid)
-    feedback = (
-      <div className="br-select__feedback br-select__feedback--invalid">
-        Campo inválido
-      </div>
-    );
-  else if (isValid)
-    feedback = (
-      <div className="br-select__feedback br-select__feedback--valid">
-        Campo correto
-      </div>
-    );
-
   return (
     <div
       style={{
@@ -353,7 +392,7 @@ export const SelectInterativo = (args) => {
       }}
     >
       <div style={{ minWidth: 320 }}>
-        <div className={wrapperClass}>
+        <div className="br-select">
           <label className="br-select__label">{label}</label>
           <Select
             ariaLabel={label || 'Interactive select'}
@@ -363,8 +402,21 @@ export const SelectInterativo = (args) => {
             onChange={(v) => setValue(v)}
             disabled={disabled}
             multiple={multiple}
+            renderFeedback={({ value: selValue, isDisabled }) => {
+              if (isDisabled)
+                return (
+                  <Badges variant="warning" message="Campo desabilitado" />
+                );
+              const val = selValue;
+              if (!val || (Array.isArray(val) && val.length === 0)) return null;
+              const isInv = Array.isArray(val)
+                ? val.includes('invalid')
+                : val === 'invalid';
+              if (isInv)
+                return <Badges variant="error" message="Campo inválido" />;
+              return <Badges variant="success" message="Campo correto" />;
+            }}
           />
-          {feedback}
         </div>
         <div style={{ marginTop: 8, fontSize: 13, color: '#444' }}>
           Selecionado:{' '}
@@ -413,7 +465,6 @@ export const SelectEmFormulario = () => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
-    // collect entries into an object; supports multiple values for same name
     const result = {};
     for (const [k, v] of data.entries()) {
       if (result[k] === undefined) result[k] = v;

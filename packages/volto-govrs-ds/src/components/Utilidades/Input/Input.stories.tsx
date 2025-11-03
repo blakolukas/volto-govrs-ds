@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from './Input';
+import Badges from '../../Badges/Badges';
 import {
   faMagnifyingGlass,
   faCalendarDays,
@@ -13,7 +14,7 @@ const meta = {
   argTypes: {
     State: {
       control: 'select',
-      options: [undefined, 'success', 'danger', 'warning', 'info', 'disabled'],
+      options: [undefined, 'success', 'danger', 'warning', 'info'],
       description: 'Define o estado visual e a cor da borda do input.',
     },
     isPassword: {
@@ -36,14 +37,14 @@ const meta = {
         faUser: 'Usuário',
       },
     },
-    isDisabled: {
+    disabled: {
       control: 'boolean',
       description: 'Desabilita o campo. Tem precedência sobre State.',
     },
-    feedbackMessage: {
-      control: 'text',
+    renderFeedback: {
+      control: 'object',
       description:
-        'Mensagem de feedback personalizada para o State ativo (só aparece se for fornecida).',
+        'Função opcional que recebe ({ value, disabled, state }) e deve retornar um nó React para renderizar o feedback (Badge, texto, etc.). Quando fornecida ela tem precedência total sobre qualquer fallback. Se não for fornecida, nenhum feedback será exibido abaixo do input (ou seja, a Badge não será apresentada).',
     },
   },
 };
@@ -77,34 +78,175 @@ export const InputDocumentacao = () => (
       estados visuais e funcionais conforme o novo design system.
     </p>
     <p>
-      ⚠️ Comportamento de Feedback: O <code>feedbackMessage</code> só aparece se
-      a prop <code>feedbackMessage</code> for explicitamente fornecida, mesmo
-      para os estados <code>danger</code> e <code>success</code>.
+      ⚠️ Comportamento de Feedback: O componente não renderiza mensagens de
+      feedback por padrão. Use a prop <code>renderFeedback</code> para fornecer
+      um nó React (por exemplo um <code>Badges</code>) quando quiser exibir
+      mensagens de erro/aviso/sucesso. <strong>renderFeedback</strong> tem
+      precedência total.
     </p>
 
-    <h4 style={{ marginTop: 20 }}>Props Chave</h4>
-    <ul>
-      <li>
-        <code>id</code>, <code>title</code>, <code>value</code>,{' '}
-        <code>onChange</code>: Props de controle padrão.
-      </li>
-      <li>
-        <code>auxiliaryText</code>: Texto de ajuda que aparece logo abaixo do
+    <h4 style={{ marginTop: 20 }}>Atributos</h4>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>id / title / value / onChange</h5>
+      <p>
+        Props de controle padrão do componente. Use <code>value</code> e{' '}
+        <code>onChange</code> para controlar o campo externamente.
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input id="my-input" title="Nome" value={value} onChange={setValue} />`}</code>
+      </pre>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>auxiliaryText</h5>
+      <p>
+        Texto de ajuda que aparece logo abaixo do campo e serve para orientar o
+        usuário.
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input auxiliaryText="Ex.: formato dd/mm/aaaa" />`}</code>
+      </pre>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>leftIcon</h5>
+      <p>
+        Font Awesome IconDefinition. Ícone opcional posicionado à esquerda do
         campo.
-      </li>
-      <li>
-        <code>leftIcon</code>: Font Awesome IconDefinition. Ícone opcional na
-        esquerda. (Cor: #888).
-      </li>
-      <li>
-        <code>isPassword</code>: Boolean. Ativa o botão de visibilidade
-        (olhinho). (Cor do ícone: Verde).
-      </li>
-      <li>
-        <code>State</code> e <code>feedbackMessage</code>: Define o estilo de
-        borda e a mensagem de feedback.
-      </li>
-    </ul>
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input leftIcon={faUser} />`}</code>
+      </pre>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>isPassword</h5>
+      <p>
+        Boolean. Ativa o botão de visibilidade (olhinho) para campos de senha.
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input isPassword={true} />`}</code>
+      </pre>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>State</h5>
+      <p>
+        Hint visual que define a cor da borda/estado (ex.: <code>danger</code>,{' '}
+        <code>success</code>, <code>info</code>, <code>warning</code>). Não
+        controla o conteúdo do feedback.
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input State="danger" />`}</code>
+      </pre>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>
+        disabled{' '}
+        <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
+      </h5>
+      <p>
+        Quando <code>disabled</code> é verdadeiro, o controle fica inativo e o
+        input nativo também recebe o atributo <code>disabled</code>{' '}
+        (comportamento nativo).
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input disabled />`}</code>
+      </pre>
+      <div style={{ marginTop: 8 }}>
+        <Input
+          title="Desabilitado"
+          id="doc-disabled-attr"
+          value="Campo Desabilitado"
+          onChange={() => {}}
+          disabled={true}
+        />
+      </div>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>
+        renderFeedback{' '}
+        <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
+      </h5>
+      <p>
+        Função que permite ao consumidor renderizar o elemento de feedback (por
+        exemplo, um <code>Badges</code>) usando o estado do componente. Recebe{' '}
+        <code>{`({ value, disabled, state })`}</code> e deve retornar um nó
+        React. Se essa função não for informada, nenhum feedback será exibido
+        abaixo do input — a <code>Badge</code> não será apresentada.
+      </p>
+      <pre
+        style={{
+          background: '#f7f7f7',
+          padding: 12,
+          borderRadius: 4,
+          overflowX: 'auto',
+        }}
+      >
+        <code>{`<Input renderFeedback={({ state }) => state === 'danger' ? <Badges variant="error" message="Erro no campo" /> : null} />`}</code>
+      </pre>
+
+      <div style={{ marginTop: 8 }}>
+        <Input
+          title="Danger com Mensagem Personalizada (renderFeedback)"
+          id="doc-danger-msg-attr"
+          value="O campo é obrigatório"
+          onChange={() => {}}
+          State="danger"
+          renderFeedback={() => (
+            <Badges
+              variant="error"
+              message="O campo não pode ser vazio. Digite 10 caracteres."
+            />
+          )}
+        />
+      </div>
+    </div>
 
     <h4 style={{ marginTop: 30 }}>Exemplos Padrão</h4>
     <div
@@ -210,28 +352,38 @@ export const InputDocumentacao = () => (
       </div>
       <div>
         <Input
-          title="Danger com Mensagem Personalizada"
+          title="Danger com Mensagem Personalizada (renderFeedback)"
           id="doc-danger-msg"
           value="O campo é obrigatório"
           onChange={() => {}}
           State="danger"
-          feedbackMessage="O campo não pode ser vazio. Digite 10 caracteres."
+          renderFeedback={() => (
+            <Badges
+              variant="error"
+              message="O campo não pode ser vazio. Digite 10 caracteres."
+            />
+          )}
         />
         <CodeSnippet
-          code={`<Input title="Danger com Mensagem Personalizada" id="doc-danger-msg" value="O campo é obrigatório" onChange={()=>{}} State="danger"feedbackMessage="O campo não pode ser vazio. Digite 10 caracteres."/>`}
+          code={`<Input title="Danger com Mensagem Personalizada" id="doc-danger-msg" value="O campo é obrigatório" onChange={()=>{}} State="danger" renderFeedback={() => <Badges variant="error" message="O campo não pode ser vazio. Digite 10 caracteres."/>} />`}
         />
       </div>
       <div>
         <Input
-          title="Info (Borda Verde e mensagem de feedback com ícone de informação"
+          title="Info (Borda Azul e mensagem de feedback com ícone de informação"
           id="doc-info"
           value="Detalhe informativo"
           onChange={() => {}}
           State="info"
-          feedbackMessage="Esta é uma mensagem de informação."
+          renderFeedback={() => (
+            <Badges
+              variant="info"
+              message="Esta é uma mensagem de informação."
+            />
+          )}
         />
         <CodeSnippet
-          code={`<Input title="Info (Borda Verde e mensagem de feedback com ícone de informação" id="doc-info" value="Detalhe informativo" onChange={()=>{}} State="info"feedbackMessage="Esta é uma mensagem de informação."/>`}
+          code={`<Input title="Info (Borda Azul e mensagem de feedback com ícone de informação" id="doc-info" value="Detalhe informativo" onChange={()=>{}} State="info" renderFeedback={() => <Badges variant="info" message="Esta é uma mensagem de informação."/>} />`}
         />
       </div>
       <div>
@@ -241,10 +393,12 @@ export const InputDocumentacao = () => (
           value="Atenção"
           onChange={() => {}}
           State="warning"
-          feedbackMessage="Esta é uma mensagem de aviso."
+          renderFeedback={() => (
+            <Badges variant="warning" message="Esta é uma mensagem de aviso." />
+          )}
         />
         <CodeSnippet
-          code={`<Input title="Warning (Borda Amarela)" id="doc-warning" value="Atenção" onChange={()=>{}} State="warning"feedbackMessage="Esta é uma mensagem de aviso."/>`}
+          code={`<Input title="Warning (Borda Amarela)" id="doc-warning" value="Atenção" onChange={()=>{}} State="warning" renderFeedback={() => <Badges variant="warning" message="Esta é uma mensagem de aviso."/>} />`}
         />
       </div>
       <div>
@@ -253,12 +407,12 @@ export const InputDocumentacao = () => (
           id="doc-disabled"
           value="Campo Desabilitado"
           onChange={() => {}}
-          isDisabled={true}
+          disabled={true}
           leftIcon={faUser}
           auxiliaryText="Texto auxiliar. Função de  prevenir erros."
         />
         <CodeSnippet
-          code={`<Input title="Disabled" id="doc-disabled" value="Campo Desabilitado" onChange={()=>{}} isDisabled={true} leftIcon={faUser}auxiliaryText="Texto auxiliar. Função de  prevenir erros."/>`}
+          code={`<Input title="Disabled" id="doc-disabled" value="Campo Desabilitado" onChange={()=>{}} disabled={true} leftIcon={faUser} auxiliaryText="Texto auxiliar. Função de  prevenir erros."/>`}
         />
       </div>
     </div>
@@ -267,19 +421,44 @@ export const InputDocumentacao = () => (
 
 InputDocumentacao.story = { name: '1. Documentação e Exemplos' };
 
-// --- INPUT INTERATIVO ---
-
 const Template = (args) => {
   const [value, setValue] = useState(args.initialValue || '');
+
+  const { Badge, badgeText, ...inputArgs } = args;
+
+  const mapStateToVariant = (s) => {
+    switch (s) {
+      case 'danger':
+        return 'error';
+      case 'success':
+        return 'success';
+      case 'warning':
+        return 'warning';
+      case 'info':
+        return 'info';
+      default:
+        return 'info';
+    }
+  };
+
+  const computedRenderFeedback = Badge
+    ? ({ value: v, disabled: d, state: s }) => (
+        <Badges
+          variant={mapStateToVariant(s)}
+          message={badgeText || 'Mensagem'}
+        />
+      )
+    : undefined;
 
   return (
     <div style={{ padding: 16, maxWidth: 720 }}>
       <Input
-        {...args}
+        {...inputArgs}
         id="interactive-input"
         value={value}
         onChange={setValue}
         initialValue={undefined}
+        renderFeedback={computedRenderFeedback}
       />
       <div style={{ marginTop: 8, fontSize: 13, color: '#444' }}>
         Valor Atual: <strong>{value || '—'}</strong>
@@ -289,13 +468,14 @@ const Template = (args) => {
           code={`<Input
     title="${args.title}"
     placeholder="${args.placeholder}"
-    initialValue="" // O valor de teste é controlado no Storybook
+    initialValue="" 
     auxiliaryText="${args.auxiliaryText}"
     leftIcon={${args.leftIcon ? args.leftIcon.iconName : 'undefined'}}
     State="${args.State || 'undefined'}"
-    feedbackMessage="${args.feedbackMessage}"
     isPassword={${args.isPassword}}
-    isDisabled={${args.isDisabled}}
+    disabled={${args.disabled}}
+    Badge={${args.Badge}}
+    badgeText="${args.badgeText || ''}"
 />`}
         />
       </div>
@@ -312,9 +492,26 @@ InputInterativo.args = {
     'Use os controles abaixo para configurar o input e testar as classes.',
   leftIcon: faMagnifyingGlass,
   State: undefined,
-  feedbackMessage: '',
   isPassword: false,
-  isDisabled: false,
+  disabled: false,
+  Badge: false,
+  badgeText: 'Mensagem de exemplo',
 };
 
 InputInterativo.story = { name: '2. Input Interativo (Testador)' };
+
+InputInterativo.argTypes = {
+  Badge: {
+    control: 'boolean',
+    description: 'Se true, renderiza uma Badges via renderFeedback.',
+  },
+  badgeText: {
+    control: 'text',
+    description: 'Texto mostrado dentro da Badge quando Badge=true.',
+  },
+  renderFeedback: { control: { disable: true }, table: { disable: true } },
+  id: { control: { disable: true }, table: { disable: true } },
+  value: { control: { disable: true }, table: { disable: true } },
+  onChange: { control: { disable: true }, table: { disable: true } },
+  initialValue: { control: { disable: true }, table: { disable: true } },
+};
