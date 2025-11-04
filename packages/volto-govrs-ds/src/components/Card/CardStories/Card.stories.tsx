@@ -52,7 +52,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Post: Story = {
   args: {
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
     title: 'Card de Post',
     description: 'Variante de card com ações sociais (curtir/compartilhar)',
     variant: 'post',
@@ -60,14 +61,15 @@ export const Post: Story = {
     children: 'Esta é a área de conteúdo principal do card.',
     acao: {
       label: 'Ver mais',
-      url: 'https://www.rs.gov.br/'
+      url: 'https://www.rs.gov.br/',
     },
   },
 };
 
 export const List: Story = {
   args: {
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
     title: 'Card de Lista',
     description: 'Variante de card com itens de lista expansíveis',
     variant: 'list',
@@ -78,12 +80,13 @@ export const List: Story = {
       { value: 'Item 3: Terceiro item da lista' },
       { value: 'Item 4: Quarto item da lista' },
     ],
-  }
+  },
 };
 
 export const News: Story = {
   args: {
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
     title: 'Card de Notícia',
     description: 'Variante de card para artigos de notícias',
     variant: 'news',
@@ -93,7 +96,8 @@ export const News: Story = {
 
 export const Icon: Story = {
   args: {
-    image: 'https://api.iconify.design/mdi/lightbulb-on.svg?color=%231A7235&width=200&height=200',
+    image:
+      'https://api.iconify.design/mdi/lightbulb-on.svg?color=%231A7235&width=200&height=200',
     title: 'Card de Ícone',
     description: 'Variante de card com ícone e texto simples',
     variant: 'icon',
@@ -103,13 +107,15 @@ export const Icon: Story = {
 
 export const AllVariants: Story = {
   render: () => (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: '1.5rem',
-      padding: '1rem'
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '1.5rem',
+        padding: '1rem',
+      }}
+    >
       <Card
         variant="post"
         image="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop"
@@ -118,7 +124,7 @@ export const AllVariants: Story = {
         children="Área de conteúdo com texto rolável."
         acao={{
           label: 'Ver mais',
-          url: 'https://www.rs.gov.br/'
+          url: 'https://www.rs.gov.br/',
         }}
         href="#"
       />
@@ -128,11 +134,7 @@ export const AllVariants: Story = {
         title="Card de Lista"
         description="Card com lista expansível"
         href="#"
-        itens={[
-          { value: 'Item 1' },
-          { value: 'Item 2' },
-          { value: 'Item 3' },
-        ]}
+        itens={[{ value: 'Item 1' }, { value: 'Item 2' }, { value: 'Item 3' }]}
       />
       <Card
         variant="news"

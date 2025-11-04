@@ -1,38 +1,39 @@
 .govrs-card {
   display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 8px;
   overflow: hidden;
-  max-width: 400px;
   min-width: 250px;
+  max-width: 400px;
   min-height: 200px;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-  text-decoration: none;
   color: inherit;
   cursor: pointer;
-  padding: 16px;
-  flex: 1;
+  text-decoration: none;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 
   &:hover {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
   }
-
 }
 
 .govrs-card-disabled {
   cursor: not-allowed !important;
-  pointer-events: none;
   opacity: 0.5;
+  pointer-events: none;
   &:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transform: none;
   }
   a {
-    pointer-events: none;
     cursor: not-allowed;
+    pointer-events: none;
   }
   button {
     cursor: not-allowed;
@@ -40,8 +41,8 @@
 }
 
 .govrs-card-header {
-  min-height: 60px;
   display: flex;
+  min-height: 60px;
   align-items: center;
   gap: 4px;
 
@@ -49,18 +50,18 @@
     width: 50px;
     height: 50px;
     border-radius: 200px;
-    object-fit: cover;
     margin-right: 10px;
+    object-fit: cover;
   }
 
   & h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--green-rs-60);
     display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
     overflow: hidden;
+    margin: 0;
+    -webkit-box-orient: vertical;
+    color: var(--green-rs-60);
+    font-size: 1.25rem;
+    -webkit-line-clamp: 1;
     text-overflow: ellipsis;
   }
 
@@ -71,32 +72,32 @@
   }
 
   & .govrs-card-header-text {
-    align-self: flex-start;
-    font-size: 0.875rem;
-    color: #666666;
     flex: 1;
+    align-self: flex-start;
+    color: #666666;
+    font-size: 0.875rem;
 
     & p {
-      margin: 0;
       display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
       overflow: hidden;
-      text-overflow: ellipsis;
+      margin: 0;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
       line-height: 1.5;
+      text-overflow: ellipsis;
     }
   }
 
   & .govrs-card-header-menu {
+    align-items: center;
+    padding: 0px 10px;
+    border: none;
+    border-radius: 60px;
     margin-left: auto;
     background: transparent;
-    border: none;
+    color: var(--green-rs-60);
     cursor: pointer;
     font-size: 2rem;
-    padding: 0px 10px;
-    align-items: center;
-    color: var(--green-rs-60);
-    border-radius: 60px;
     transition: background-color 0.3s ease;
 
     &:hover {
@@ -106,33 +107,33 @@
 }
 
 .govrs-card-body {
-  margin-top: 12px;
   max-height: 200px;
+  margin-top: 12px;
   overflow-y: auto;
 
   & p {
     margin: 0;
-    font-size: 1rem;
     color: #333333;
+    font-size: 1rem;
     line-height: 1.5;
   }
 }
 
-.govrs-card-footer{
+.govrs-card-footer {
   display: flex;
   width: 100%;
+  min-height: 50px;
   align-items: center;
-  margin-top: auto;
   align-self: end;
   justify-content: space-between;
-  min-height: 50px;
+  margin-top: auto;
 
   & button {
-    color: var(--green-rs-60);
-    background-color: transparent;
+    padding: 8px 16px;
     border: none;
     border-radius: 60px;
-    padding: 8px 16px;
+    background-color: transparent;
+    color: var(--green-rs-60);
     cursor: pointer;
     font-size: 1.2rem;
     transition: background-color 0.3s ease;
@@ -144,9 +145,9 @@
 
   & .govrs-card-footer-like-share {
     display: flex;
-    gap: 8px;
     align-items: center;
     margin-left: auto;
+    gap: 8px;
     & button {
       padding: 4px;
       font-size: 1rem;
@@ -162,31 +163,31 @@
 .govrs-card-image {
   width: 100%;
   height: 200px;
+  border-radius: 8px;
   margin-top: 12px;
   margin-bottom: 12px;
-  border-radius: 8px;
   object-fit: cover;
 }
 
 .govrs-card-list-toggle {
   display: flex;
-  align-self: end;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   max-width: fit-content;
-  border: 1px solid var(--green-rs-60);
-  margin-top: auto;
+  min-height: 50px;
+  align-items: center;
+  align-self: end;
+  justify-content: center;
   padding: 10px 14px;
+  border: 1px solid var(--green-rs-60);
+  border: 1px solid var(--green-rs-60);
+  border-radius: 60px;
+  margin-top: auto;
   background-color: transparent;
   color: var(--green-rs-60);
-  border-radius: 60px;
-  border: 1px solid var(--green-rs-60);
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
+  gap: 8px;
   transition: all 0.3s ease;
-  min-height: 50px;
 
   &:hover {
     background-color: rgba(26, 114, 53, 0.1);
@@ -198,11 +199,11 @@
 }
 
 .govrs-card-list-items {
-  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  margin-top: 12px;
   animation: slideDown 0.3s ease;
+  gap: 8px;
 }
 
 @keyframes slideDown {
@@ -218,9 +219,9 @@
 
 .govrs-card-list-item {
   display: flex;
-  gap: 8px;
   padding: 8px 0;
   border-bottom: 1px solid #e5e5e5;
+  gap: 8px;
 
   &:last-child {
     border-bottom: none;
@@ -228,8 +229,8 @@
 }
 
 .govrs-card-list-item-label {
-  font-weight: 600;
   color: var(--green-rs-60);
+  font-weight: 600;
 }
 
 .govrs-card-list-item-value {
@@ -237,31 +238,31 @@
 }
 
 .govrs-card-icon {
+  min-width: 175px !important;
   max-width: 175px;
   max-height: 155px;
-  min-width: 175px !important;
 }
 
 .govrs-card-header-placeholder {
   width: 50px;
   height: 50px;
-  border-radius: 200px;
-  object-fit: cover;
-  margin-right: 10px;
   flex-shrink: 0;
+  border-radius: 200px;
+  margin-right: 10px;
+  object-fit: cover;
 }
 
 .govrs-card-icon-img {
   width: 50%;
-  object-fit: fill;
   align-self: center;
-  margin-bottom: auto;
   margin-top: auto;
+  margin-bottom: auto;
+  object-fit: fill;
 }
 
 .small {
-  padding: 12px;
   max-width: 300px;
+  padding: 12px;
 
   .govrs-card-header {
     min-height: 45px;
@@ -281,14 +282,14 @@
     }
 
     & .govrs-card-header-menu {
-      font-size: 1.5rem;
       padding: 0px 8px;
+      font-size: 1.5rem;
     }
   }
 
   .govrs-card-body {
-    margin-top: 8px;
     max-height: 150px;
+    margin-top: 8px;
 
     & p {
       font-size: 0.875rem;
@@ -335,8 +336,8 @@
 }
 
 .large {
-  padding: 20px;
   max-width: 500px;
+  padding: 20px;
 
   .govrs-card-header {
     min-height: 75px;
@@ -356,14 +357,14 @@
     }
 
     & .govrs-card-header-menu {
-      font-size: 2.5rem;
       padding: 0px 12px;
+      font-size: 2.5rem;
     }
   }
 
   .govrs-card-body {
-    margin-top: 16px;
     max-height: 250px;
+    margin-top: 16px;
 
     & p {
       font-size: 1.125rem;
@@ -412,17 +413,17 @@
 .govrs-card-body-image {
   width: 100%;
   height: auto;
-  margin-top: 12px;
   border-radius: 6px;
+  margin-top: 12px;
   object-fit: cover;
 }
 
 .govrs-card-footer-action > a {
-  color: var(--green-rs-60);
-  background-color: transparent;
+  padding: 8px 16px;
   border: none;
   border-radius: 60px;
-  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--green-rs-60);
   cursor: pointer;
   font-size: 1.2rem;
   transition: background-color 0.3s ease;

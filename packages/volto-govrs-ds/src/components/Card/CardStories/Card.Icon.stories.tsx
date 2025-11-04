@@ -34,7 +34,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    image: 'https://api.iconify.design/mdi/beach.svg?color=%231A7235&width=200&height=200',
+    image:
+      'https://api.iconify.design/mdi/beach.svg?color=%231A7235&width=200&height=200',
     title: 'Card de Ícone',
     description: 'Card simples com ícone e texto',
     variant: 'icon',
@@ -44,9 +45,11 @@ export const Default: Story = {
 
 export const WithLongText: Story = {
   args: {
-    image: 'https://api.iconify.design/mdi/file-document.svg?color=%231A7235&width=200&height=200',
+    image:
+      'https://api.iconify.design/mdi/file-document.svg?color=%231A7235&width=200&height=200',
     title: 'Card com Título Longo para Testar o Layout',
-    description: 'Esta é uma descrição mais longa para demonstrar como o card se comporta com mais conteúdo. O texto deve se ajustar adequadamente ao espaço disponível.',
+    description:
+      'Esta é uma descrição mais longa para demonstrar como o card se comporta com mais conteúdo. O texto deve se ajustar adequadamente ao espaço disponível.',
     variant: 'icon',
     href: 'https://www.rs.gov.br/',
   },
@@ -63,7 +66,8 @@ export const WithoutImage: Story = {
 
 export const Disabled: Story = {
   args: {
-    image: 'https://api.iconify.design/mdi/lock.svg?color=%231A7235&width=200&height=200',
+    image:
+      'https://api.iconify.design/mdi/lock.svg?color=%231A7235&width=200&height=200',
     title: 'Card Desabilitado',
     description: 'Este card está desabilitado',
     variant: 'icon',
@@ -74,12 +78,14 @@ export const Disabled: Story = {
 
 export const Services: Story = {
   render: () => (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-      gap: '1.5rem',
-      padding: '1rem'
-    }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+        gap: '1.5rem',
+        padding: '1rem',
+      }}
+    >
       <Card
         variant="icon"
         image="https://api.iconify.design/mdi/account-circle.svg?color=%231A7235&width=200&height=200"
@@ -111,4 +117,3 @@ export const Services: Story = {
     </div>
   ),
 };
-

@@ -38,11 +38,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
     title: 'Card com Lista',
     description: 'Este card exibe uma lista de informações',
     variant: 'list',
-    children: 'Esta é a área de conteúdo principal do card. Você pode colocar qualquer nó React aqui, incluindo texto, imagens ou outros componentes.',
+    children:
+      'Esta é a área de conteúdo principal do card. Você pode colocar qualquer nó React aqui, incluindo texto, imagens ou outros componentes.',
     href: 'https://www.rs.gov.br/',
     itens: [
       { value: 'Item 1: Este é um item de lista com alguma informação' },
@@ -50,12 +52,13 @@ export const Default: Story = {
       { value: 'Item 3: Terceiro item na lista expansível' },
       { value: 'Item 4: Quarto item com mais detalhes' },
     ],
-  }
+  },
 };
 
 export const ManyItems: Story = {
   args: {
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
     title: 'Lista com Muitos Itens',
     description: 'Este card demonstra uma lista com mais itens',
     variant: 'list',
@@ -70,7 +73,7 @@ export const ManyItems: Story = {
       { value: 'Item 7: Dados do sétimo item' },
       { value: 'Item 8: Detalhes do oitavo item' },
     ],
-  }
+  },
 };
 
 export const WithoutImage: Story = {
@@ -85,12 +88,13 @@ export const WithoutImage: Story = {
       { value: 'Recurso 2: Design responsivo' },
       { value: 'Recurso 3: Componentes acessíveis' },
     ],
-  }
+  },
 };
 
 export const Disabled: Story = {
   args: {
-    image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
     title: 'Lista Desabilitada',
     description: 'Este card está desabilitado',
     variant: 'list',
@@ -102,17 +106,19 @@ export const Disabled: Story = {
       { value: 'Item 2: Não pode expandir' },
       { value: 'Item 3: Estado desabilitado' },
     ],
-  }
+  },
 };
 
 export const Sizes: Story = {
   render: () => (
-    <div style={{
-      display: 'flex',
-      alignItems: 'flex-start',
-      gap: '1.5rem',
-      padding: '1rem'
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '1.5rem',
+        padding: '1rem',
+      }}
+    >
       <Card
         variant="list"
         size="small"
@@ -121,11 +127,7 @@ export const Sizes: Story = {
         description="Card de lista compacto"
         children="Conteúdo da lista pequena."
         href="#"
-        itens={[
-          { value: 'Item 1' },
-          { value: 'Item 2' },
-          { value: 'Item 3' },
-        ]}
+        itens={[{ value: 'Item 1' }, { value: 'Item 2' }, { value: 'Item 3' }]}
       />
       <Card
         variant="list"
@@ -134,11 +136,7 @@ export const Sizes: Story = {
         description="Card de lista padrão"
         children="Conteúdo da lista média."
         href="#"
-        itens={[
-          { value: 'Item 1' },
-          { value: 'Item 2' },
-          { value: 'Item 3' },
-        ]}
+        itens={[{ value: 'Item 1' }, { value: 'Item 2' }, { value: 'Item 3' }]}
       />
       <Card
         variant="list"
@@ -148,13 +146,8 @@ export const Sizes: Story = {
         description="Card de lista expandido"
         children="Conteúdo da lista grande."
         href="#"
-        itens={[
-          { value: 'Item 1' },
-          { value: 'Item 2' },
-          { value: 'Item 3' },
-        ]}
+        itens={[{ value: 'Item 1' }, { value: 'Item 2' }, { value: 'Item 3' }]}
       />
     </div>
   ),
 };
-
