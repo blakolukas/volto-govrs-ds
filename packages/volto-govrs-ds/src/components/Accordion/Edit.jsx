@@ -19,10 +19,10 @@ import { defineMessages, useIntl } from 'react-intl';
 import AccordionEdit from './AccordionEdit';
 import AccordionFilter from './AccordionFilter';
 import EditBlockWrapper from './EditBlockWrapper';
-import './editor.less';
 import { AccordionBlockSchema } from './Schema';
 import { emptyAccordion, getPanels } from './util';
 import config from '@plone/volto/registry';
+import { v4 as uuid } from 'uuid';
 
 const messages = defineMessages({
   SectionHelp: {
@@ -175,6 +175,61 @@ const Edit = (props) => {
     }
     /* eslint-disable-next-line */
   }, []);
+
+  // Handle changes to initialPanels setting
+  React.useEffect(() => {
+    if (data?.initialPanels && properties?.blocks_layout?.items) {
+      const currentPanelCount = properties.blocks_layout.items.length;
+      const targetPanelCount = data.initialPanels;
+
+      if (currentPanelCount < targetPanelCount) {
+        // Add panels
+        const panelsToAdd = targetPanelCount - currentPanelCount;
+        const newBlocks = { ...properties.blocks };
+        const newItems = [...properties.blocks_layout.items];
+
+        for (let i = 0; i < panelsToAdd; i++) {
+          const id = uuid();
+          newBlocks[id] = {
+            ...emptyBlocksForm(),
+            '@type': 'accordionPanel',
+            title: '',
+          };
+          newItems.push(id);
+        }
+
+        onChangeBlock(block, {
+          ...data,
+          data: {
+            blocks: newBlocks,
+            blocks_layout: {
+              items: newItems,
+            },
+          },
+        });
+      } else if (currentPanelCount > targetPanelCount) {
+        // Remove panels from the end
+        const newItems = properties.blocks_layout.items.slice(0, targetPanelCount);
+        const newBlocks = { ...properties.blocks };
+
+        // Remove blocks that are no longer in the layout
+        properties.blocks_layout.items.slice(targetPanelCount).forEach(id => {
+          delete newBlocks[id];
+        });
+
+        onChangeBlock(block, {
+          ...data,
+          data: {
+            blocks: newBlocks,
+            blocks_layout: {
+              items: newItems,
+            },
+          },
+        });
+      }
+    }
+    /* eslint-disable-next-line */
+  }, [data?.initialPanels]);
 
   React.useEffect(() => {
     properties.blocks_layout.items.map((item) => {

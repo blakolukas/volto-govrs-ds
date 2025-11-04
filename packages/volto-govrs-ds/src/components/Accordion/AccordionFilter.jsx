@@ -2,7 +2,6 @@ import React from 'react';
 import { Accordion, Input } from 'semantic-ui-react';
 import { defineMessages, useIntl } from 'react-intl';
 import { Icon } from './util';
-import './editor.less';
 
 const messages = defineMessages({
   placeholder: {
