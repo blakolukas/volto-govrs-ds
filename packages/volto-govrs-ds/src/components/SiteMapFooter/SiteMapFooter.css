@@ -1,0 +1,150 @@
+@media screen and (max-width: 834px) {
+  .rodape__mapa-site {
+    display: flex;
+    flex-direction: column;
+    & :last-child {
+      border-bottom: none !important;
+    }
+  }
+  .rodape__mapa-site__item {
+    padding-bottom: 30px;
+  }
+
+  .rodape__mapa-site__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .rodape-titulo{
+    text-transform: capitalize;
+  }
+
+  .rodape__mapa-site__item {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .accordion-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    transition: transform 0.2s ease;
+  }
+
+  .accordion-toggle:hover {
+    opacity: 0.8;
+  }
+
+  .accordion-icon {
+    display: block;
+    line-height: 1;
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .accordion-content > li{
+      padding-left: 64px;
+  }
+
+  .rodape__mapa-site__item.accordion-open .accordion-content {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+  }
+}
+
+.rodape__mapa-site {
+  display: flex;
+  padding-left: 0;
+}
+
+.rodape__mapa-site li {
+  display: flex;
+  flex-direction: column;
+  justify-items: left;
+  list-style-type: none;
+  text-align: left;
+}
+
+.rodape__mapa-site__item:nth-child(n + 5) {
+  display: none;
+}
+
+.rodape__mapa-site__item ul li {
+  list-style-type: none;
+}
+
+.rodape__mapa-site__item ul li a {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.rodape__mapa-site__item ul {
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.rodape__mapa-site__item > a {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+@media screen and (min-width: 835px) {
+  .rodape__mapa-site__item {
+    width: 100%;
+    padding-bottom: 0;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .accordion-toggle {
+    display: none;
+  }
+
+  .accordion-content {
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .rodape__mapa-site__header{
+    margin-bottom: 20px;
+  }
+
+  .rodape-titulo{
+    text-transform: uppercase;
+  }
+}
+
+.rodape__mapa-site__item a {
+  color: white;
+  text-decoration: none;
+}
+
+.rodape__mapa-site__item a:hover {
+  text-decoration: underline;
+}
+
+.rodape__mapa-site__item ul li a:hover {
+  text-decoration: underline;
+}

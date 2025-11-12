@@ -1,0 +1,18 @@
+.redes > * > * {
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  filter: invert(100%) brightness(200%);
+}
+
+.redes-titulo {
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.redes-container {
+  justify-items: left;
+}

@@ -71,6 +71,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-webpack5-compiler-babel',
   ],
+  staticDirs: ['../packages/volto-govrs-ds/public'],
   framework: {
     name: '@storybook/react-webpack5',
     options: { builder: { useSWC: true } },
@@ -146,7 +147,11 @@ module.exports = {
       ...config,
       resolve: {
         ...config.resolve,
-        alias: { ...config.resolve.alias, ...baseConfig.resolve.alias },
+        alias: {
+          ...config.resolve.alias,
+          ...baseConfig.resolve.alias,
+          'volto-govrs-ds': path.resolve(__dirname, '../packages/volto-govrs-ds/src'),
+        },
         fallback: { ...config.resolve.fallback, zlib: false },
         plugins: [
           ...(config.resolve.plugins || []),
