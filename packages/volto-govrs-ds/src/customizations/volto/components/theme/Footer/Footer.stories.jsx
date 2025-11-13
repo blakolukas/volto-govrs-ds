@@ -63,7 +63,7 @@ const createMockStore = (navigationItems = mockNavigationItems) => {
   });
 };
 
-export default {
+const meta = {
   title: 'Theme/Footer',
   component: FooterComponent,
   parameters: {
@@ -78,19 +78,240 @@ export default {
       </MemoryRouter>
     ),
   ],
+  argTypes: {
+    images: {
+      control: 'object',
+      description: 'Array de URLs de imagens a serem exibidas no footer (máximo de 2 imagens). Se não fornecido, usa imagens padrão.',
+    },
+  },
 };
+
+export default meta;
+
+const CodeSnippet = ({ code }) => (
+  <pre
+    style={{
+      backgroundColor: '#f5f5f5',
+      padding: '10px',
+      borderRadius: '4px',
+      overflowX: 'auto',
+      fontSize: '14px',
+      color: '#333',
+      border: '1px solid #eee',
+    }}
+  >
+    <code>{code}</code>
+  </pre>
+);
+
+export const FooterDocumentacao = () => (
+  <div style={{ padding: 16, maxWidth: 900 }}>
+    <h3 style={{ borderBottom: '1px solid #ccc', paddingBottom: '10px' }}>
+      Especificações do Componente Footer
+    </h3>
+
+    <p>
+      O componente Footer é o rodapé padrão da aplicação, composto por três
+      elementos principais: mapa do site (SiteMapFooter), redes sociais
+      (RedesSociais) e imagens customizáveis (FooterImages).
+    </p>
+
+    <h4 style={{ marginTop: 20 }}>Estrutura do Footer</h4>
+    <ul style={{ lineHeight: 1.8 }}>
+      <li>
+        <strong>Brasão RS:</strong> Imagem do brasão do Rio Grande do Sul
+        (fixa)
+      </li>
+      <li>
+        <strong>SiteMapFooter:</strong> Mapa do site com navegação em
+        accordion (apenas itens com subitems são exibidos)
+      </li>
+      <li>
+        <strong>RedesSociais:</strong> Links para redes sociais
+      </li>
+      <li>
+        <strong>FooterImages:</strong> Imagens customizáveis (máximo 2)
+      </li>
+      <li>
+        <strong>Licença:</strong> Texto de licença de uso na parte inferior
+      </li>
+    </ul>
+
+    <h4 style={{ marginTop: 30 }}>Prop: images</h4>
+
+    <div style={{ marginTop: 12 }}>
+      <h5 style={{ margin: '8px 0' }}>
+        images{' '}
+        <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
+      </h5>
+      <p>
+        Array de strings com URLs das imagens a serem exibidas no footer.{' '}
+        <strong>Limite máximo: 2 imagens.</strong> Se não fornecido ou vazio,
+        nenhuma imagem customizada será exibida.
+      </p>
+      <CodeSnippet
+        code={`<Footer images={['/brasao-RS-contraste.svg', '/facebook.svg']} />`}
+      />
+      <p style={{ marginTop: 8, fontSize: '14px', color: '#666' }}>
+        ⚠️ Se mais de 2 imagens forem fornecidas, apenas as 2 primeiras serão
+        exibidas.
+      </p>
+    </div>
+
+    <h4 style={{ marginTop: 30 }}>Comportamento do SiteMapFooter</h4>
+    <p>
+      O mapa do site é renderizado dinamicamente com base nos dados de
+      navegação do Redux. Características:
+    </p>
+    <ul style={{ lineHeight: 1.8 }}>
+      <li>
+        <strong>Filtragem automática:</strong> Apenas itens que possuem
+        subitems são exibidos
+      </li>
+      <li>
+        <strong>Accordion mobile:</strong> Em telas menores que 835px, os itens
+        são expansíveis
+      </li>
+      <li>
+        <strong>Grid responsivo:</strong> Em desktop, exibe os itens em grid
+      </li>
+      <li>
+        <strong>Limite de 4 itens:</strong> O CSS limita a exibição de até 4
+        categorias principais
+      </li>
+    </ul>
+
+    <h4 style={{ marginTop: 30 }}>Responsividade</h4>
+    <div
+      style={{
+        display: 'grid',
+        gap: '15px',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        marginTop: 15,
+      }}
+    >
+      <div
+        style={{
+          padding: '12px',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+        }}
+      >
+        <strong>Mobile (&lt; 835px)</strong>
+        <ul style={{ fontSize: '14px', marginTop: 8 }}>
+          <li>Accordion expansível para navegação</li>
+          <li>Fundo verde escuro</li>
+          <li>Ícones de expandir/recolher</li>
+        </ul>
+      </div>
+      <div
+        style={{
+          padding: '12px',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+        }}
+      >
+        <strong>Desktop (≥ 835px)</strong>
+        <ul style={{ fontSize: '14px', marginTop: 8 }}>
+          <li>Grid de navegação sempre visível</li>
+          <li>Fundo verde padrão</li>
+          <li>Sem accordion (tudo expandido)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style={{ marginTop: 30 }}>Exemplos de Uso</h4>
+
+    <div style={{ marginTop: 20 }}>
+      <h5 style={{ margin: '8px 0' }}>1. Footer Padrão (sem imagens customizadas)</h5>
+      <CodeSnippet code={`<Footer />`} />
+      <p style={{ fontSize: '14px', color: '#666', marginTop: 4 }}>
+        Renderiza o footer sem imagens customizadas. FooterImages retorna null.
+      </p>
+    </div>
+
+    <div style={{ marginTop: 20 }}>
+      <h5 style={{ margin: '8px 0' }}>2. Footer com 1 imagem</h5>
+      <CodeSnippet
+        code={`<Footer images={['/logo_branca.svg']} />`}
+      />
+    </div>
+
+    <div style={{ marginTop: 20 }}>
+      <h5 style={{ margin: '8px 0' }}>3. Footer com 2 imagens (máximo)</h5>
+      <CodeSnippet
+        code={`<Footer images={['/brasao-RS-contraste.svg', '/facebook.svg']} />`}
+      />
+    </div>
+
+    <div style={{ marginTop: 20 }}>
+      <h5 style={{ margin: '8px 0' }}>4. Footer com mais de 2 imagens</h5>
+      <CodeSnippet
+        code={`<Footer images={['/img1.svg', '/img2.svg', '/img3.svg', '/img4.svg']} />`}
+      />
+      <p style={{ fontSize: '14px', color: '#666', marginTop: 4 }}>
+        ℹ️ Apenas as 2 primeiras imagens (/img1.svg e /img2.svg) serão exibidas.
+      </p>
+    </div>
+
+    <h4 style={{ marginTop: 30 }}>Requisitos de Dados</h4>
+    <p>
+      O Footer depende do Redux store com a seguinte estrutura:
+    </p>
+    <CodeSnippet
+      code={`{
+  navigation: {
+    items: [
+      {
+        title: "Categoria",
+        url: "/categoria",
+        items: [
+          { title: "Subitem 1", url: "/categoria/subitem-1" },
+          { title: "Subitem 2", url: "/categoria/subitem-2" }
+        ]
+      }
+    ]
+  },
+  intl: {
+    locale: "pt-BR"
+  }
+}`}
+    />
+
+    <h4 style={{ marginTop: 30 }}>Notas Importantes</h4>
+    <ul style={{ lineHeight: 1.8 }}>
+      <li>
+        O Footer requer <code>Provider</code> do Redux e{' '}
+        <code>IntlProvider</code> do react-intl
+      </li>
+      <li>
+        Itens de navegação sem subitems <strong>não são exibidos</strong> no
+        mapa do site
+      </li>
+      <li>
+        Imagens quebradas são automaticamente ocultadas (onError handler)
+      </li>
+      <li>
+        O CSS limita a exibição a 4 categorias principais via{' '}
+        <code>:nth-child(n + 5)</code>
+      </li>
+    </ul>
+  </div>
+);
+
+FooterDocumentacao.story = { name: '1. Documentação e Especificações' };
 
 export const FooterPadrao = () => {
   const store = createMockStore();
 
   return (
     <Provider store={store}>
-      <FooterComponent />
+      <FooterComponent images={['/logo_branca.svg', '/logo_branca.svg']} />
     </Provider>
   );
 };
 
-FooterPadrao.storyName = 'Padrão';
+FooterPadrao.storyName = '2. Padrão';
 
 export const FooterComMuitosItens = () => {
   const extendedItems = [
@@ -124,7 +345,7 @@ export const FooterComMuitosItens = () => {
   );
 };
 
-FooterComMuitosItens.storyName = 'Com Muitos Itens';
+FooterComMuitosItens.storyName = '3. Com Muitos Itens';
 
 export const FooterPoucosItens = () => {
   const limitedItems = [
@@ -154,7 +375,41 @@ export const FooterPoucosItens = () => {
   );
 };
 
-FooterPoucosItens.storyName = 'Poucos Itens';
+FooterPoucosItens.storyName = '4. Poucos Itens';
+
+export const FooterComImagensCustomizadas = () => {
+  const store = createMockStore();
+
+  return (
+    <div style={{ padding: 16 }}>
+      <h4 style={{ marginBottom: 16 }}>Footer com 2 imagens customizadas</h4>
+      <Provider store={store}>
+        <FooterComponent images={['/brasao-RS-contraste.svg', '/facebook.svg']} />
+      </Provider>
+      <CodeSnippet
+        code={`<Footer images={['/brasao-RS-contraste.svg', '/facebook.svg']} />`}
+      />
+    </div>
+  );
+};
+
+FooterComImagensCustomizadas.storyName = '5. Com Imagens Customizadas';
+
+export const FooterSemImagens = () => {
+  const store = createMockStore();
+
+  return (
+    <div style={{ padding: 16 }}>
+      <h4 style={{ marginBottom: 16 }}>Footer sem imagens (prop images vazia)</h4>
+      <Provider store={store}>
+        <FooterComponent images={[]} />
+      </Provider>
+      <CodeSnippet code={`<Footer images={[]} />`} />
+    </div>
+  );
+};
+
+FooterSemImagens.storyName = '6. Sem Imagens';
 
 export const FooterMobile = () => {
   const store = createMockStore();
@@ -162,13 +417,13 @@ export const FooterMobile = () => {
   return (
     <div style={{ maxWidth: '375px', margin: '0 auto' }}>
       <Provider store={store}>
-        <FooterComponent />
+        <FooterComponent images={['/brasao-RS-contraste.svg', '/facebook.svg']} />
       </Provider>
     </div>
   );
 };
 
-FooterMobile.storyName = 'Mobile (375px)';
+FooterMobile.storyName = '7. Mobile (375px)';
 FooterMobile.parameters = {
   viewport: {
     defaultViewport: 'mobile1',
@@ -181,13 +436,13 @@ export const FooterTablet = () => {
   return (
     <div>
       <Provider store={store}>
-        <FooterComponent />
+        <FooterComponent images={['/brasao-RS-contraste.svg', '/logo_branca.svg']} />
       </Provider>
     </div>
   );
 };
 
-FooterTablet.storyName = 'Tablet (768px)';
+FooterTablet.storyName = '8. Tablet (768px)';
 FooterTablet.parameters = {
   viewport: {
     defaultViewport: 'tablet',
@@ -198,10 +453,19 @@ export const FooterSemItens = () => {
   const store = createMockStore([]);
 
   return (
-    <Provider store={store}>
-      <FooterComponent />
-    </Provider>
+    <div style={{ padding: 16 }}>
+      <h4 style={{ marginBottom: 16 }}>
+        Footer sem itens de navegação (SiteMapFooter não aparece)
+      </h4>
+      <Provider store={store}>
+        <FooterComponent images={['/brasao-RS-contraste.svg', '/facebook.svg']} />
+      </Provider>
+      <p style={{ marginTop: 16, fontSize: 14, color: '#666' }}>
+        ℹ️ Quando não há itens de navegação com subitems, o SiteMapFooter não é
+        renderizado.
+      </p>
+    </div>
   );
 };
 
-FooterSemItens.storyName = 'Sem Itens de Navegação';
+FooterSemItens.storyName = '9. Sem Itens de Navegação';

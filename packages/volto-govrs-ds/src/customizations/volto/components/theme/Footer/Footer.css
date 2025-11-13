@@ -59,6 +59,10 @@
 .footer-logo > p > a {
   color: white;
   font-weight: 800;
+
+  &:hover {
+    color: var(--background-green-rs);
+  }
 }
 
 .footer-logo > p {
@@ -71,6 +75,14 @@
 
 .rodape__mapa-site__item > a:hover,
 .rodape__mapa-site__item > ul > li > a:hover {
-  color: var(--green-matriz-link) !important;
+  color: var(--background-dark-green-rs) !important;
   text-decoration: none !important;
+}
+
+.footer-redes-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
