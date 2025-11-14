@@ -1,9 +1,12 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 type AvatarProps = {
   name: string;
   size?: 'small' | 'medium' | 'large';
   letter?: boolean;
+  iconic?: boolean;
   dropdown?: boolean;
   imageUrl?: string;
   menuItems?: Array<{ label: string; onClick: () => void }>;
@@ -43,6 +46,7 @@ function Avatar({
   size = 'medium',
   imageUrl,
   letter,
+  iconic = false,
   dropdown,
   menuItems = [],
 }: AvatarProps) {
@@ -58,15 +62,17 @@ function Avatar({
         <div className="avatar--dropdown-wrapper" onClick={toggleMenu}>
           <div className="avatar--dropdown">
             <div className={`avatar avatar--${size}`}>
-              {!letter ? (
-                imageUrl ? (
-                  <img src={imageUrl} alt={name} />
+              {!iconic ? (
+                !letter ? (
+                  imageUrl ? (
+                    <img src={imageUrl} alt={name} />
+                  ) : (
+                    <span style={{ backgroundColor }}>{name.charAt(0)}</span>
+                  )
                 ) : (
                   <span style={{ backgroundColor }}>{name.charAt(0)}</span>
                 )
-              ) : (
-                <span style={{ backgroundColor }}>{name.charAt(0)}</span>
-              )}
+              ) : (<div className='avatar-icon' style={{ backgroundColor }}><FontAwesomeIcon icon={faUser}/></div>)}
             </div>
             <div className="avatar--dropdown-content">
               <p>
@@ -119,15 +125,17 @@ function Avatar({
         </div>
       ) : (
         <div className={`avatar avatar--${size}`}>
-          {!letter ? (
-            imageUrl ? (
-              <img src={imageUrl} alt={name} />
+          {!iconic ? (
+            !letter ? (
+              imageUrl ? (
+                <img src={imageUrl} alt={name} />
+              ) : (
+                <span style={{ backgroundColor }}>{name.charAt(0)}</span>
+              )
             ) : (
               <span style={{ backgroundColor }}>{name.charAt(0)}</span>
             )
-          ) : (
-            <span style={{ backgroundColor }}>{name.charAt(0)}</span>
-          )}
+          ) : (<div className='avatar-icon' style={{ backgroundColor }}><FontAwesomeIcon icon={faUser}/></div>)}
         </div>
       )}
     </>
