@@ -300,6 +300,61 @@ export const MuitosSlides: Story = {
 };
 
 
+export const NaoCircular: Story = {
+  args: {
+    data: {
+      items: [
+        {
+          image: 'https://picsum.photos/800/400?random=1',
+          title: 'Primeiro Slide',
+          description: 'O carousel para no primeiro slide - não volta para o último',
+        },
+        {
+          image: 'https://picsum.photos/800/400?random=2',
+          title: 'Segundo Slide',
+          description: 'Navegue com as setas para experimentar',
+        },
+        {
+          image: 'https://picsum.photos/800/400?random=3',
+          title: 'Terceiro Slide',
+          description: 'O carousel para no último slide - não volta para o primeiro',
+        },
+      ],
+      autoplay: false,
+      circular: false,
+    },
+  },
+};
+
+
+export const NaoCircularComAutoplay: Story = {
+  args: {
+    data: {
+      items: [
+        {
+          image: 'https://picsum.photos/800/400?random=1',
+          title: 'Início',
+          description: 'O autoplay vai parar no último slide',
+        },
+        {
+          image: 'https://picsum.photos/800/400?random=2',
+          title: 'Meio',
+          description: 'Aguarde o autoplay continuar',
+        },
+        {
+          image: 'https://picsum.photos/800/400?random=3',
+          title: 'Final',
+          description: 'O autoplay parou aqui (não volta para o primeiro)',
+        },
+      ],
+      autoplay: true,
+      autoplaySpeed: 2000,
+      circular: false,
+    },
+  },
+};
+
+
 export const Vazio: Story = {
   args: {
     data: {

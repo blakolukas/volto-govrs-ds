@@ -6,7 +6,7 @@ function CarouselSchema() {
       {
         id: 'default',
         title: 'Default',
-        fields: ['items', 'autoplay', 'autoplaySpeed'],
+        fields: ['items', 'autoplay', 'autoplaySpeed', 'circular', 'width', 'indicators'],
       },
     ],
     properties: {
@@ -58,6 +58,33 @@ function CarouselSchema() {
         description: 'Time between slides in milliseconds',
         type: 'number',
         default: 3000,
+      },
+      circular: {
+        title: 'Circular Navigation',
+        description: 'Enable looping from last slide to first slide',
+        type: 'boolean',
+        default: true,
+      },
+      width: {
+        title: 'Width',
+        description: 'Different width options for the carousel',
+        type: 'string',
+        choices: [
+          ['default', 'Default'],
+          ['full', 'Full Width'],
+        ],
+        default: 'default',
+      },
+      indicators: {
+        title: 'Indicators',
+        description: 'Different navigation indicators',
+        type: 'string',
+        choices: [
+          ['default', 'Default'],
+          ['inside', 'Inside'],
+          ['numbers', 'Numbers'],
+        ],
+        default: 'default',
       },
     },
     required: [],
