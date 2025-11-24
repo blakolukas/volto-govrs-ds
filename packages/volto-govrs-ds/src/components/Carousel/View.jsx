@@ -22,13 +22,17 @@ function CarouselView({ data = {} }) {
     autoplaySpeed = 3000,
     circular = true,
     width = 'default',
-    indicators = 'default'
+    indicators = 'default',
+    enableSwipe = true,
+    noArrowsMobile = false,
   } = data;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState(0);
   const [loadedVideos, setLoadedVideos] = useState({});
   const [slideDirection, setSlideDirection] = useState('right');
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   // Auto-play functionality
   useEffect(() => {
@@ -80,11 +84,41 @@ function CarouselView({ data = {} }) {
     setTimeout(() => setIsTransitioning(false), 500);
   };
 
+  // Touch handlers for swipe functionality
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e) => {
+    if (!enableSwipe) return;
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    if (!enableSwipe) return;
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!enableSwipe) return;
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+  };
+
   // If no items, show placeholder
   if (!items || items.length === 0) {
     return (
       <div className="carousel-placeholder">
-        <p>No carousel items configured. Please add items in edit mode.</p>
+        <p>No carousel items configured. Please
+           add items in edit mode.</p>
       </div>
     );
   }
@@ -97,7 +131,7 @@ function CarouselView({ data = {} }) {
     <div className={`carousel-container`}>
       <div className="carousel-wrapper">
         <button
-          className={`carousel-button carousel-button-prev icon-${width}`}
+          className={`carousel-button carousel-button-prev icon-${width} ${noArrowsMobile ? 'hide-on-mobile' : ''}`}
           onClick={goToPrevious}
           disabled={isPrevDisabled}
           aria-label="Previous slide"
@@ -105,7 +139,12 @@ function CarouselView({ data = {} }) {
           <FontAwesomeIcon icon={faChevronLeft}/>
         </button>
 
-        <div className={`carousel-content carousel-width-${width}`}>
+        <div
+          className={`carousel-content carousel-width-${width}`}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
           {items.map((item, index) => {
             const isActive = index === currentIndex;
             const isPrevious = index === prevIndex && isTransitioning;
@@ -244,7 +283,7 @@ function CarouselView({ data = {} }) {
         </div>
 
         <button
-          className={`carousel-button carousel-button-next icon-${width}`}
+          className={`carousel-button carousel-button-next icon-${width} ${noArrowsMobile ? 'hide-on-mobile' : ''}`}
           onClick={goToNext}
           disabled={isNextDisabled}
           aria-label="Next slide"

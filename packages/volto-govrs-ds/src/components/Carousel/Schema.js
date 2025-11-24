@@ -6,7 +6,7 @@ function CarouselSchema() {
       {
         id: 'default',
         title: 'Default',
-        fields: ['items', 'autoplay', 'autoplaySpeed', 'circular', 'width', 'indicators'],
+        fields: ['items', 'autoplay', 'autoplaySpeed', 'circular', 'width', 'indicators', 'enableSwipe', 'noArrowsMobile'],
       },
     ],
     properties: {
@@ -85,6 +85,18 @@ function CarouselSchema() {
           ['numbers', 'Numbers'],
         ],
         default: 'default',
+      },
+      enableSwipe: {
+        title: 'Enable Swipe on Mobile',
+        description: 'Allow users to swipe/scroll with finger on mobile devices. When disabled, only arrow navigation is available.',
+        type: 'boolean',
+        default: true,
+      },
+      noArrowsMobile: {
+        title: 'Hide Arrows on Mobile',
+        description: 'Hide navigation arrows on mobile devices.',
+        type: 'boolean',
+        default: false,
       },
     },
     required: [],
