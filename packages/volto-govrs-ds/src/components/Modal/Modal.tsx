@@ -75,7 +75,7 @@ function Modal({
   };
 
   const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (closeOnOverlayClick && e.target === overlayRef.current && onClose && type !== 'alert') {
+    if (closeOnOverlayClick && e.target === overlayRef.current && onClose) {
       onClose();
     }
   };
@@ -83,14 +83,14 @@ function Modal({
   // Keyboard navigation (ESC key)
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && onClose && type !== 'alert') {
+      if (e.key === 'Escape' && onClose && closeOnOverlayClick) {
         onClose();
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onClose, type]);
+  }, [onClose, closeOnOverlayClick]);
 
   // Focus trap
   React.useEffect(() => {
