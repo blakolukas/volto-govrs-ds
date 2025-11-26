@@ -40,6 +40,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+    font-size: 20px;
 }
 
 .modal-close{
@@ -188,25 +189,11 @@
     margin: 10px 0px;
 }
 
-.input-item{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+
+.inputs-list > * {
+    margin-bottom: 16px;
 }
 
-.input-field{
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-    margin: 5px 0;
-
-    &:focus {
-        border-color: var(--green-rs-60);
-        outline: none;
-    }
-}
-
-.inputs-list{
-    margin-top: 10px;
+.inputs-children{
+    margin-bottom: 16px;
 }
