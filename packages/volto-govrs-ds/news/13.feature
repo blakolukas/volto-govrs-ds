@@ -1,0 +1,1 @@
+arrumando estilos main (@blakolukas)
