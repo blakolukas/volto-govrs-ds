@@ -1,0 +1,160 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+
+  &--small {
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  &--medium {
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+  }
+
+  &--large {
+    width: 160px;
+    height: 160px;
+    font-size: 105px;
+  }
+
+  &--dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  &--dropdown {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 50px;
+    background-color: var(--gray-2);
+
+    &:hover {
+      background-color: var(--green-rs-10);
+    }
+  }
+
+  &--dropdown-content {
+    display: flex;
+    align-items: center;
+
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  &--dropdown-name {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &--dropdown-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-rs-60);
+    transition: transform 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &--dropdown-menu {
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    right: 0;
+    margin-top: 8px;
+    background-color: white;
+    border: 1px solid var(--gray-3, #ddd);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
+    min-width: 200px;
+    z-index: 1000;
+    overflow: hidden;
+  }
+
+  &--dropdown-menu-item {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--gray-1, #f5f5f5);
+    }
+
+    &:active {
+      background-color: var(--gray-2, #e5e5e5);
+    }
+
+    & + & {
+      border-top: 1px solid var(--gray-2, #e5e5e5);
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  span {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    align-content: center;
+  }
+
+  .avatar-icon {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    align-content: center;
+    overflow: hidden; 
+    position: relative; 
+  }
+
+  svg {
+    width: 70%;  
+    height: 70%;
+    color: white;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%); 
+  }
+}

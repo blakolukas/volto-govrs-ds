@@ -1,0 +1,337 @@
+.br-step-vertical {
+  --v-step-size: 40px;
+  --v-label-slot: 120px;
+  --v-connector-gap: 6px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.br-step-vertical.v-variant-dotted {
+  --v-step-size: 16px;
+}
+
+.br-step-vertical.v-variant-dotted .v-step-circle,
+.br-step-vertical.v-variant-dotted .v-step-circle.dotted {
+  width: 16px;
+  height: 16px;
+}
+
+.br-step-vertical.v-variant-plain {
+  --v-step-size: 8px;
+}
+
+.br-step-vertical.v-variant-plain {
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.br-step-vertical.v-variant-plain .v-step-circle {
+  display: inline-flex !important;
+  width: var(--v-step-size) !important;
+  min-width: var(--v-step-size) !important;
+  height: var(--v-step-size) !important;
+  min-height: var(--v-step-size) !important;
+  box-sizing: border-box !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  line-height: 0 !important;
+}
+
+.br-step-vertical .v-step-item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0;
+}
+
+.br-step-vertical.label-below .v-step-item,
+.br-step-vertical.label-above .v-step-item {
+  flex-direction: column;
+  align-items: center;
+}
+
+.br-step-vertical.label-below .v-step-label.below {
+  margin-top: 8px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.br-step-vertical.label-above .v-step-label.above {
+  margin-top: 0;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.br-step-vertical.label-right {
+  --v-label-slot: var(--v-label-slot, 120px);
+}
+
+.v-step-circle {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  width: var(--v-step-size);
+  height: var(--v-step-size);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #1a7235;
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.v-step-circle::after {
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+  background: transparent;
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  transition: background-color 120ms ease;
+}
+
+.br-step-vertical .v-step-circle.active {
+  background-color: #1a7235;
+  color: #ffffff;
+}
+
+.v-step-number {
+  font-size: 18px;
+  font-weight: 500;
+}
+.v-step-icon {
+  display: inline-flex;
+}
+
+.v-step-circle {
+  color: #1a7235;
+}
+.v-step-circle.active {
+  background-color: #1a7235;
+  color: #ffffff;
+}
+.v-step-circle.active .v-step-number {
+  color: #ffffff !important;
+}
+
+/* icon SVG coloring: default green, white when active */
+.v-step-icon svg {
+  display: block;
+  width: calc(var(--v-step-size) * 0.5);
+  height: calc(var(--v-step-size) * 0.5);
+  color: #1a7235;
+  fill: #1a7235;
+}
+.v-step-circle.active .v-step-icon svg,
+.v-step-circle.active .v-step-icon {
+  color: #ffffff;
+  fill: #ffffff;
+}
+.v-step-circle .v-step-icon svg path,
+.v-step-circle .v-step-icon svg g {
+  fill: #1a7235;
+  stroke: #1a7235;
+}
+.v-step-circle.active .v-step-icon svg path,
+.v-step-circle.active .v-step-icon svg g {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Labels to the right/left
+   Use measured --v-label-slot so all labels take same width and connectors align. */
+.v-step-label {
+  max-width: 220px;
+  color: #000000;
+  font-size: 16px;
+}
+
+.br-step-vertical.label-right .v-step-label.right {
+  width: var(--v-label-slot);
+}
+.br-step-vertical.label-left .v-step-label.left {
+  width: var(--v-label-slot);
+}
+
+/* Position labels to the sides while keeping the circle centered. The label slot
+   is reserved to avoid overlap; we absolute-position labels relative to the item. */
+.br-step-vertical .v-step-label.right {
+  position: absolute;
+  left: calc(50% + (var(--v-step-size) / 2) + 8px);
+}
+.br-step-vertical .v-step-label.left {
+  position: absolute;
+  right: calc(50% + (var(--v-step-size) / 2) + 8px);
+}
+
+/* vertical connector line between items */
+.v-connector {
+  width: 0;
+  height: auto;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  border-left: 1px solid #1a7235;
+  margin-top: calc(
+    -1 * (var(--v-step-size) / 2) + var(--v-connector-gap) + 0.5px
+  );
+  margin-bottom: calc(
+    -1 * (var(--v-step-size) / 2) + var(--v-connector-gap) + 0.5px
+  );
+  background: transparent;
+}
+
+/* when a dotted replacement marker is present and larger, nudge connector to avoid overlap */
+.br-step-vertical.v-variant-dotted .v-connector.adj-top-large {
+  margin-top: -14px;
+}
+.br-step-vertical.v-variant-dotted .v-connector.adj-bottom-large {
+  margin-bottom: -14px;
+}
+.br-step-vertical.v-variant-dotted .v-connector.adj-top-large.adj-bottom-large {
+  margin-top: -14px;
+  margin-bottom: -14px;
+}
+
+.br-step-vertical.v-variant-dotted .v-step-item:not(.has-state) + .v-connector {
+  margin-top: calc(-1 * var(--v-step-size) + var(--v-connector-gap) + 0.5px);
+  margin-bottom: calc(-1 * var(--v-step-size) + var(--v-connector-gap) + 0.5px);
+}
+
+/* dotted replacement status marker (vertical): larger replacement circle */
+.br-step-vertical.v-variant-dotted .v-step-status {
+  z-index: 3;
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.v-step-status--success {
+  background-color: #ffffff;
+  color: #168821;
+}
+.v-step-status--error {
+  background-color: #ffffff;
+  color: #e52207;
+}
+.v-step-status--warning {
+  background-color: #ffffff;
+  color: #ffcd07;
+}
+.v-step-status--info {
+  background-color: #ffffff;
+  color: #2d86d8;
+}
+
+/* clickable visuals */
+.v-step-circle.clickable,
+.v-step-status.clickable {
+  cursor: pointer;
+}
+.v-step-status.clickable:focus {
+  box-shadow: 0 0 0 3px rgba(26, 114, 53, 0.12);
+  outline: none;
+}
+
+/* plain variant: hide connectors and use small dots */
+.br-step-vertical.v-variant-plain .v-connector {
+  display: none;
+}
+.br-step-vertical.v-variant-plain .v-step-status {
+  display: none;
+}
+.br-step-vertical.v-variant-plain .v-step-circle {
+  width: var(--v-step-size);
+  height: var(--v-step-size);
+  border: none;
+  background: #cccccc;
+}
+
+/* plain variant active styling (match horizontal plain active) */
+.br-step-vertical.v-variant-plain .v-step-circle.active {
+  border: 1px solid #ffffff;
+  background-color: #04290f;
+}
+
+/* hover overlays similar to horizontal but scoped to v- names */
+.v-step-item:hover .v-step-circle:not(.active)::after {
+  background-color: rgba(26, 114, 53, 0.16);
+}
+.v-step-item.has-state:hover .v-step-circle:not(.active)::after {
+  background-color: #eaf6ea;
+}
+
+/* dotted variant should use an opaque overlay so connector doesn't show through */
+.br-step-vertical.v-variant-dotted
+  .v-step-item:hover
+  .v-step-circle:not(.active)::after {
+  background-color: #eaf6ea;
+}
+
+/* ensure dotted replacement markers visually replace the small dot and use wrapper background */
+.br-step-vertical.v-variant-dotted .v-step-status svg {
+  width: 20px;
+  height: 20px;
+}
+.br-step-vertical.v-variant-dotted .v-step-status svg path,
+.br-step-vertical.v-variant-dotted .v-step-status svg g {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+/* dotted replacement markers use the state's color as background and white icon color */
+.br-step-vertical.v-variant-dotted .v-step-status--success {
+  background-color: #168821;
+  color: #ffffff;
+}
+.br-step-vertical.v-variant-dotted .v-step-status--error {
+  background-color: #e52207;
+  color: #ffffff;
+}
+.br-step-vertical.v-variant-dotted .v-step-status--warning {
+  background-color: #ffcd07;
+  color: #333333;
+}
+.br-step-vertical.v-variant-dotted .v-step-status--info {
+  background-color: #2d86d8;
+  color: #ffffff;
+}
+
+.br-step-vertical.v-variant-dotted .v-step-status--success {
+  background-color: #168821;
+  color: #ffffff;
+}
+.br-step-vertical.v-variant-dotted .v-step-status--error {
+  background-color: #e52207;
+  color: #ffffff;
+}
+.br-step-vertical.v-variant-dotted .v-step-status--warning {
+  background-color: #ffcd07;
+  color: #333333;
+}
+.br-step-vertical.v-variant-dotted .v-step-status--info {
+  background-color: #2d86d8;
+  color: #ffffff;
+}
+
+.br-step-vertical.v-variant-dotted .v-step-status svg {
+  width: 28px;
+  height: 28px;
+}
+.br-step-vertical.v-variant-dotted .v-step-status svg path,
+.br-step-vertical.v-variant-dotted .v-step-status svg g {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
