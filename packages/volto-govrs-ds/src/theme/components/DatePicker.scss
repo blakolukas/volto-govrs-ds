@@ -107,9 +107,7 @@
   opacity: 0.3 !important;
 }
 
-.selected,
-.endRange,
-.startRange {
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
   border-color: var(--green-rs-60) !important;
   background-color: var(--green-rs-60) !important;
   color: var(--pure-0) !important;
