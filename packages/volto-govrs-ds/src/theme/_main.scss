@@ -1,9 +1,27 @@
-@import 'Formularios/Select.scss';
-@import './variables.scss';
+//Variables
 @import './variables.css';
+@import './variables.scss';
+
+//components
 @import './components/Button.scss';
-@import './HeadersETextos/Headers.scss';
-@import './HeadersETextos/Paragraphs.scss';
-@import './components/Links.scss';
+@import './components/Card.scss';
 @import './components/DatePicker.scss';
+@import './components/Links.scss';
+@import './components/Search.scss';
 @import './components/Textarea.scss';
+@import './components/Avatar.scss';
+@import './components/Accordion.scss';
+
+//Formularios
+@import './Formularios/Checkbox.scss';
+@import './Formularios/Radio.scss';
+@import './Formularios/Select.scss';
+@import './Formularios/Switches.scss';
+@import './Formularios/Upload.scss';
+
+//HeadersETextos
+@import './HeadersETextos/Headers.scss';
+@import './HeadersETextos/Label.scss';
+@import './HeadersETextos/Listas.scss';
+@import './HeadersETextos/Paragraphs.scss';
+@import './HeadersETextos/Placeholder.scss';

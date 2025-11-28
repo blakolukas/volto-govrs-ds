@@ -1,0 +1,83 @@
+input[type='radio'].govrs-radio,
+.govrs-radio input[type='radio'] {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid var(--gray-20, #cccccc);
+  border-radius: 50%;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--pure-0, #ffffff);
+  cursor: pointer;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease;
+  vertical-align: middle;
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: transparent;
+    content: '';
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition:
+      background-color 120ms ease,
+      opacity 120ms ease,
+      transform 160ms ease;
+  }
+
+  &:checked {
+    &::after {
+      background-color: var(--green-rs-50, #4fbf7a);
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &:hover:not(:disabled) {
+    background-color: rgba(79, 191, 122, 0.16);
+  }
+
+  &:focus {
+    border: 2px solid var(--gold-vivid-40, #e6b800);
+    box-shadow: 0 0 0 4px rgba(230, 184, 0, 0.12);
+    outline: none;
+  }
+
+  &.govrs-radio--danger,
+  .govrs-radio--danger & {
+    border-color: var(--red-vivid-50, #e52207);
+  }
+
+  &.govrs-radio--success,
+  .govrs-radio--success & {
+    border-color: var(--green-cool-vivid-50, #1ca55a);
+  }
+
+  &:disabled,
+  .govrs-radio:disabled & {
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+  }
+}
+
+.govrs-radio {
+  display: inline-block;
+}
+
+.govrs-radio[aria-checked='true'],
+.govrs-radio.is-checked {
+  input[type='radio']::after {
+    background-color: var(--green-rs-50, #4fbf7a);
+    opacity: 1;
+  }
+}
