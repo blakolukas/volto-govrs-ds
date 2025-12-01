@@ -1,0 +1,226 @@
+.slider-wrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+
+  .slider-label {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    color: #333;
+    font-size: 16px;
+  }
+
+  /* Horizontal */
+  &.horizontal {
+    .slider-wrapper > .input-range-start {
+      display: none;
+    }
+
+    .slider-wrapper > .input-end-single {
+      display: none;
+    }
+
+    .slider-container {
+      display: flex;
+      width: 100%;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .slider-container .input-range-start {
+      display: block;
+      order: 1;
+      margin-right: 0;
+    }
+
+    .slider-container .slider-track-container {
+      order: 2;
+    }
+
+    .slider-container .input-end-single {
+      display: block;
+      order: 3;
+      margin-left: 0;
+    }
+
+    &.single .input-range-start {
+      display: none;
+    }
+  }
+
+  /* Vertical */
+  &.vertical {
+    .slider-container .input-range-start {
+      display: none;
+    }
+
+    .slider-container .input-end-single {
+      display: none;
+    }
+
+    .input-range-start {
+      order: 1;
+      margin-bottom: 16px;
+    }
+
+    .slider-container {
+      order: 2;
+    }
+
+    .input-end-single {
+      order: 3;
+      margin-top: 16px;
+    }
+
+    .slider-container {
+      display: flex;
+      height: auto;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+      gap: 8px;
+    }
+
+    &.single .input-range-start {
+      display: none;
+    }
+  }
+
+  .slider-track-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+
+  .slider-input {
+    width: 60px;
+    padding: 4px 6px;
+    border: 1px solid #888;
+    border-radius: 6px;
+    background: #fff;
+    color: #333;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .rc-slider {
+    flex: 1;
+  }
+
+  .rc-slider-rail {
+    height: 4px;
+    background-color: #cccccc;
+  }
+
+  .rc-slider-track {
+    height: 4px;
+    background-color: rgba(39, 155, 74, 0.5);
+  }
+
+  .rc-slider-handle {
+    width: 20px;
+    height: 20px;
+    border: none;
+    margin-top: -8px;
+    background-color: #279b4a;
+    box-shadow: none;
+    opacity: 1;
+
+    &:active {
+      background-color: #b4dcc0;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: #4aab67;
+    }
+  }
+
+  /* --- RC-SLIDER DOTS (RISCOS) --- */
+  .rc-slider-dot {
+    bottom: 0;
+    width: 1px;
+    height: 4px;
+    border: 0;
+    border-radius: 0;
+    margin-top: 0;
+    margin-left: -0.5px;
+    background-color: #f8f8f8;
+  }
+
+  .rc-slider-step .rc-slider-dot:first-child,
+  .rc-slider-step .rc-slider-dot:last-child {
+    display: none;
+  }
+
+  .rc-slider-mark {
+    top: 28px;
+    width: 100%;
+    height: 20px;
+  }
+
+  .rc-slider-mark-text {
+    position: absolute;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.1;
+    text-align: center;
+    user-select: none;
+  }
+
+  &.no-dots .rc-slider-dot {
+    display: none;
+  }
+
+  &.vertical .slider-label {
+    width: auto;
+  }
+
+  .rc-slider-vertical {
+    height: 350px;
+
+    .rc-slider-rail,
+    .rc-slider-track {
+      width: 4px;
+      height: 100%;
+    }
+
+    .rc-slider-handle {
+      margin-top: 0;
+      margin-left: -8px;
+    }
+
+    .rc-slider-dot {
+      width: 6px;
+      height: 1px;
+      margin-top: -1px;
+      margin-left: -1px;
+    }
+
+    .rc-slider-mark {
+      top: 0;
+      left: 10px;
+      width: 30px;
+      height: 100%;
+    }
+
+    .rc-slider-mark-text {
+      left: 10px;
+      font-size: 16px;
+      line-height: 1.1;
+      transform: none;
+    }
+  }
+}
