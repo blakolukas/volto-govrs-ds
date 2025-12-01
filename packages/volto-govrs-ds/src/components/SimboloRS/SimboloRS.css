@@ -1,0 +1,38 @@
+.simboloRS {
+  width: 45px;
+}
+
+.simbolo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-titulo {
+  margin-left: 30px;
+  color: black;
+  font-size: 24px;
+  font-weight: 375;
+  text-align: left;
+}
+
+.header-titulo:hover {
+  color: var(--green-matriz-link-activated);
+}
+
+@media (min-width: 768px) {
+  .simboloRS {
+    width: 60px;
+  }
+}
+@media (min-width: 992px) {
+  .simboloRS {
+    width: 80px;
+  }
+}
+@media (min-width: 1200px) {
+  .simboloRS {
+    width: 80px;
+  }
+}
