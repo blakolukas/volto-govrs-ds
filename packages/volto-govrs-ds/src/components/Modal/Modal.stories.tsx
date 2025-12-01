@@ -8,11 +8,10 @@ import {
   faMapMarkerAlt,
   faBuilding,
   faIdCard,
-  faCreditCard,
-  faCalendar,
-  faGlobe
+  faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 
+// removed unused icons to satisfy lint rules
 const meta = {
   title: 'Components/Modal',
   component: Modal,
@@ -21,7 +20,8 @@ const meta = {
     type: {
       control: 'select',
       options: ['items', 'form'],
-      description: 'Tipo do modal: "items" para lista expansível ou "form" para formulário',
+      description:
+        'Tipo do modal: "items" para lista expansível ou "form" para formulário',
     },
     title: {
       control: 'text',
@@ -29,7 +29,8 @@ const meta = {
     },
     closeOnOverlayClick: {
       control: 'boolean',
-      description: 'Define se o modal fecha ao clicar fora dele ou pressionar ESC',
+      description:
+        'Define se o modal fecha ao clicar fora dele ou pressionar ESC',
     },
   },
 };
@@ -110,9 +111,9 @@ export const ModalDocumentacao = () => {
       </h3>
 
       <p>
-        O componente Modal oferece duas variantes principais: <code>items</code> (lista
-        expansível) e <code>form</code> (formulário com inputs). Possui acessibilidade
-        completa com navegação por teclado e focus trap.
+        O componente Modal oferece duas variantes principais: <code>items</code>{' '}
+        (lista expansível) e <code>form</code> (formulário com inputs). Possui
+        acessibilidade completa com navegação por teclado e focus trap.
       </p>
 
       <h4 style={{ marginTop: 20 }}>Atributos Principais</h4>
@@ -126,8 +127,8 @@ export const ModalDocumentacao = () => {
       <div style={{ marginTop: 12 }}>
         <h5 style={{ margin: '8px 0' }}>onClose</h5>
         <p>
-          Função chamada ao fechar o modal (clique no X, ESC ou overlay). Use para
-          controlar a visibilidade.
+          Função chamada ao fechar o modal (clique no X, ESC ou overlay). Use
+          para controlar a visibilidade.
         </p>
         <CodeSnippet code={`<Modal onClose={() => setIsOpen(false)} ... />`} />
       </div>
@@ -135,10 +136,12 @@ export const ModalDocumentacao = () => {
       <div style={{ marginTop: 12 }}>
         <h5 style={{ margin: '8px 0' }}>type</h5>
         <p>
-          Define o conteúdo do modal: <code>"items"</code> para lista expansível ou{' '}
-          <code>"form"</code> para formulário.
+          Define o conteúdo do modal: <code>"items"</code> para lista expansível
+          ou <code>"form"</code> para formulário.
         </p>
-        <CodeSnippet code={`<Modal type="items" items={[...]} />\n<Modal type="form" inputs={[...]} />`} />
+        <CodeSnippet
+          code={`<Modal type="items" items={[...]} />\n<Modal type="form" inputs={[...]} />`}
+        />
       </div>
 
       <div style={{ marginTop: 12 }}>
@@ -164,8 +167,8 @@ export const ModalDocumentacao = () => {
 
       <h4 style={{ marginTop: 30 }}>Modal tipo "items"</h4>
       <p>
-        Exibe uma lista de itens expansíveis com imagens opcionais. Cada item pode
-        conter conteúdo adicional revelado ao clicar.
+        Exibe uma lista de itens expansíveis com imagens opcionais. Cada item
+        pode conter conteúdo adicional revelado ao clicar.
       </p>
 
       <div style={{ marginTop: 12 }}>
@@ -212,8 +215,9 @@ export const ModalDocumentacao = () => {
       <div style={{ marginTop: 12 }}>
         <h5 style={{ margin: '8px 0' }}>inputs</h5>
         <p>
-          Array de configurações de inputs. Cada input pode ter <code>label</code>,{' '}
-          <code>placeholder</code>, <code>auxiliaryText</code> e <code>leftIcon</code>.
+          Array de configurações de inputs. Cada input pode ter{' '}
+          <code>label</code>, <code>placeholder</code>,{' '}
+          <code>auxiliaryText</code> e <code>leftIcon</code>.
         </p>
         <CodeSnippet
           code={`const inputs = [
@@ -250,8 +254,8 @@ export const ModalDocumentacao = () => {
 
       <h4 style={{ marginTop: 30 }}>children (conteúdo customizado)</h4>
       <p>
-        Você pode passar conteúdo customizado através de <code>children</code>. O
-        conteúdo é exibido acima da lista de itens ou inputs.
+        Você pode passar conteúdo customizado através de <code>children</code>.
+        O conteúdo é exibido acima da lista de itens ou inputs.
       </p>
       <CodeSnippet
         code={`<Modal type="form" inputs={inputs}>
@@ -276,19 +280,20 @@ export const ModalDocumentacao = () => {
       <h4 style={{ marginTop: 30 }}>Recursos de Acessibilidade</h4>
       <ul>
         <li>
-          <strong>Focus trap:</strong> O foco permanece dentro do modal enquanto está
-          aberto
+          <strong>Focus trap:</strong> O foco permanece dentro do modal enquanto
+          está aberto
         </li>
         <li>
-          <strong>Navegação por teclado:</strong> ESC para fechar, Tab para navegar
-          entre elementos
+          <strong>Navegação por teclado:</strong> ESC para fechar, Tab para
+          navegar entre elementos
         </li>
         <li>
-          <strong>ARIA:</strong> Atributos role="dialog" e aria-modal="true" para
-          leitores de tela
+          <strong>ARIA:</strong> Atributos role="dialog" e aria-modal="true"
+          para leitores de tela
         </li>
         <li>
-          <strong>Auto-focus:</strong> Primeiro elemento focável recebe foco ao abrir
+          <strong>Auto-focus:</strong> Primeiro elemento focável recebe foco ao
+          abrir
         </li>
       </ul>
 
@@ -299,8 +304,14 @@ export const ModalDocumentacao = () => {
           type="items"
           items={itemsExample}
           onClose={() => setShowItemsModal(false)}
-          buttonLeft={{ label: 'Fechar', onClick: () => setShowItemsModal(false) }}
-          buttonRight={{ label: 'Confirmar', onClick: () => setShowItemsModal(false) }}
+          buttonLeft={{
+            label: 'Fechar',
+            onClick: () => setShowItemsModal(false),
+          }}
+          buttonRight={{
+            label: 'Confirmar',
+            onClick: () => setShowItemsModal(false),
+          }}
         >
           <p>Este é um conteúdo adicional acima da lista de itens.</p>
         </Modal>
@@ -312,8 +323,14 @@ export const ModalDocumentacao = () => {
           type="form"
           inputs={formInputs}
           onClose={() => setShowFormModal(false)}
-          buttonLeft={{ label: 'Cancelar', onClick: () => setShowFormModal(false) }}
-          buttonRight={{ label: 'Salvar', onClick: () => setShowFormModal(false) }}
+          buttonLeft={{
+            label: 'Cancelar',
+            onClick: () => setShowFormModal(false),
+          }}
+          buttonRight={{
+            label: 'Salvar',
+            onClick: () => setShowFormModal(false),
+          }}
         />
       )}
 
@@ -325,8 +342,14 @@ export const ModalDocumentacao = () => {
             { label: 'Nome', placeholder: 'Digite seu nome', leftIcon: faUser },
           ]}
           onClose={() => setShowCustomModal(false)}
-          buttonLeft={{ label: 'Cancelar', onClick: () => setShowCustomModal(false) }}
-          buttonRight={{ label: 'Salvar', onClick: () => setShowCustomModal(false) }}
+          buttonLeft={{
+            label: 'Cancelar',
+            onClick: () => setShowCustomModal(false),
+          }}
+          buttonRight={{
+            label: 'Salvar',
+            onClick: () => setShowCustomModal(false),
+          }}
         >
           <div style={{ marginBottom: '16px' }}>
             <h4>Instruções Importantes</h4>
@@ -342,7 +365,9 @@ ModalDocumentacao.story = { name: '1. Documentação e Exemplos' };
 
 export const ModalInterativo = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalType, setModalType] = useState<'items' | 'form' | 'custom'>('items');
+  const [modalType, setModalType] = useState<'items' | 'form' | 'custom'>(
+    'items',
+  );
   const [showButtons, setShowButtons] = useState(true);
   const [closeOnOverlay, setCloseOnOverlay] = useState(true);
   const [modalTitle, setModalTitle] = useState('Modal Interativo');
@@ -354,7 +379,7 @@ export const ModalInterativo = () => {
   <button style="padding: 8px 16px; background-color: #0c326f; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">
     Botão de Exemplo
   </button>
-</div>`
+</div>`,
   );
 
   const itemsExample = [
@@ -397,7 +422,9 @@ export const ModalInterativo = () => {
   return (
     <div style={{ padding: 16, maxWidth: 720 }}>
       <h3>Modal Interativo</h3>
-      <p>Use os controles abaixo para testar diferentes configurações do modal.</p>
+      <p>
+        Use os controles abaixo para testar diferentes configurações do modal.
+      </p>
 
       <div
         style={{
@@ -437,7 +464,9 @@ export const ModalInterativo = () => {
                 type="radio"
                 value="items"
                 checked={modalType === 'items'}
-                onChange={(e) => setModalType(e.target.value as 'items' | 'form' | 'custom')}
+                onChange={(e) =>
+                  setModalType(e.target.value as 'items' | 'form' | 'custom')
+                }
               />
               Lista de Itens
             </label>
@@ -446,7 +475,9 @@ export const ModalInterativo = () => {
                 type="radio"
                 value="form"
                 checked={modalType === 'form'}
-                onChange={(e) => setModalType(e.target.value as 'items' | 'form' | 'custom')}
+                onChange={(e) =>
+                  setModalType(e.target.value as 'items' | 'form' | 'custom')
+                }
               />
               Formulário
             </label>
@@ -455,7 +486,9 @@ export const ModalInterativo = () => {
                 type="radio"
                 value="custom"
                 checked={modalType === 'custom'}
-                onChange={(e) => setModalType(e.target.value as 'items' | 'form' | 'custom')}
+                onChange={(e) =>
+                  setModalType(e.target.value as 'items' | 'form' | 'custom')
+                }
               />
               Conteúdo Customizado
             </label>
@@ -483,7 +516,8 @@ export const ModalInterativo = () => {
               }}
             />
             <p style={{ fontSize: '12px', color: '#666', marginTop: '4px' }}>
-              💡 Este conteúdo será renderizado como HTML no modal (children). Você pode usar tags HTML e estilos inline.
+              💡 Este conteúdo será renderizado como HTML no modal (children).
+              Você pode usar tags HTML e estilos inline.
             </p>
           </div>
         )}
@@ -537,8 +571,8 @@ export const ModalInterativo = () => {
     modalType === 'items'
       ? 'items={itemsArray}'
       : modalType === 'form'
-      ? 'inputs={inputsArray}'
-      : ''
+        ? 'inputs={inputsArray}'
+        : ''
   }
   onClose={() => setIsOpen(false)}
   closeOnOverlayClick={${closeOnOverlay}}${
@@ -613,7 +647,9 @@ export const ExemplosDeUso = () => {
       img: 'https://via.placeholder.com/50/0066cc/ffffff?text=DELL',
       content: (
         <div>
-          <p><strong>Especificações:</strong></p>
+          <p>
+            <strong>Especificações:</strong>
+          </p>
           <ul>
             <li>Processador: Intel Core i7</li>
             <li>Memória: 16GB RAM</li>
@@ -629,7 +665,9 @@ export const ExemplosDeUso = () => {
       img: 'https://via.placeholder.com/50/555555/ffffff?text=MX3',
       content: (
         <div>
-          <p><strong>Características:</strong></p>
+          <p>
+            <strong>Características:</strong>
+          </p>
           <ul>
             <li>Conexão: Bluetooth e USB</li>
             <li>Ergonômico</li>
@@ -645,7 +683,9 @@ export const ExemplosDeUso = () => {
       img: 'https://via.placeholder.com/50/ff6600/ffffff?text=K2',
       content: (
         <div>
-          <p><strong>Detalhes:</strong></p>
+          <p>
+            <strong>Detalhes:</strong>
+          </p>
           <ul>
             <li>Layout: 75% compacto</li>
             <li>Switches: Gateron Brown</li>
@@ -665,9 +705,10 @@ export const ExemplosDeUso = () => {
       content: (
         <div>
           <p>
-            Ao acessar e usar este serviço, você aceita e concorda em estar vinculado aos
-            termos e condições descritos neste documento. Se você não concordar com alguma
-            parte destes termos, não deverá usar este serviço.
+            Ao acessar e usar este serviço, você aceita e concorda em estar
+            vinculado aos termos e condições descritos neste documento. Se você
+            não concordar com alguma parte destes termos, não deverá usar este
+            serviço.
           </p>
         </div>
       ),
@@ -678,9 +719,10 @@ export const ExemplosDeUso = () => {
       content: (
         <div>
           <p>
-            Você concorda em usar o serviço apenas para fins legais e de acordo com todas as
-            leis e regulamentos aplicáveis. É proibido usar o serviço de forma que possa
-            prejudicar, desabilitar ou comprometer o funcionamento do sistema.
+            Você concorda em usar o serviço apenas para fins legais e de acordo
+            com todas as leis e regulamentos aplicáveis. É proibido usar o
+            serviço de forma que possa prejudicar, desabilitar ou comprometer o
+            funcionamento do sistema.
           </p>
         </div>
       ),
@@ -691,10 +733,10 @@ export const ExemplosDeUso = () => {
       content: (
         <div>
           <p>
-            Respeitamos sua privacidade e nos comprometemos a proteger suas informações
-            pessoais. Os dados coletados serão usados apenas conforme descrito em nossa
-            Política de Privacidade e não serão compartilhados com terceiros sem seu
-            consentimento explícito.
+            Respeitamos sua privacidade e nos comprometemos a proteger suas
+            informações pessoais. Os dados coletados serão usados apenas
+            conforme descrito em nossa Política de Privacidade e não serão
+            compartilhados com terceiros sem seu consentimento explícito.
           </p>
         </div>
       ),
@@ -705,9 +747,10 @@ export const ExemplosDeUso = () => {
       content: (
         <div>
           <p>
-            Todo o conteúdo, incluindo textos, gráficos, logotipos e software, é propriedade
-            exclusiva da empresa e protegido por leis de direitos autorais. É proibida a
-            reprodução, distribuição ou modificação sem autorização prévia por escrito.
+            Todo o conteúdo, incluindo textos, gráficos, logotipos e software, é
+            propriedade exclusiva da empresa e protegido por leis de direitos
+            autorais. É proibida a reprodução, distribuição ou modificação sem
+            autorização prévia por escrito.
           </p>
         </div>
       ),
@@ -718,9 +761,10 @@ export const ExemplosDeUso = () => {
       content: (
         <div>
           <p>
-            O serviço é fornecido "como está" sem garantias de qualquer tipo. Não nos
-            responsabilizamos por danos diretos, indiretos, incidentais ou consequenciais
-            resultantes do uso ou impossibilidade de uso do serviço.
+            O serviço é fornecido "como está" sem garantias de qualquer tipo.
+            Não nos responsabilizamos por danos diretos, indiretos, incidentais
+            ou consequenciais resultantes do uso ou impossibilidade de uso do
+            serviço.
           </p>
         </div>
       ),
@@ -733,7 +777,9 @@ export const ExemplosDeUso = () => {
       img: 'https://via.placeholder.com/50/0066cc/ffffff?text=💬',
       content: (
         <div>
-          <p><strong>João Silva</strong> comentou: "Excelente conteúdo!"</p>
+          <p>
+            <strong>João Silva</strong> comentou: "Excelente conteúdo!"
+          </p>
           <p style={{ fontSize: '12px', color: '#666' }}>Há 5 minutos</p>
         </div>
       ),
@@ -743,7 +789,10 @@ export const ExemplosDeUso = () => {
       img: 'https://via.placeholder.com/50/ff9900/ffffff?text=⚙️',
       content: (
         <div>
-          <p>Uma nova versão do sistema está disponível com melhorias de segurança.</p>
+          <p>
+            Uma nova versão do sistema está disponível com melhorias de
+            segurança.
+          </p>
           <p style={{ fontSize: '12px', color: '#666' }}>Há 1 hora</p>
         </div>
       ),
@@ -783,9 +832,17 @@ export const ExemplosDeUso = () => {
         }}
       >
         {/* Exemplo 1: Modal de Confirmação */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>1. Modal de Confirmação</h4>
-          <p style={{ fontSize: '14px' }}>Modal simples com mensagem e botões de ação.</p>
+          <p style={{ fontSize: '14px' }}>
+            Modal simples com mensagem e botões de ação.
+          </p>
           <button
             onClick={() => setConfirmModal(true)}
             style={{
@@ -803,9 +860,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 2: Modal de Exclusão */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>2. Modal de Exclusão</h4>
-          <p style={{ fontSize: '14px' }}>Modal de aviso para ações destrutivas.</p>
+          <p style={{ fontSize: '14px' }}>
+            Modal de aviso para ações destrutivas.
+          </p>
           <button
             onClick={() => setDeleteModal(true)}
             style={{
@@ -823,7 +888,13 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 3: Modal de Login */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>3. Modal de Login</h4>
           <p style={{ fontSize: '14px' }}>Formulário de login com inputs.</p>
           <button
@@ -843,9 +914,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 4: Modal de Cadastro */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>4. Modal de Cadastro</h4>
-          <p style={{ fontSize: '14px' }}>Formulário completo com múltiplos campos.</p>
+          <p style={{ fontSize: '14px' }}>
+            Formulário completo com múltiplos campos.
+          </p>
           <button
             onClick={() => setRegisterModal(true)}
             style={{
@@ -863,9 +942,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 5: Modal de Seleção de Produtos */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>5. Catálogo de Produtos</h4>
-          <p style={{ fontSize: '14px' }}>Lista expansível com produtos e detalhes.</p>
+          <p style={{ fontSize: '14px' }}>
+            Lista expansível com produtos e detalhes.
+          </p>
           <button
             onClick={() => setProductModal(true)}
             style={{
@@ -883,9 +970,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 6: Modal de Termos e Condições */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>6. Termos e Condições</h4>
-          <p style={{ fontSize: '14px' }}>Conteúdo expansível organizado por seções.</p>
+          <p style={{ fontSize: '14px' }}>
+            Conteúdo expansível organizado por seções.
+          </p>
           <button
             onClick={() => setTermsModal(true)}
             style={{
@@ -903,9 +998,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 7: Modal de Sucesso */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>7. Feedback de Sucesso</h4>
-          <p style={{ fontSize: '14px' }}>Modal de confirmação de ação bem-sucedida.</p>
+          <p style={{ fontSize: '14px' }}>
+            Modal de confirmação de ação bem-sucedida.
+          </p>
           <button
             onClick={() => setSuccessModal(true)}
             style={{
@@ -923,9 +1026,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 8: Modal de Notificações */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>8. Central de Notificações</h4>
-          <p style={{ fontSize: '14px' }}>Lista de notificações com detalhes expansíveis.</p>
+          <p style={{ fontSize: '14px' }}>
+            Lista de notificações com detalhes expansíveis.
+          </p>
           <button
             onClick={() => setNotificationsModal(true)}
             style={{
@@ -943,9 +1054,17 @@ export const ExemplosDeUso = () => {
         </div>
 
         {/* Exemplo 9: Modal de Configurações */}
-        <div style={{ border: '1px solid #ddd', padding: '16px', borderRadius: '8px' }}>
+        <div
+          style={{
+            border: '1px solid #ddd',
+            padding: '16px',
+            borderRadius: '8px',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>9. Configurações Avançadas</h4>
-          <p style={{ fontSize: '14px' }}>Formulário com múltiplos campos de configuração.</p>
+          <p style={{ fontSize: '14px' }}>
+            Formulário com múltiplos campos de configuração.
+          </p>
           <button
             onClick={() => setSettingsModal(true)}
             style={{
@@ -968,7 +1087,9 @@ export const ExemplosDeUso = () => {
         <h4>Exemplos de Código</h4>
 
         <details style={{ marginTop: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}>
+          <summary
+            style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}
+          >
             Modal de Confirmação
           </summary>
           <CodeSnippet
@@ -986,7 +1107,9 @@ export const ExemplosDeUso = () => {
         </details>
 
         <details style={{ marginTop: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}>
+          <summary
+            style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}
+          >
             Modal de Exclusão (closeOnOverlayClick=false)
           </summary>
           <CodeSnippet
@@ -1008,7 +1131,9 @@ export const ExemplosDeUso = () => {
         </details>
 
         <details style={{ marginTop: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}>
+          <summary
+            style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}
+          >
             Modal de Cadastro (Form com múltiplos inputs)
           </summary>
           <CodeSnippet
@@ -1034,7 +1159,9 @@ export const ExemplosDeUso = () => {
         </details>
 
         <details style={{ marginTop: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}>
+          <summary
+            style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}
+          >
             Modal de Produtos (Items com imagens e conteúdo rico)
           </summary>
           <CodeSnippet
@@ -1068,7 +1195,9 @@ export const ExemplosDeUso = () => {
         </details>
 
         <details style={{ marginTop: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}>
+          <summary
+            style={{ cursor: 'pointer', fontWeight: 'bold', padding: '8px' }}
+          >
             Modal de Termos (Items com seções expansíveis)
           </summary>
           <CodeSnippet
@@ -1103,7 +1232,10 @@ export const ExemplosDeUso = () => {
           type="items"
           items={[]}
           onClose={() => setConfirmModal(false)}
-          buttonLeft={{ label: 'Cancelar', onClick: () => setConfirmModal(false) }}
+          buttonLeft={{
+            label: 'Cancelar',
+            onClick: () => setConfirmModal(false),
+          }}
           buttonRight={{
             label: 'Confirmar',
             onClick: () => {
@@ -1122,7 +1254,10 @@ export const ExemplosDeUso = () => {
           type="form"
           inputs={[]}
           onClose={() => setDeleteModal(false)}
-          buttonLeft={{ label: 'Cancelar', onClick: () => setDeleteModal(false) }}
+          buttonLeft={{
+            label: 'Cancelar',
+            onClick: () => setDeleteModal(false),
+          }}
           buttonRight={{
             label: 'Excluir',
             onClick: () => {
@@ -1134,7 +1269,10 @@ export const ExemplosDeUso = () => {
         >
           <div style={{ color: '#c8161d' }}>
             <strong>⚠️ Atenção!</strong>
-            <p>Esta ação não pode ser desfeita. Deseja realmente excluir este item?</p>
+            <p>
+              Esta ação não pode ser desfeita. Deseja realmente excluir este
+              item?
+            </p>
           </div>
         </Modal>
       )}
@@ -1144,7 +1282,11 @@ export const ExemplosDeUso = () => {
           title="Login"
           type="form"
           inputs={[
-            { label: 'Email', placeholder: 'seu@email.com', leftIcon: faEnvelope },
+            {
+              label: 'Email',
+              placeholder: 'seu@email.com',
+              leftIcon: faEnvelope,
+            },
             { label: 'Senha', placeholder: '••••••••', leftIcon: faLock },
           ]}
           onClose={() => setLoginModal(false)}
@@ -1156,9 +1298,7 @@ export const ExemplosDeUso = () => {
             },
           }}
         >
-          <p>
-            Acesse sua conta para continuar
-          </p>
+          <p>Acesse sua conta para continuar</p>
         </Modal>
       )}
 
@@ -1167,7 +1307,11 @@ export const ExemplosDeUso = () => {
           title="Cadastro de Usuário"
           type="form"
           inputs={[
-            { label: 'Nome Completo', placeholder: 'Digite seu nome', leftIcon: faUser },
+            {
+              label: 'Nome Completo',
+              placeholder: 'Digite seu nome',
+              leftIcon: faUser,
+            },
             { label: 'CPF', placeholder: '000.000.000-00', leftIcon: faIdCard },
             {
               label: 'E-mail',
@@ -1175,11 +1319,22 @@ export const ExemplosDeUso = () => {
               auxiliaryText: 'Usaremos para enviar atualizações',
               leftIcon: faEnvelope,
             },
-            { label: 'Telefone', placeholder: '(00) 00000-0000', leftIcon: faPhone },
-            { label: 'Endereço', placeholder: 'Rua, número', leftIcon: faMapMarkerAlt },
+            {
+              label: 'Telefone',
+              placeholder: '(00) 00000-0000',
+              leftIcon: faPhone,
+            },
+            {
+              label: 'Endereço',
+              placeholder: 'Rua, número',
+              leftIcon: faMapMarkerAlt,
+            },
           ]}
           onClose={() => setRegisterModal(false)}
-          buttonLeft={{ label: 'Cancelar', onClick: () => setRegisterModal(false) }}
+          buttonLeft={{
+            label: 'Cancelar',
+            onClick: () => setRegisterModal(false),
+          }}
           buttonRight={{
             label: 'Cadastrar',
             onClick: () => {
@@ -1198,7 +1353,10 @@ export const ExemplosDeUso = () => {
           type="items"
           items={productItems}
           onClose={() => setProductModal(false)}
-          buttonRight={{ label: 'Fechar', onClick: () => setProductModal(false) }}
+          buttonRight={{
+            label: 'Fechar',
+            onClick: () => setProductModal(false),
+          }}
         >
           <p>Clique em um produto para ver mais detalhes e especificações.</p>
         </Modal>
@@ -1219,8 +1377,8 @@ export const ExemplosDeUso = () => {
           }}
         >
           <p>
-            Leia atentamente os termos e condições abaixo. Clique em cada seção para expandir
-            e ver os detalhes.
+            Leia atentamente os termos e condições abaixo. Clique em cada seção
+            para expandir e ver os detalhes.
           </p>
         </Modal>
       )}
@@ -1231,7 +1389,10 @@ export const ExemplosDeUso = () => {
           type="form"
           inputs={[]}
           onClose={() => setSuccessModal(false)}
-          buttonRight={{ label: 'Fechar', onClick: () => setSuccessModal(false) }}
+          buttonRight={{
+            label: 'Fechar',
+            onClick: () => setSuccessModal(false),
+          }}
         >
           <div style={{ textAlign: 'center', padding: '20px' }}>
             <div style={{ fontSize: '48px', color: '#168821' }}>✓</div>
@@ -1254,7 +1415,10 @@ export const ExemplosDeUso = () => {
             label: 'Marcar todas como lidas',
             onClick: () => alert('Notificações marcadas como lidas'),
           }}
-          buttonRight={{ label: 'Fechar', onClick: () => setNotificationsModal(false) }}
+          buttonRight={{
+            label: 'Fechar',
+            onClick: () => setNotificationsModal(false),
+          }}
         >
           <p>Você tem {notificationItems.length} notificações não lidas.</p>
         </Modal>
@@ -1270,17 +1434,32 @@ export const ExemplosDeUso = () => {
               placeholder: 'Digite o nome',
               leftIcon: faBuilding,
             },
-            { label: 'CNPJ', placeholder: '00.000.000/0000-00', leftIcon: faIdCard },
-            { label: 'Website', placeholder: 'https://exemplo.com', leftIcon: faGlobe },
+            {
+              label: 'CNPJ',
+              placeholder: '00.000.000/0000-00',
+              leftIcon: faIdCard,
+            },
+            {
+              label: 'Website',
+              placeholder: 'https://exemplo.com',
+              leftIcon: faGlobe,
+            },
             {
               label: 'E-mail Corporativo',
               placeholder: 'contato@empresa.com',
               leftIcon: faEnvelope,
             },
-            { label: 'Telefone Comercial', placeholder: '(00) 0000-0000', leftIcon: faPhone },
+            {
+              label: 'Telefone Comercial',
+              placeholder: '(00) 0000-0000',
+              leftIcon: faPhone,
+            },
           ]}
           onClose={() => setSettingsModal(false)}
-          buttonLeft={{ label: 'Cancelar', onClick: () => setSettingsModal(false) }}
+          buttonLeft={{
+            label: 'Cancelar',
+            onClick: () => setSettingsModal(false),
+          }}
           buttonRight={{
             label: 'Salvar Configurações',
             onClick: () => {

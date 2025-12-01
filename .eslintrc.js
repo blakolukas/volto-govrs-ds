@@ -38,4 +38,19 @@ module.exports = {
       },
     },
   },
+  overrides: [
+    {
+      files: ['**/*.test.*', '**/*.spec.*'],
+      rules: {
+        'import/no-unresolved': 'off',
+      },
+    },
+    {
+      files: ['**/*.stories.*'],
+      rules: {
+        'jsx-a11y/label-has-associated-control': 'off',
+        'no-alert': 'off',
+      },
+    },
+  ],
 };

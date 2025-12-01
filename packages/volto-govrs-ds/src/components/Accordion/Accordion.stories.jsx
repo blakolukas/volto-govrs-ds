@@ -82,6 +82,10 @@ export default {
   parameters: { layout: 'padded' },
 };
 
+const lintWarnings = [
+  "Warning: imports from '@plone/volto/*' barrel files are discouraged",
+];
+
 export const AccordionDocumentacao = () => (
   <div style={{ padding: 16, maxWidth: 1200 }}>
     <h3 style={{ marginTop: 0 }}>Accordion</h3>
@@ -114,6 +118,13 @@ export const AccordionDocumentacao = () => (
         busca/filtro e controle de estado dos painéis.
       </p>
     </section>
+
+    <div style={{ marginTop: 16 }}>
+      <h5>Lint Warnings</h5>
+      <pre style={{ background: '#fff8e1', padding: 12, borderRadius: 4 }}>
+        {lintWarnings.join('\n')}
+      </pre>
+    </div>
 
     <section style={{ marginBottom: 24 }}>
       <h4 style={{ margin: '6px 0' }}>Propriedades</h4>
@@ -218,8 +229,8 @@ data={{ block_color: 'dark', ... }}`}</code>
       <div style={{ marginBottom: 16 }}>
         <h5 style={{ margin: '6px 0' }}>right_arrows</h5>
         <p style={{ color: '#444', marginTop: 6 }}>
-          Posição do ícone de seta indicadora. Quando <code>true</code>, exibe
-          à direita; quando <code>false</code>, exibe à esquerda do título.
+          Posição do ícone de seta indicadora. Quando <code>true</code>, exibe à
+          direita; quando <code>false</code>, exibe à esquerda do título.
           Padrão: <code>true</code>.
         </p>
         <pre
@@ -278,8 +289,8 @@ data={{ non_exclusive: false, ... }} // apenas um aberto`}</code>
       <div style={{ marginBottom: 16 }}>
         <h5 style={{ margin: '6px 0' }}>filtering</h5>
         <p style={{ color: '#444', marginTop: 6 }}>
-          Habilita campo de busca/filtro acima do accordion para filtrar
-          painéis pelo título ou conteúdo. Padrão: <code>false</code>.
+          Habilita campo de busca/filtro acima do accordion para filtrar painéis
+          pelo título ou conteúdo. Padrão: <code>false</code>.
         </p>
         <pre
           style={{
@@ -310,8 +321,8 @@ data={{ non_exclusive: false, ... }} // apenas um aberto`}</code>
           manter a hierarquia correta do documento.
         </li>
         <li>
-          O tema escuro (<code>dark</code>) proporciona maior contraste visual
-          e é ideal para seções com fundo claro.
+          O tema escuro (<code>dark</code>) proporciona maior contraste visual e
+          é ideal para seções com fundo claro.
         </li>
       </ul>
     </section>

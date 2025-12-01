@@ -9,7 +9,8 @@ const meta = {
   argTypes: {
     name: {
       control: 'text',
-      description: 'Nome do usuário (obrigatório). A primeira letra é usada como inicial.',
+      description:
+        'Nome do usuário (obrigatório). A primeira letra é usada como inicial.',
     },
     size: {
       control: { type: 'select' },
@@ -18,11 +19,13 @@ const meta = {
     },
     letter: {
       control: 'boolean',
-      description: 'Força exibição apenas da letra inicial, mesmo se imageUrl estiver presente.',
+      description:
+        'Força exibição apenas da letra inicial, mesmo se imageUrl estiver presente.',
     },
     iconic: {
       control: 'boolean',
-      description: 'Exibe ícone de usuário (Font Awesome) ao invés de letra ou imagem.',
+      description:
+        'Exibe ícone de usuário (Font Awesome) ao invés de letra ou imagem.',
     },
     dropdown: {
       control: 'boolean',
@@ -30,11 +33,13 @@ const meta = {
     },
     imageUrl: {
       control: 'text',
-      description: 'URL da imagem do avatar. Se fornecida, substitui a inicial.',
+      description:
+        'URL da imagem do avatar. Se fornecida, substitui a inicial.',
     },
     menuItems: {
       control: 'object',
-      description: 'Array de itens do menu dropdown. Cada item tem { label: string, onClick: function }.',
+      description:
+        'Array de itens do menu dropdown. Cada item tem { label: string, onClick: function }.',
     },
   },
 };
@@ -64,9 +69,10 @@ export const AvatarDocumentacao = () => (
     </h3>
 
     <p>
-      O componente Avatar é usado para representar usuários com imagens, iniciais
-      ou ícones. Possui suporte a três tamanhos, cores geradas automaticamente
-      baseadas no nome, e funcionalidade de dropdown com menu customizável.
+      O componente Avatar é usado para representar usuários com imagens,
+      iniciais ou ícones. Possui suporte a três tamanhos, cores geradas
+      automaticamente baseadas no nome, e funcionalidade de dropdown com menu
+      customizável.
     </p>
 
     <h4 style={{ marginTop: 20 }}>Características Principais</h4>
@@ -95,7 +101,9 @@ export const AvatarDocumentacao = () => (
     <div style={{ marginTop: 12 }}>
       <h5 style={{ margin: '8px 0' }}>
         name{' '}
-        <small style={{ fontWeight: 400, color: '#d63031' }}>(obrigatório)</small>
+        <small style={{ fontWeight: 400, color: '#d63031' }}>
+          (obrigatório)
+        </small>
       </h5>
       <p>
         Nome do usuário. A primeira letra é extraída e usada como inicial. A cor
@@ -106,7 +114,8 @@ export const AvatarDocumentacao = () => (
 
     <div style={{ marginTop: 12 }}>
       <h5 style={{ margin: '8px 0' }}>
-        size <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
+        size{' '}
+        <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
       </h5>
       <p>
         Define o tamanho do avatar. Opções: <code>'small'</code>,{' '}
@@ -125,8 +134,9 @@ export const AvatarDocumentacao = () => (
         <small style={{ fontWeight: 400, color: '#666' }}>(opcional)</small>
       </h5>
       <p>
-        URL da imagem do avatar. Se fornecida, a imagem substitui a inicial. Se a
-        prop <code>letter</code> estiver <code>true</code>, a imagem é ignorada.
+        URL da imagem do avatar. Se fornecida, a imagem substitui a inicial. Se
+        a prop <code>letter</code> estiver <code>true</code>, a imagem é
+        ignorada.
       </p>
       <CodeSnippet
         code={`<Avatar name="Maria Santos" imageUrl="https://i.pravatar.cc/150?img=1" />`}
@@ -140,7 +150,8 @@ export const AvatarDocumentacao = () => (
       </h5>
       <p>
         Força a exibição da inicial mesmo se <code>imageUrl</code> estiver
-        presente. Útil quando você quer garantir que apenas a letra seja exibida.
+        presente. Útil quando você quer garantir que apenas a letra seja
+        exibida.
       </p>
       <CodeSnippet code={`<Avatar name="Alice Oliveira" letter={true} />`} />
     </div>
@@ -253,7 +264,14 @@ export const AvatarDocumentacao = () => (
 
     <div style={{ marginTop: 20 }}>
       <h5 style={{ margin: '8px 0' }}>1. Avatar Básico (inicial)</h5>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+          marginBottom: 8,
+        }}
+      >
         <Avatar name="João Silva" />
       </div>
       <CodeSnippet code={`<Avatar name="João Silva" />`} />
@@ -261,8 +279,18 @@ export const AvatarDocumentacao = () => (
 
     <div style={{ marginTop: 20 }}>
       <h5 style={{ margin: '8px 0' }}>2. Avatar com Imagem</h5>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: 8 }}>
-        <Avatar name="Maria Santos" imageUrl="https://i.pravatar.cc/150?img=1" />
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+          marginBottom: 8,
+        }}
+      >
+        <Avatar
+          name="Maria Santos"
+          imageUrl="https://i.pravatar.cc/150?img=1"
+        />
       </div>
       <CodeSnippet
         code={`<Avatar name="Maria Santos" imageUrl="https://i.pravatar.cc/150?img=1" />`}
@@ -271,7 +299,14 @@ export const AvatarDocumentacao = () => (
 
     <div style={{ marginTop: 20 }}>
       <h5 style={{ margin: '8px 0' }}>3. Diferentes Tamanhos</h5>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+          marginBottom: 8,
+        }}
+      >
         <Avatar name="João Silva" size="small" />
         <Avatar name="João Silva" size="medium" />
         <Avatar name="João Silva" size="large" />
@@ -285,7 +320,14 @@ export const AvatarDocumentacao = () => (
 
     <div style={{ marginTop: 20 }}>
       <h5 style={{ margin: '8px 0' }}>4. Avatar com Dropdown</h5>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'flex-start',
+          marginBottom: 8,
+        }}
+      >
         <Avatar
           name="Sarah Connor"
           dropdown={true}
@@ -311,7 +353,14 @@ export const AvatarDocumentacao = () => (
 
     <div style={{ marginTop: 20 }}>
       <h5 style={{ margin: '8px 0' }}>5. Avatar Icônico</h5>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '1rem',
+          alignItems: 'center',
+          marginBottom: 8,
+        }}
+      >
         <Avatar name="Usuário Genérico" iconic={true} />
       </div>
       <CodeSnippet code={`<Avatar name="Usuário Genérico" iconic={true} />`} />
@@ -353,8 +402,12 @@ const Template = (args: any) => {
       <div style={{ marginTop: 20 }}>
         <CodeSnippet
           code={`<Avatar
-  name="${args.name}"${args.size !== 'medium' ? `\n  size="${args.size}"` : ''}${args.imageUrl ? `\n  imageUrl="${args.imageUrl}"` : ''}${args.letter ? '\n  letter={true}' : ''}${args.iconic ? '\n  iconic={true}' : ''}${args.dropdown ? '\n  dropdown={true}' : ''}${args.menuItems && args.menuItems.length > 0 ? `\n  menuItems={[${args.menuItems.map((item: any) => `\n    { label: "${item.label}", onClick: () => {} }`).join(',')}
-  ]}` : ''}
+  name="${args.name}"${args.size !== 'medium' ? `\n  size="${args.size}"` : ''}${args.imageUrl ? `\n  imageUrl="${args.imageUrl}"` : ''}${args.letter ? '\n  letter={true}' : ''}${args.iconic ? '\n  iconic={true}' : ''}${args.dropdown ? '\n  dropdown={true}' : ''}${
+    args.menuItems && args.menuItems.length > 0
+      ? `\n  menuItems={[${args.menuItems.map((item: any) => `\n    { label: "${item.label}", onClick: () => {} }`).join(',')}
+  ]}`
+      : ''
+  }
 />`}
         />
       </div>
@@ -619,17 +672,31 @@ export const VariedadeCores = () => (
 
 VariedadeCores.story = { name: '8. Variedade de Cores' };
 
-
 export const TodasVariacoes = () => (
   <div style={{ padding: 16 }}>
-    <h3 style={{ marginBottom: 24, borderBottom: '2px solid #333', paddingBottom: 8 }}>
+    <h3
+      style={{
+        marginBottom: 24,
+        borderBottom: '2px solid #333',
+        paddingBottom: 8,
+      }}
+    >
       Todas as Variações do Avatar
     </h3>
 
     {/* Seção 1: Apenas Iniciais */}
     <div style={{ marginBottom: 40 }}>
-      <h4 style={{ marginBottom: 16, color: '#333' }}>1. Avatar com Iniciais</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', marginBottom: 12 }}>
+      <h4 style={{ marginBottom: 16, color: '#333' }}>
+        1. Avatar com Iniciais
+      </h4>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'center',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
           <Avatar name="João Silva" size="small" />
           <p style={{ marginTop: 8, fontSize: 11 }}>Small</p>
@@ -653,17 +720,36 @@ export const TodasVariacoes = () => (
     {/* Seção 2: Com Imagens */}
     <div style={{ marginBottom: 40 }}>
       <h4 style={{ marginBottom: 16, color: '#333' }}>2. Avatar com Imagem</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', marginBottom: 12 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'center',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
-          <Avatar name="Maria Santos" size="small" imageUrl="https://i.pravatar.cc/150?img=1" />
+          <Avatar
+            name="Maria Santos"
+            size="small"
+            imageUrl="https://i.pravatar.cc/150?img=1"
+          />
           <p style={{ marginTop: 8, fontSize: 11 }}>Small</p>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <Avatar name="Maria Santos" size="medium" imageUrl="https://i.pravatar.cc/150?img=2" />
+          <Avatar
+            name="Maria Santos"
+            size="medium"
+            imageUrl="https://i.pravatar.cc/150?img=2"
+          />
           <p style={{ marginTop: 8, fontSize: 11 }}>Medium</p>
         </div>
         <div style={{ textAlign: 'center' }}>
-          <Avatar name="Maria Santos" size="large" imageUrl="https://i.pravatar.cc/150?img=3" />
+          <Avatar
+            name="Maria Santos"
+            size="large"
+            imageUrl="https://i.pravatar.cc/150?img=3"
+          />
           <p style={{ marginTop: 8, fontSize: 11 }}>Large</p>
         </div>
       </div>
@@ -676,8 +762,17 @@ export const TodasVariacoes = () => (
 
     {/* Seção 3: Modo Letra (forçado) */}
     <div style={{ marginBottom: 40 }}>
-      <h4 style={{ marginBottom: 16, color: '#333' }}>3. Modo Letra (letter={'{true}'})</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', marginBottom: 12 }}>
+      <h4 style={{ marginBottom: 16, color: '#333' }}>
+        3. Modo Letra (letter={'{true}'})
+      </h4>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'center',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
           <Avatar name="Alice Oliveira" size="small" letter={true} />
           <p style={{ marginTop: 8, fontSize: 11 }}>Small</p>
@@ -700,8 +795,17 @@ export const TodasVariacoes = () => (
 
     {/* Seção 4: Icônico */}
     <div style={{ marginBottom: 40 }}>
-      <h4 style={{ marginBottom: 16, color: '#333' }}>4. Avatar Icônico (iconic={'{true}'})</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', marginBottom: 12 }}>
+      <h4 style={{ marginBottom: 16, color: '#333' }}>
+        4. Avatar Icônico (iconic={'{true}'})
+      </h4>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'center',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
           <Avatar name="Usuário" size="small" iconic={true} />
           <p style={{ marginTop: 8, fontSize: 11 }}>Small</p>
@@ -724,8 +828,17 @@ export const TodasVariacoes = () => (
 
     {/* Seção 5: Com Dropdown - Iniciais */}
     <div style={{ marginBottom: 40 }}>
-      <h4 style={{ marginBottom: 16, color: '#333' }}>5. Dropdown com Inicial</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', marginBottom: 12 }}>
+      <h4 style={{ marginBottom: 16, color: '#333' }}>
+        5. Dropdown com Inicial
+      </h4>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'flex-start',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
           <Avatar
             name="Sarah Connor"
@@ -781,8 +894,17 @@ export const TodasVariacoes = () => (
 
     {/* Seção 6: Com Dropdown - Imagem */}
     <div style={{ marginBottom: 40 }}>
-      <h4 style={{ marginBottom: 16, color: '#333' }}>6. Dropdown com Imagem</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', marginBottom: 12 }}>
+      <h4 style={{ marginBottom: 16, color: '#333' }}>
+        6. Dropdown com Imagem
+      </h4>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'flex-start',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
           <Avatar
             name="John Connor"
@@ -844,16 +966,21 @@ export const TodasVariacoes = () => (
     {/* Seção 7: Dropdown com Icônico */}
     <div style={{ marginBottom: 40 }}>
       <h4 style={{ marginBottom: 16, color: '#333' }}>7. Dropdown Icônico</h4>
-      <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start', marginBottom: 12 }}>
+      <div
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          alignItems: 'flex-start',
+          marginBottom: 12,
+        }}
+      >
         <div style={{ textAlign: 'center' }}>
           <Avatar
             name="Usuário Genérico"
             size="small"
             iconic={true}
             dropdown={true}
-            menuItems={[
-              { label: 'Login', onClick: () => alert('Login') },
-            ]}
+            menuItems={[{ label: 'Login', onClick: () => alert('Login') }]}
           />
           <p style={{ marginTop: 8, fontSize: 11 }}>Small</p>
         </div>
@@ -901,7 +1028,9 @@ export const TodasVariacoes = () => (
 
     {/* Seção 8: Variedade de Cores */}
     <div style={{ marginBottom: 40 }}>
-      <h4 style={{ marginBottom: 16, color: '#333' }}>8. Cores Automáticas (baseadas no nome)</h4>
+      <h4 style={{ marginBottom: 16, color: '#333' }}>
+        8. Cores Automáticas (baseadas no nome)
+      </h4>
       <div
         style={{
           display: 'grid',
@@ -934,7 +1063,9 @@ export const TodasVariacoes = () => (
             }}
           >
             <Avatar name={name} size="medium" />
-            <span style={{ fontSize: '10px', textAlign: 'center' }}>{name}</span>
+            <span style={{ fontSize: '10px', textAlign: 'center' }}>
+              {name}
+            </span>
           </div>
         ))}
       </div>
@@ -969,7 +1100,8 @@ export const TodasVariacoes = () => (
           <strong>15 Cores:</strong> Geradas automaticamente baseadas no nome
         </li>
         <li>
-          <strong>Total de Combinações:</strong> 3 × 4 × 2 = 24 variações principais
+          <strong>Total de Combinações:</strong> 3 × 4 × 2 = 24 variações
+          principais
         </li>
       </ul>
     </div>

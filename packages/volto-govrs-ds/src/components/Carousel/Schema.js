@@ -1,4 +1,3 @@
-
 function CarouselSchema() {
   return {
     title: 'Carousel',
@@ -6,7 +5,16 @@ function CarouselSchema() {
       {
         id: 'default',
         title: 'Default',
-        fields: ['items', 'autoplay', 'autoplaySpeed', 'circular', 'width', 'indicators', 'enableSwipe', 'noArrowsMobile'],
+        fields: [
+          'items',
+          'autoplay',
+          'autoplaySpeed',
+          'circular',
+          'width',
+          'indicators',
+          'enableSwipe',
+          'noArrowsMobile',
+        ],
       },
     ],
     properties: {
@@ -35,7 +43,8 @@ function CarouselSchema() {
             },
             image: {
               title: 'Image URL',
-              description: 'URL for an image (used if no video URL is provided)',
+              description:
+                'URL for an image (used if no video URL is provided)',
               type: 'string',
             },
             videoUrl: {
@@ -88,7 +97,8 @@ function CarouselSchema() {
       },
       enableSwipe: {
         title: 'Enable Swipe on Mobile',
-        description: 'Allow users to swipe/scroll with finger on mobile devices. When disabled, only arrow navigation is available.',
+        description:
+          'Allow users to swipe/scroll with finger on mobile devices. When disabled, only arrow navigation is available.',
         type: 'boolean',
         default: true,
       },
@@ -102,8 +112,5 @@ function CarouselSchema() {
     required: [],
   };
 }
-
-
-
 
 export default CarouselSchema;

@@ -1,6 +1,4 @@
-import config from '@plone/volto/registry';
 import { defineMessages } from 'react-intl';
-import { addStyling } from '@plone/volto/helpers';
 
 const messages = defineMessages({
   Accordion: {
@@ -191,7 +189,7 @@ export const AccordionBlockSchema = ({ intl }) => ({
         ['default', 'Default'],
         ['dark', 'Dark'],
       ],
-      default: 'default'
+      default: 'default',
     },
     right_arrows: {
       title: intl.formatMessage(messages.right_arrows),

@@ -59,7 +59,15 @@ function Avatar({
   return (
     <>
       {dropdown ? (
-        <div className="avatar--dropdown-wrapper" onClick={toggleMenu}>
+        <div
+          className="avatar--dropdown-wrapper"
+          onClick={toggleMenu}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') toggleMenu();
+          }}
+        >
           <div className="avatar--dropdown">
             <div className={`avatar avatar--${size}`}>
               {!iconic ? (
@@ -72,7 +80,11 @@ function Avatar({
                 ) : (
                   <span style={{ backgroundColor }}>{name.charAt(0)}</span>
                 )
-              ) : (<div className='avatar-icon' style={{ backgroundColor }}><FontAwesomeIcon icon={faUser}/></div>)}
+              ) : (
+                <div className="avatar-icon" style={{ backgroundColor }}>
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+              )}
             </div>
             <div className="avatar--dropdown-content">
               <p>
@@ -83,26 +95,25 @@ function Avatar({
               className="avatar--dropdown-trigger"
               aria-label="Toggle menu"
             >
-                {
-                isMenuOpen ? (
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                  >
-                    <path d="M4 10l4-4 4 4z" />
-                  </svg>
-                ) : (
+              {isMenuOpen ? (
                 <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    >
-                    <path d="M4 6l4 4 4-4z" />
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                >
+                  <path d="M4 10l4-4 4 4z" />
                 </svg>
-                )}
+              ) : (
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                >
+                  <path d="M4 6l4 4 4-4z" />
+                </svg>
+              )}
             </button>
           </div>
           {isMenuOpen && menuItems.length > 0 && (
@@ -135,7 +146,11 @@ function Avatar({
             ) : (
               <span style={{ backgroundColor }}>{name.charAt(0)}</span>
             )
-          ) : (<div className='avatar-icon' style={{ backgroundColor }}><FontAwesomeIcon icon={faUser}/></div>)}
+          ) : (
+            <div className="avatar-icon" style={{ backgroundColor }}>
+              <FontAwesomeIcon icon={faUser} />
+            </div>
+          )}
         </div>
       )}
     </>

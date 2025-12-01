@@ -1,0 +1,126 @@
+.list-default {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list-default__item {
+  padding: 12px 16px;
+}
+.list-default__item:not(:first-child) {
+  border-top: 1px solid var(--gray-20, #cccccc);
+}
+
+.list-default__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list-default__media {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-default__image {
+  display: block;
+  width: 175px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.list-default__icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-default__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-default__content--no-text {
+  justify-content: center;
+}
+
+.list-default__title {
+  color: var(--pure-100);
+  font-size: var(--font-size-scale-up-03);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+}
+
+.list-default__text {
+  margin-top: 4px;
+  color: var(--pure-100);
+  font-size: var(--font-size-scale-up-01);
+}
+.list-default__item a:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.list-default--horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 16px;
+}
+
+.list-default--horizontal .list-default__item {
+  width: 295px;
+  max-width: 295px;
+  box-sizing: border-box;
+  flex: 0 0 295px;
+  padding: 12px;
+  border-top: 1px solid var(--gray-20, #cccccc);
+  border-bottom: 1px solid var(--gray-20, #cccccc);
+}
+
+.list-group {
+  display: block;
+  margin: 0 0 16px 0;
+}
+
+.list-group__header {
+  width: 100%;
+  margin: 0 0 8px 0;
+  color: var(--pure-100, #000);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.list-group > .list-default--horizontal {
+  width: 100%;
+}
+.list-group__toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  gap: 8px;
+}
+
+.list-group__label-text {
+  font-weight: 600;
+}
+
+.list-group__toggle-icon svg {
+  display: block;
+}
+
+.list-group__toggle:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}

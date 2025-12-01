@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import './Carousel.css';
 
 // Helper function to get YouTube video ID
 const getYouTubeId = (url) => {
-  const match = url?.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  const match = url?.match(
+    /(?:youtube\.com\/(?:[^/]+\/.+\/(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/,
+  );
   return match ? match[1] : null;
 };
 
@@ -117,8 +122,7 @@ function CarouselView({ data = {} }) {
   if (!items || items.length === 0) {
     return (
       <div className="carousel-placeholder">
-        <p>No carousel items configured. Please
-           add items in edit mode.</p>
+        <p>No carousel items configured. Please add items in edit mode.</p>
       </div>
     );
   }
@@ -136,7 +140,7 @@ function CarouselView({ data = {} }) {
           disabled={isPrevDisabled}
           aria-label="Previous slide"
         >
-          <FontAwesomeIcon icon={faChevronLeft}/>
+          <FontAwesomeIcon icon={faChevronLeft} />
         </button>
 
         <div
@@ -151,7 +155,8 @@ function CarouselView({ data = {} }) {
             const shouldShow = isActive || isPrevious;
 
             // When sliding right, old slide goes left. When sliding left, old slide goes right.
-            const slideOutDirection = slideDirection === 'right' ? 'left' : 'right';
+            const slideOutDirection =
+              slideDirection === 'right' ? 'left' : 'right';
 
             let slideClass = 'carousel-slide';
             if (isActive) {
@@ -161,123 +166,163 @@ function CarouselView({ data = {} }) {
             }
 
             return (
-            <div
-              key={index}
-              className={slideClass}
-              style={{ display: shouldShow ? 'block' : 'none' }}
-            >
-              {item.videoUrl ? (
-                (() => {
-                  const youtubeId = getYouTubeId(item.videoUrl);
-                  const vimeoId = getVimeoId(item.videoUrl);
+              <div
+                key={index}
+                className={slideClass}
+                style={{ display: shouldShow ? 'block' : 'none' }}
+              >
+                {item.videoUrl ? (
+                  (() => {
+                    const youtubeId = getYouTubeId(item.videoUrl);
+                    const vimeoId = getVimeoId(item.videoUrl);
 
-                  if (youtubeId) {
-                    return loadedVideos[index] ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
-                        title={item.title || `YouTube video ${index + 1}`}
-                        className="carousel-video carousel-iframe"
-                        style={{ border: 0 }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <div
-                        className="carousel-video-thumbnail"
-                        onClick={() => setLoadedVideos({ ...loadedVideos, [index]: true })}
-                      >
-                        <img
-                          src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
-                          alt={item.title || `Video thumbnail ${index + 1}`}
-                          className="carousel-thumbnail-image"
+                    if (youtubeId) {
+                      return loadedVideos[index] ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
+                          title={item.title || `YouTube video ${index + 1}`}
+                          className="carousel-video carousel-iframe"
+                          style={{ border: 0 }}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
                         />
-                        <button className="carousel-play-overlay" aria-label="Play video">
-                          <span className="play-icon"></span>
-                        </button>
-                      </div>
-                    );
-                  } else if (vimeoId) {
-                    return loadedVideos[index] ? (
-                      <iframe
-                        src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1`}
-                        title={item.title || `Vimeo video ${index + 1}`}
-                        className="carousel-video carousel-iframe"
-                        style={{ border: 0 }}
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <div
-                        className="carousel-video-thumbnail"
-                        onClick={() => setLoadedVideos({ ...loadedVideos, [index]: true })}
-                      >
-                        <div className="carousel-thumbnail-placeholder">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="80"
-                            height="80"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
+                      ) : (
+                        <div
+                          className="carousel-video-thumbnail"
+                          onClick={() =>
+                            setLoadedVideos({
+                              ...loadedVideos,
+                              [index]: true,
+                            })
+                          }
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              setLoadedVideos({
+                                ...loadedVideos,
+                                [index]: true,
+                              });
+                            }
+                          }}
+                        >
+                          <img
+                            src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+                            alt={item.title || `Video thumbnail ${index + 1}`}
+                            className="carousel-thumbnail-image"
+                          />
+                          <button
+                            className="carousel-play-overlay"
+                            aria-label="Play video"
                           >
-                            <polygon points="5 3 19 12 5 21 5 3" />
-                          </svg>
-                          <span>Vimeo Video</span>
+                            <span className="play-icon"></span>
+                          </button>
                         </div>
-                        <button className="carousel-play-overlay" aria-label="Play video">
-                          <span className="play-icon"></span>
-                        </button>
-                      </div>
-                    );
-                  } else {
-                    // Direct video URL
-                    return (
-                      <video
-                        src={item.videoUrl}
-                        controls
-                        className="carousel-video"
-                        aria-label={item.title || `Video ${index + 1}`}
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-                    );
-                  }
-                })()
-              ) : item.image ? (
-                <img
-                  src={item.image}
-                  alt={item.title || `Slide ${index + 1}`}
-                  className="carousel-image"
-                />
-              ) : (
-                <div className="carousel-image-placeholder">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="100"
-                    height="100"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21 15 16 10 5 21" />
-                  </svg>
-                  <span>No image or video</span>
-                </div>
-              )}
-              {
-                (item.title || item.description) && 
-                <div className='carousel-text'>
-                  {item.title && <h3 className="carousel-title">{item.title}</h3>}
-                  {item.description && <p className="carousel-description">{item.description}</p>}
-                </div>
-              }
-            </div>
+                      );
+                    } else if (vimeoId) {
+                      return loadedVideos[index] ? (
+                        <iframe
+                          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1`}
+                          title={item.title || `Vimeo video ${index + 1}`}
+                          className="carousel-video carousel-iframe"
+                          style={{ border: 0 }}
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <div
+                          className="carousel-video-thumbnail"
+                          onClick={() =>
+                            setLoadedVideos({
+                              ...loadedVideos,
+                              [index]: true,
+                            })
+                          }
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              setLoadedVideos({
+                                ...loadedVideos,
+                                [index]: true,
+                              });
+                            }
+                          }}
+                        >
+                          <div className="carousel-thumbnail-placeholder">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="80"
+                              height="80"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                            <span>Vimeo Video</span>
+                          </div>
+                          <button
+                            className="carousel-play-overlay"
+                            aria-label="Play video"
+                          >
+                            <span className="play-icon"></span>
+                          </button>
+                        </div>
+                      );
+                    } else {
+                      // Direct video URL
+                      return (
+                        <video
+                          src={item.videoUrl}
+                          controls
+                          className="carousel-video"
+                          aria-label={item.title || `Video ${index + 1}`}
+                        >
+                          <track kind="captions" />
+                          Your browser does not support the video tag.
+                        </video>
+                      );
+                    }
+                  })()
+                ) : item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.title || `Slide ${index + 1}`}
+                    className="carousel-image"
+                  />
+                ) : (
+                  <div className="carousel-image-placeholder">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="100"
+                      height="100"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg>
+                    <span>No image or video</span>
+                  </div>
+                )}
+                {(item.title || item.description) && (
+                  <div className="carousel-text">
+                    {item.title && (
+                      <h3 className="carousel-title">{item.title}</h3>
+                    )}
+                    {item.description && (
+                      <p className="carousel-description">{item.description}</p>
+                    )}
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -288,7 +333,7 @@ function CarouselView({ data = {} }) {
           disabled={isNextDisabled}
           aria-label="Next slide"
         >
-          <FontAwesomeIcon icon={faChevronRight}/>
+          <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </div>
 

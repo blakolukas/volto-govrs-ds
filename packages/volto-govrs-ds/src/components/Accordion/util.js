@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import { map } from 'lodash';
+import map from 'lodash/map';
 
 import { Icon as VoltoIcon } from '@plone/volto/components';
 import { Icon as SemanticIcon } from 'semantic-ui-react';

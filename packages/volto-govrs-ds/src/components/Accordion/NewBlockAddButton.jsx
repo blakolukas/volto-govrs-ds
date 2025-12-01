@@ -90,7 +90,7 @@ const NewBlockAddButton = (props) => {
             <OpenedBlocksChooser {...props} setOpenMenu={setOpenMenu} />
           ) : null}
         </div>,
-        portalRoot
+        portalRoot,
       )}
     </>
   );

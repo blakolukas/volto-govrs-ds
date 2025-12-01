@@ -38,7 +38,9 @@ function Modal({
 }: ModalProps) {
   const [imageErrors, setImageErrors] = React.useState<Set<number>>(new Set());
   const [openItems, setOpenItems] = React.useState<Set<number>>(new Set());
-  const [inputValues, setInputValues] = React.useState<{[key: string]: string;}>({});
+  const [inputValues, setInputValues] = React.useState<{
+    [key: string]: string;
+  }>({});
   const modalRef = React.useRef<HTMLDivElement>(null);
   const overlayRef = React.useRef<HTMLDivElement>(null);
 
@@ -118,6 +120,17 @@ function Modal({
       className="modal-overlay"
       ref={overlayRef}
       onClick={handleOverlayClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (
+          (e.key === 'Enter' || e.key === ' ') &&
+          closeOnOverlayClick &&
+          onClose
+        ) {
+          onClose();
+        }
+      }}
     >
       <div
         className="modal-wrapper"
@@ -153,6 +166,12 @@ function Modal({
                         <div
                           className="modal-items-item-header"
                           onClick={() => toggleItem(index)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ')
+                              toggleItem(index);
+                          }}
                         >
                           <div className="modal-items-item-content">
                             {item.img && !imageErrors.has(index) ? (

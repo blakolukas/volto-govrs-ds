@@ -1,0 +1,33 @@
+.list-card {
+  display: grid;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: clamp(12px, 1.5vw, 24px);
+  grid-template-columns: repeat(var(--list-card-cols, 3), minmax(0, 1fr));
+}
+
+.list-card__item {
+  display: flex;
+  min-width: 0;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 24px 16px;
+}
+
+.list-card__title {
+  margin: 0 0 8px 0;
+  color: var(--brand-600, #2e7d32);
+  font-size: 20px;
+}
+
+.list-card__desc {
+  margin: 0;
+  color: var(--pure-100, #000);
+}
+
+@media (max-width: 720px) {
+  .list-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

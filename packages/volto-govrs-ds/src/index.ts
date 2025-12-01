@@ -9,7 +9,10 @@ import CarouselView from './components/Carousel/View';
 import CarouselSchema from './components/Carousel/Schema';
 import AccordionView from './components/Accordion/View';
 import AccordionEdit from './components/Accordion/Edit';
-import { AccordionBlockSchema, AccordionSchema } from './components/Accordion/Schema';
+import {
+  AccordionBlockSchema,
+  AccordionSchema,
+} from './components/Accordion/Schema';
 import accordionSVG from '@plone/volto/icons/list-arrows.svg';
 
 function applyConfig(config: ConfigType) {
@@ -27,7 +30,7 @@ function applyConfig(config: ConfigType) {
     restricted: false,
     mostUsed: true,
     sidebarTab: 1,
-};
+  };
   // Configure the Accordion block
   (config.blocks.blocksConfig as any).accordion = {
     id: 'accordion',
@@ -83,6 +86,7 @@ function applyConfig(config: ConfigType) {
       addPermission: [],
       view: [],
     },
+  };
 
   return config;
 }

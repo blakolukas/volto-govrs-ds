@@ -140,10 +140,9 @@ $h5: 1.15rem !default;
 
 // View
 .accordion-block {
-
   .headline {
-    font-weight: normal !important;
     margin-bottom: 1rem !important;
+    font-weight: normal !important;
   }
 
   .ui.accordion {
@@ -173,7 +172,7 @@ $h5: 1.15rem !default;
     font-size: $h1;
   }
 
-  h1.active{
+  h1.active {
     font-weight: bold !important;
   }
 
@@ -181,7 +180,7 @@ $h5: 1.15rem !default;
     font-size: $h2;
   }
 
-  h2.active{
+  h2.active {
     font-weight: bold !important;
   }
 
@@ -189,7 +188,7 @@ $h5: 1.15rem !default;
     font-size: $h3;
   }
 
-  h3.active{
+  h3.active {
     font-weight: bold !important;
   }
 
@@ -197,7 +196,7 @@ $h5: 1.15rem !default;
     font-size: $h4;
   }
 
-  h4.active{
+  h4.active {
     font-weight: bold !important;
   }
 
@@ -205,7 +204,7 @@ $h5: 1.15rem !default;
     font-size: $h5;
   }
 
-  h5.active{
+  h5.active {
     font-weight: bold !important;
   }
 
@@ -213,7 +212,7 @@ $h5: 1.15rem !default;
     font-size: $h5;
   }
 
-  h6.active{
+  h6.active {
     font-weight: bold !important;
   }
 
@@ -235,8 +234,8 @@ $h5: 1.15rem !default;
   }
 
   .default-accordion {
-    cursor: pointer;
     border-bottom: 1px solid #ccc;
+    cursor: pointer;
 
     :focus-visible {
       outline-color: #c2850c;
@@ -254,8 +253,8 @@ $h5: 1.15rem !default;
     }
 
     & .default-title {
-      color: var(--green-rs-60) !important;
       padding: 15px !important;
+      color: var(--green-rs-60) !important;
       font-size: 16px !important;
     }
 
@@ -268,7 +267,6 @@ $h5: 1.15rem !default;
       font-size: 16px !important;
     }
   }
-  
 
   .dark-accordion {
     margin-bottom: 1px !important;
@@ -287,8 +285,8 @@ $h5: 1.15rem !default;
     }
 
     & .dark-title {
-      color: white !important;
       padding: 15px !important;
+      color: white !important;
       font-size: 16px !important;
     }
 
@@ -298,11 +296,10 @@ $h5: 1.15rem !default;
 
     & .dark-content {
       padding: 15px 50px !important;
-      font-size: 16px !important;
       color: white !important;
+      font-size: 16px !important;
     }
   }
-
 }
 
 .multiSelected {

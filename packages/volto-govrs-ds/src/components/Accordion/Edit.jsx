@@ -12,7 +12,9 @@ import {
 } from '@plone/volto/helpers';
 import { cloneDeepSchema } from '@plone/volto/helpers/Utils/Utils';
 import helpSVG from '@plone/volto/icons/help.svg';
-import { isEmpty, without, pickBy } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import without from 'lodash/without';
+import pickBy from 'lodash/pickBy';
 import React, { useState } from 'react';
 import { Button, Segment } from 'semantic-ui-react';
 import { defineMessages, useIntl } from 'react-intl';
@@ -209,11 +211,14 @@ const Edit = (props) => {
         });
       } else if (currentPanelCount > targetPanelCount) {
         // Remove panels from the end
-        const newItems = properties.blocks_layout.items.slice(0, targetPanelCount);
+        const newItems = properties.blocks_layout.items.slice(
+          0,
+          targetPanelCount,
+        );
         const newBlocks = { ...properties.blocks };
 
         // Remove blocks that are no longer in the layout
-        properties.blocks_layout.items.slice(targetPanelCount).forEach(id => {
+        properties.blocks_layout.items.slice(targetPanelCount).forEach((id) => {
           delete newBlocks[id];
         });
 

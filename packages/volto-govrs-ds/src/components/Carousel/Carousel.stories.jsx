@@ -7,6 +7,11 @@ export default {
   parameters: { layout: 'padded' },
 };
 
+const lintWarnings = [
+  "Warning: imports from '@plone/volto/*' barrel files are discouraged (no-restricted-imports)",
+  'Warning: use Image component from @plone/volto/components/theme/Image/Image instead of <img> (no-restricted-syntax)',
+];
+
 export const CarouselDocumentacao = () => (
   <div style={{ padding: 16, width: '100%', maxWidth: 1200 }}>
     <div style={{ width: '100%' }}>
@@ -49,7 +54,9 @@ export const CarouselDocumentacao = () => (
         maxWidth: 900,
       }}
     >
-      <h4 style={{ margin: '4px 0' }}>Uso e atributos do componente Carousel</h4>
+      <h4 style={{ margin: '4px 0' }}>
+        Uso e atributos do componente Carousel
+      </h4>
       <p>
         Componente de carrossel que suporta imagens e vídeos (YouTube, Vimeo e
         URLs diretas), com autoplay, navegação circular e controles acessíveis.
@@ -58,10 +65,9 @@ export const CarouselDocumentacao = () => (
       <div style={{ marginTop: 12 }}>
         <h5 style={{ margin: '8px 0' }}>items</h5>
         <p>
-          Array de objetos com as propriedades do slide:{' '}
-          <code>title</code>, <code>description</code>, <code>image</code> e{' '}
-          <code>videoUrl</code>. O vídeo tem prioridade sobre a imagem quando
-          ambos estão presentes.
+          Array de objetos com as propriedades do slide: <code>title</code>,{' '}
+          <code>description</code>, <code>image</code> e <code>videoUrl</code>.
+          O vídeo tem prioridade sobre a imagem quando ambos estão presentes.
         </p>
         <pre
           style={{
@@ -249,6 +255,13 @@ export const CarouselDocumentacao = () => (
           a transição, a navegação é bloqueada para evitar conflitos.
         </p>
       </div>
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <h5>Lint Warnings</h5>
+      <pre style={{ background: '#fff8e1', padding: 12, borderRadius: 4 }}>
+        {lintWarnings.join('\n')}
+      </pre>
     </div>
   </div>
 );
@@ -669,8 +682,8 @@ export const CarouselAutoplayLento = () => (
     />
 
     <div style={{ marginTop: 12, fontSize: 13, color: '#444' }}>
-      Carrossel com autoplay lento (autoplaySpeed: 6000ms = 6 segundos). Dá
-      mais tempo para ler o conteúdo.
+      Carrossel com autoplay lento (autoplaySpeed: 6000ms = 6 segundos). Dá mais
+      tempo para ler o conteúdo.
     </div>
   </div>
 );
@@ -708,8 +721,8 @@ export const CarouselComVideo = () => (
     />
 
     <div style={{ marginTop: 12, fontSize: 13, color: '#444' }}>
-      Carrossel com vídeos do YouTube. Autoplay desabilitado para não
-      interferir com os vídeos. Clique no play para carregar o iframe.
+      Carrossel com vídeos do YouTube. Autoplay desabilitado para não interferir
+      com os vídeos. Clique no play para carregar o iframe.
     </div>
   </div>
 );

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { getPanels, accordionBlockHasValue } from './util';
 import { Accordion } from 'semantic-ui-react';
@@ -8,14 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-// Add icons to library
-library.add(faChevronDown, faChevronUp);
-
 import cx from 'classnames';
 import { RenderBlocks } from '@plone/volto/components';
 import AnimateHeight from 'react-animate-height';
 import config from '@plone/volto/registry';
 import AccordionFilter from './AccordionFilter';
+
+// Add icons to library
+library.add(faChevronDown, faChevronUp);
 
 const useQuery = (location) => {
   const { search } = location;
@@ -42,11 +41,7 @@ const View = (props) => {
   const iconOnRight = data.right_arrows;
   const blockcolor = data.block_color || 'default';
 
-  console.log('🔍 Accordion Debug:', {
-    'data.block_color': data.block_color,
-    'blockcolor': blockcolor,
-    'all data': data
-  });
+  // Debug logs removed to satisfy lint rules
 
   const query = useQuery(location);
   const activePanels = query.get('activeAccordion')?.split(',');
@@ -125,10 +120,7 @@ const View = (props) => {
       } else {
         // Only set if we have a valid panel ID
         if (currentFirstId) {
-          setActivePanel([
-            currentFirstId,
-            ...(activePanelsRef.current || []),
-          ]);
+          setActivePanel([currentFirstId, ...(activePanelsRef.current || [])]);
         }
       }
     }
@@ -158,13 +150,18 @@ const View = (props) => {
         )
         .map(([id, panel], index) => {
           const active = isExclusive(id);
-          const accordionClassName = cx({
-            [`${blockcolor}-accordion`]: blockcolor
-          }, {
-            [data.styles ? data.styles.theme : accordionConfig?.defaults?.theme]: true
-          });
+          const accordionClassName = cx(
+            {
+              [`${blockcolor}-accordion`]: blockcolor,
+            },
+            {
+              [data.styles
+                ? data.styles.theme
+                : accordionConfig?.defaults?.theme]: true,
+            },
+          );
 
-          console.log('🎨 Accordion className:', accordionClassName);
+          // computed accordionClassName
 
           return accordionBlockHasValue(panel) ? (
             <Accordion
@@ -179,12 +176,15 @@ const View = (props) => {
                   as={data.title_size}
                   active={active}
                   aria-expanded={active}
-                  className={cx('accordion-title', {
-                    'align-arrow-left': !iconOnRight,
-                    'align-arrow-right': iconOnRight,
-                  },{
-                    [`${blockcolor}-title`]: blockcolor
-                  }
+                  className={cx(
+                    'accordion-title',
+                    {
+                      'align-arrow-left': !iconOnRight,
+                      'align-arrow-right': iconOnRight,
+                    },
+                    {
+                      [`${blockcolor}-title`]: blockcolor,
+                    },
                   )}
                   index={index}
                   onClick={(e) => handleClick(e, { index, id })}
@@ -199,7 +199,10 @@ const View = (props) => {
                 >
                   <FontAwesomeIcon
                     icon={active ? faChevronUp : faChevronDown}
-                    style={{ marginRight: iconOnRight ? 0 : '0.5em', marginLeft: iconOnRight ? '0.5em' : 0 }}
+                    style={{
+                      marginRight: iconOnRight ? 0 : '0.5em',
+                      marginLeft: iconOnRight ? '0.5em' : 0,
+                    }}
                   />
                   <span>{panel?.title}</span>
                 </Accordion.Title>
@@ -217,7 +220,7 @@ const View = (props) => {
                   <Accordion.Content
                     active={diffView ? true : active}
                     className={cx({
-                      [`${blockcolor}-content`]: blockcolor
+                      [`${blockcolor}-content`]: blockcolor,
                     })}
                   >
                     <RenderBlocks

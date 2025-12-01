@@ -1,0 +1,157 @@
+.list-check-wrapper {
+  width: 100%;
+}
+
+.list-check__title {
+  margin: 0 0 8px 0;
+  color: var(--pure-100, #000);
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.list-check {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.list-check__item {
+  display: block;
+  padding: 12px 16px;
+}
+
+.list-check__item:not(:first-child) {
+  border-top: 1px solid var(--gray-20, #cccccc);
+}
+
+.list-check__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list-check__media {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-check__image {
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+.list-check__icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-check__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-check__content--no-text {
+  justify-content: center;
+}
+
+.list-check__label-text {
+  color: var(--pure-100);
+  font-size: 16px;
+}
+
+.list-check__text {
+  margin-top: 4px;
+  color: var(--pure-100);
+  font-size: 14px;
+}
+
+.list-check__checkbox {
+  display: flex;
+  flex: 0 0 40px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.list-check__checkbox input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+}
+
+.list-check--horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 16px;
+}
+
+.list-check--horizontal .list-check__item {
+  width: 295px;
+  box-sizing: border-box;
+  flex: 0 0 295px;
+  border-top: 1px solid var(--gray-20, #cccccc);
+  border-bottom: 1px solid var(--gray-20, #cccccc);
+}
+
+.list-group__header-checkbox {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.list-group__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 8px 0;
+}
+
+.list-group__header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.list-group__label-text {
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.list-group__header-checkbox {
+  order: 2;
+  margin-left: 8px;
+}
+
+.list-group__toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  gap: 8px;
+}
+
+.list-group__toggle-icon svg {
+  display: block;
+}
+
+.list-group__toggle:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.list-group > .list-check--horizontal {
+  width: 100%;
+}

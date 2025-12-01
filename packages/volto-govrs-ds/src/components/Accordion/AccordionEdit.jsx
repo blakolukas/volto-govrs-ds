@@ -60,11 +60,15 @@ const AccordionEdit = (props) => {
 
   return (
     <Accordion
-      className={cx({
-        [`${blockcolor}-accordion`]: blockcolor
-      }, {
-        [data.styles ? data.styles.theme : accordionConfig?.defaults?.theme]: true
-      })}
+      className={cx(
+        {
+          [`${blockcolor}-accordion`]: blockcolor,
+        },
+        {
+          [data.styles ? data.styles.theme : accordionConfig?.defaults?.theme]:
+            true,
+        },
+      )}
       {...accordionConfig.options}
     >
       <React.Fragment>
@@ -73,16 +77,23 @@ const AccordionEdit = (props) => {
           active={isActive}
           index={index}
           onClick={handleClick}
-          className={cx('accordion-title', {
-            'align-arrow-left': !iconOnRight,
-            'align-arrow-right': iconOnRight,
-          }, {
-            [`${blockcolor}-title`]: blockcolor
-          })}
+          className={cx(
+            'accordion-title',
+            {
+              'align-arrow-left': !iconOnRight,
+              'align-arrow-right': iconOnRight,
+            },
+            {
+              [`${blockcolor}-title`]: blockcolor,
+            },
+          )}
         >
           <FontAwesomeIcon
             icon={isActive ? faChevronUp : faChevronDown}
-            style={{ marginRight: iconOnRight ? 0 : '0.5em', marginLeft: iconOnRight ? '0.5em' : 0 }}
+            style={{
+              marginRight: iconOnRight ? 0 : '0.5em',
+              marginLeft: iconOnRight ? '0.5em' : 0,
+            }}
           />
           {!data.readOnlyTitles ? (
             <Input
@@ -109,7 +120,7 @@ const AccordionEdit = (props) => {
           <Accordion.Content
             active={isActive}
             className={cx({
-              [`${blockcolor}-content`]: blockcolor
+              [`${blockcolor}-content`]: blockcolor,
             })}
           >
             {children}
