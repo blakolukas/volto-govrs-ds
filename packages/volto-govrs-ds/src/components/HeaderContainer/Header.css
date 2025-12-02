@@ -3,7 +3,7 @@
   animation-timeline: scroll(y);
   &:hover {
     border-color: #fff !important;
-    background-color: var(--green-matriz-link-activated) !important;
+    background-color: var(--green-rs-60) !important;
   }
 }
 
@@ -35,8 +35,16 @@ body.has-sidebar .btn-scroll {
 .header {
   max-width: var(--layout-container-width) !important;
   padding: 0 var(--padding-default);
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .header-wrapper .header .logo-nav-wrapper {
   align-items: center;
+}
+
+.logo-nav-wrapper{
+  display: flex;
+  justify-content: space-between;
 }

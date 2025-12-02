@@ -8,6 +8,8 @@ import Icon from '@plone/volto/components/theme/Icon/Icon';
 import zoomSVG from '@plone/volto/icons/zoom.svg';
 import { doesNodeContainClick } from 'semantic-ui-react/dist/commonjs/lib';
 import './SearchWidget.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const messages = defineMessages({
   search: {
@@ -16,7 +18,7 @@ const messages = defineMessages({
   },
   searchSite: {
     id: 'Search Site',
-    defaultMessage: 'Search Site',
+    defaultMessage: 'O que você procura?',
   },
 });
 
@@ -143,7 +145,7 @@ class SearchWidget extends Component {
             aria-label={this.props.intl.formatMessage(messages.search)}
             tabIndex={this.state.active ? '0' : '-1'}
           >
-            <Icon name={zoomSVG} size="32px" />
+            <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
       </form>

@@ -5,13 +5,20 @@
   align-items: center;
   padding: 0 15px;
   border-radius: 8px;
-  background-color: #f8f8f8;
-  box-shadow: 0 0 8px #ddd;
+  background-color: #F3F3F3;
+  border: 2px solid #CCC;
   place-content: space-between;
 }
 
 #s-logo {
   color: #1a7235;
+  border: none;
+  background-color: transparent;
+}
+
+#s-logo > svg {
+  width: 20px;
+  height: 23px;
 }
 
 .s-input {

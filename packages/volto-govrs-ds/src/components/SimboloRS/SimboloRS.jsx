@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { UniversalLink } from '@plone/volto/components';
-import SimboloRS from './preto.png';
+import SimboloRSImg from './preto.png';
 import SimboloRSHighContrast from './branco.png';
 import './SimboloRS.css';
 
-const SeloGoverno = () => {
+const SimboloRS = () => {
   const [isHighContrast, setIsHighContrast] = useState(false);
 
   useEffect(() => {
@@ -29,15 +29,15 @@ const SeloGoverno = () => {
 
   return (
     <div className="simboloRS">
-      <UniversalLink href="https://casacivil.rs.gov.br/inicial" target="_self">
+      <a href="https://casacivil.rs.gov.br/inicial" target="_self">
         <img
-          src={isHighContrast ? SimboloRSHighContrast : SimboloRS}
+          src={isHighContrast ? SimboloRSHighContrast : SimboloRSImg}
           alt="RS.GOV - Novas façanhas"
           className="simboloRS"
         />
-      </UniversalLink>
+      </a>
     </div>
   );
 };
 
-export default SeloGoverno;
+export default SimboloRS;

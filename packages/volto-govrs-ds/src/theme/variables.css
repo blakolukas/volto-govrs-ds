@@ -28,6 +28,35 @@
   --gold-vivid-20: #ffcd07;
   --blue-vivid-40: #0076d6;
 
+  --green-matriz-link-activated: #2f4a0b;
+  --green-matriz-link: #1a7235;
+  --gray-02: #f8f8f8;
+  --gray-05: #f0f0f0;
+  --gray-10: #e6e6e6;
+  --gray-20: #cccccc;
+  --gray-70: #555555;
+  --gray-cool-70: #3d4551;
+  --gray-01: #fcfcfc;
+  --gray-cool-90: #1c1d1f;
+  --gray-50: #757575;
+  --gray-warm-50: #76766a;
+  --gray-warm-80: #2e2e2a;
+  --gray-warm-90: #171716;
+  --gray-90: #1b1b1b;
+  --green-vivid-80: #243413;
+  --green-vivid-50: #538200;
+  --green-40: #7d9b4e;
+  --green-50: #607f35;
+  --green-90: #161814;
+  --green-vivid-10: #c5ee93;
+  --green-10: #dfeacd;
+  --unnamed-color-333333: #333333;
+  --link-color: #1a7235;
+
+  --layout-container-width: 1200px;
+  --padding-default: 1.5rem;
+  /*--default-container-width: 1440px;*/
+
   /* ==========================================================================
      COLOR TOKENS
      ========================================================================== */

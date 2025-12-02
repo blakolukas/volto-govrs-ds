@@ -26,28 +26,25 @@ const HeaderContainer = ({
   const nome_sec = navRoot?.nome_secretaria_vinculada;
   const url_sec = navRoot?.url_secretaria_vinculada;
 
+  const handleScrollToTop = (e) => {
+    e.preventDefault();
+    const mainElement = document.getElementById('main');
+    if (mainElement) {
+      mainElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <>
       <div className="header">
         <div className="tools-wrapper">
-          <SecretariaNome content={nome_sec} url={url_sec} />
-          <LanguageSelector />
-          <div className="tools">
-            {!token && <Anontools />}
-            {siteAction &&
-              siteAction.map((item) => (
-                <UniversalLink key={item.url} href={item.url}>
-                  {item.title}
-                </UniversalLink>
-              ))}
-          </div>
           {siteLabel && (
             <div className="intranet">
               <p>{siteLabel}</p>
             </div>
           )}
         </div>
-        <div className="logo-nav-wrapper" style={{ alignItems: 'center' }}>
+        <div className="logo-nav-wrapper">
           <div className="simbolo">
             <MenuHamburger />
             <SimboloRS />
@@ -64,12 +61,13 @@ const HeaderContainer = ({
         <div style={{ textAlign: 'right' }}>
           <a
             href="#main"
+            onClick={handleScrollToTop}
             className="btn-scroll"
             style={{
               cursor: 'pointer',
               padding: '25px 29px',
               color: '#fff',
-              backgroundColor: '#607F35',
+              backgroundColor: 'var(--green-rs-60)',
               borderRadius: '50px',
               boxShadow: '0 2px 5px rgba(0, 0, 0, 0.4)',
               border: '3px solid transparent',

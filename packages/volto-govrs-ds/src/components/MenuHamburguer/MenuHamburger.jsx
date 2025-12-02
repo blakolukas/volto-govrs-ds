@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faXmark, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import './MenuHamburger.css';
 
 const MenuHamburger = () => {
@@ -60,7 +62,7 @@ const MenuHamburger = () => {
       className={`menu-hamburger-container ${isOpen ? 'is-active' : ''}`}
     >
       <button className="menu-hamburger-toggler" onClick={toggleMenu}>
-        <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+        <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
       </button>
       {isOpen && (
         <div
@@ -81,7 +83,7 @@ const MenuHamburger = () => {
                   <a href={item.url}>
                     {item.title}
                     {item.items?.length > 0 && (
-                      <i class="fa-solid fa-chevron-right"></i>
+                      <FontAwesomeIcon icon={faChevronRight} />
                     )}
                   </a>
                 </li>
@@ -108,7 +110,7 @@ const MenuHamburger = () => {
                         <a href={item.url}>
                           {item.title}
                           {item.items?.length > 0 && (
-                            <span className="fa-solid fa-chevron-right"></span>
+                            <FontAwesomeIcon icon={faChevronRight} />
                           )}
                         </a>
                       </li>
