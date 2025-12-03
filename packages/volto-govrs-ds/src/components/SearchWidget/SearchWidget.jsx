@@ -10,6 +10,7 @@ import { doesNodeContainClick } from 'semantic-ui-react/dist/commonjs/lib';
 import './SearchWidget.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const messages = defineMessages({
   search: {
@@ -35,6 +36,8 @@ class SearchWidget extends Component {
    */
   static propTypes = {
     pathname: PropTypes.string,
+    active: PropTypes.bool,
+    onToggle: PropTypes.func,
   };
 
   /**
@@ -49,7 +52,6 @@ class SearchWidget extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.state = {
       text: '',
-      active: false,
     };
   }
 
@@ -81,7 +83,10 @@ class SearchWidget extends Component {
       `/search?SearchableText=${encodeURIComponent(this.state.text)}${path}`,
     );
     event.preventDefault();
-    this.setState({ active: false });
+    this.setState({ text: '' });
+    if (this.props.onToggle) {
+      this.props.onToggle(false);
+    }
   }
 
   componentDidMount() {
@@ -93,7 +98,7 @@ class SearchWidget extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!prevState.active && this.state.active) {
+    if (!prevProps.active && this.props.active) {
       this.refInput.select();
     }
   }
@@ -104,13 +109,33 @@ class SearchWidget extends Component {
       doesNodeContainClick(this.searchbar.current, e)
     )
       return;
-    this.setState({ active: false });
+    if (this.props.onToggle) {
+      this.props.onToggle(false);
+    }
   };
 
   handleEscapeKeyDown = (e) => {
-    if (e.key === 'Escape') {
-      this.setState({ active: false });
+    if (e.key === 'Escape' && this.props.onToggle) {
+      this.props.onToggle(false);
     }
+  };
+
+  handleSearchToggle = () => {
+    if (this.props.onToggle) {
+      this.props.onToggle(!this.props.active);
+    }
+  };
+
+  handleSearchClick = (e) => {
+    if (!this.props.active) {
+      // Open the search
+      this.handleSearchToggle();
+    } else if (!this.state.text) {
+      // Close the search if there's no text
+      e.preventDefault();
+      this.handleSearchToggle();
+    }
+    // If active and has text, let the form submit naturally
   };
 
   searchbar = React.createRef();
@@ -123,7 +148,7 @@ class SearchWidget extends Component {
   render() {
     return (
       <form action="/search" onSubmit={this.onSubmit}>
-        <div className="s-wrapper">
+        <div className={`s-wrapper ${this.props.active ? 'active' : ''}`}>
           <input
             id="buscageralTextBox"
             className="s-input"
@@ -135,18 +160,26 @@ class SearchWidget extends Component {
             autoComplete="off"
             placeholder={this.props.intl.formatMessage(messages.searchSite)}
             title={this.props.intl.formatMessage(messages.search)}
-            tabIndex={this.state.active ? '0' : '-1'} // Conditional tabIndex
+            tabIndex={this.props.active ? '0' : '-1'} // Conditional tabIndex
             ref={(input) => {
               this.refInput = input;
             }}
           />
           <button
             id="s-logo"
+            type={this.props.active && this.state.text ? 'submit' : 'button'}
             aria-label={this.props.intl.formatMessage(messages.search)}
-            tabIndex={this.state.active ? '0' : '-1'}
+            onClick={this.handleSearchClick}
+            tabIndex="0"
           >
             <FontAwesomeIcon icon={faSearch} />
           </button>
+
+          {this.props.active && 
+          <button id="s-logo" onClick={() => this.props.onToggle(false)}>
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+          }
         </div>
       </form>
     );

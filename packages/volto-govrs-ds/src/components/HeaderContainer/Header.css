@@ -48,3 +48,13 @@ body.has-sidebar .btn-scroll {
   display: flex;
   justify-content: space-between;
 }
+
+/* Hide simbolo on mobile when search is active */
+@media (max-width: 768px) {
+  .simbolo.hidden {
+    display: none;
+  }
+  .search-wrapper.navigation-desktop.active {
+    flex: 1;
+  }
+}

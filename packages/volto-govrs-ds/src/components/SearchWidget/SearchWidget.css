@@ -8,12 +8,15 @@
   background-color: #F3F3F3;
   border: 2px solid #CCC;
   place-content: space-between;
+  transition: opacity 0.5s ease-in-out;
 }
 
 #s-logo {
   color: #1a7235;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 #s-logo > svg {
@@ -32,4 +35,49 @@
 
 .s-input:focus {
   outline: none;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .s-wrapper {
+    width: 54px;
+    padding: 0;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+
+  .s-wrapper.active {
+    width: 100%;
+    padding: 0 15px;
+    justify-content: space-between;
+    background-color: #F3F3F3;
+    border: 2px solid #CCC;
+  }
+
+  .s-input {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .s-wrapper.active .s-input {
+    width: 100%;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #s-logo {
+    background: transparent;
+  }
+
+  .s-wrapper.active #s-logo > svg {
+    width: 16px;
+    height: 18px;
+  }
+
+  .s-wrapper.active #s-logo {
+    padding: 0 10px;
+  }
 }

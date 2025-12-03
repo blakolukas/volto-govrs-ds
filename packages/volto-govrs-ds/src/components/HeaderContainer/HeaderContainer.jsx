@@ -1,5 +1,6 @@
 // SemanticUI-free pre-@plone/components
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import SimboloRS from '../SimboloRS/SimboloRS';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Header.css';
@@ -22,9 +23,7 @@ const HeaderContainer = ({
   siteAction,
   siteTitle,
 }) => {
-  const navRoot = useSelector((state) => state.navroot?.data?.navroot);
-  const nome_sec = navRoot?.nome_secretaria_vinculada;
-  const url_sec = navRoot?.url_secretaria_vinculada;
+  const [searchActive, setSearchActive] = useState(false);
 
   const handleScrollToTop = (e) => {
     e.preventDefault();
@@ -45,16 +44,19 @@ const HeaderContainer = ({
           )}
         </div>
         <div className="logo-nav-wrapper">
-          <div className="simbolo">
+          <div className={`simbolo ${searchActive ? 'hidden' : ''}`}>
             <MenuHamburger />
             <SimboloRS />
             <a className="header-titulo" href="/">
               {siteTitle}
             </a>
           </div>
-          <div className="search-wrapper navigation-desktop">
+          <div className={`search-wrapper navigation-desktop ${searchActive ? 'active' : ''}`}>
             <div className="search">
-              <SearchWidget />
+              <SearchWidget
+                active={searchActive}
+                onToggle={setSearchActive}
+              />
             </div>
           </div>
         </div>

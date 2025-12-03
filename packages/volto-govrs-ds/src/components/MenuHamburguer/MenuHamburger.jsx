@@ -67,7 +67,6 @@ const MenuHamburger = () => {
       {isOpen && (
         <div
           className="menu-hamburger-content"
-          style={{ marginLeft: `${toolbarWidth}px` }}
         >
           <div className="menu-hamburger-levels">
             <ul
