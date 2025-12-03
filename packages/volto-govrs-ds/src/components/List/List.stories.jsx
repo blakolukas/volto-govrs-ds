@@ -6,11 +6,6 @@ export default {
   component: List,
 };
 
-const lintWarnings = [
-  "Warning: import from '@plone/volto/*' barrel files is discouraged",
-  'Warning: prefer Image component from @plone/volto/components/theme/Image/Image over <img>',
-];
-
 const SampleIcon = (
   <svg
     width="20"
@@ -122,14 +117,6 @@ export const ListDefaultDocs = () => (
         assume o valor "default".
       </p>
     </section>
-
-    <div style={{ marginTop: 16 }}>
-      <h5>Lint Warnings</h5>
-      <pre style={{ background: '#fff8e1', padding: 12, borderRadius: 4 }}>
-        {lintWarnings.join('\n')}
-      </pre>
-    </div>
-
     <section style={{ marginTop: 16 }}>
       <h2>Props</h2>
 

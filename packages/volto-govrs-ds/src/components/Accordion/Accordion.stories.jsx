@@ -82,10 +82,6 @@ export default {
   parameters: { layout: 'padded' },
 };
 
-const lintWarnings = [
-  "Warning: imports from '@plone/volto/*' barrel files are discouraged",
-];
-
 export const AccordionDocumentacao = () => (
   <div style={{ padding: 16, maxWidth: 1200 }}>
     <h3 style={{ marginTop: 0 }}>Accordion</h3>
@@ -118,13 +114,6 @@ export const AccordionDocumentacao = () => (
         busca/filtro e controle de estado dos painéis.
       </p>
     </section>
-
-    <div style={{ marginTop: 16 }}>
-      <h5>Lint Warnings</h5>
-      <pre style={{ background: '#fff8e1', padding: 12, borderRadius: 4 }}>
-        {lintWarnings.join('\n')}
-      </pre>
-    </div>
 
     <section style={{ marginBottom: 24 }}>
       <h4 style={{ margin: '6px 0' }}>Propriedades</h4>
