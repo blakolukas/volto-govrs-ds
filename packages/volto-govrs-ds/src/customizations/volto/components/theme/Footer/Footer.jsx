@@ -3,6 +3,7 @@ import { injectIntl } from 'react-intl';
 import SiteMapFooter from 'volto-govrs-ds/components/SiteMapFooter/SiteMapFooter';
 import RedesSociais from 'volto-govrs-ds/components/RedesSociais/RedesSociais';
 import FooterImages from 'volto-govrs-ds/components/FooterImages';
+import LocalData from 'volto-govrs-ds/components/LocalData/LocalData';
 import './Footer.css';
 
 const Footer = ({ images }) => {
@@ -13,7 +14,11 @@ const Footer = ({ images }) => {
         <div className="footer-site-nome">
           <img src="/brasao-RS-contraste.svg" alt="" />
         </div>
-        <SiteMapFooter location={{ pathname: '/' }} />
+        <div className="footer-site-map-local">
+          <SiteMapFooter location={{ pathname: '/' }} />
+          <span className="footer-separator" />
+          <LocalData url="/local-1" />
+        </div>
         <div className="footer-redes-images">
           <RedesSociais />
           <FooterImages images={images || []} />

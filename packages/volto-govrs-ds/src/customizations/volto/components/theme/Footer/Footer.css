@@ -86,3 +86,18 @@
   align-items: center;
   gap: 20px;
 }
+
+.footer-site-map-local {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+
+  > * {
+    flex: 1;
+  }
+}
+
+.footer-separator {
+  max-width: 1px;
+  background-color: white;
+}
