@@ -28,7 +28,7 @@ function SitemapFooter({ lang, intl }) {
         }
       })
       .catch(error => {
-        console.error('Error fetching navigation for sitemap:', error);
+        console.error('SiteMapFooter: Error fetching navigation:', error);
       });
   }, [lang]);
 

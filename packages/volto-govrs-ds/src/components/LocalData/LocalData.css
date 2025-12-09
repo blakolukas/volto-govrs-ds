@@ -1,12 +1,37 @@
 .local-data {
   color: #FFFFFF;
-  max-width: 25%;
+  max-width: fit-content;
 }
 
-.local-data h2 {
+.local-data__title {
   margin-bottom: 15px;
   font-size: 1.5rem;
+  font-weight: 700;
 }
 
+.local-data__logradouro {
+  font-size: 1rem;
+  line-height: 1.5;
+}
 
+.local-data-loading {
+  color: #FFFFFF;
+  font-size: 1rem;
+}
 
+/* Mobile responsivo */
+@media screen and (max-width: 834px) {
+  .local-data {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .local-data__title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .local-data__logradouro {
+    font-size: 0.9rem;
+  }
+}

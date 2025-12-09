@@ -98,6 +98,20 @@
 }
 
 .footer-separator {
+  width: 1px;
   max-width: 1px;
   background-color: white;
+  align-self: stretch;
+}
+
+/* Mobile responsivo */
+@media screen and (max-width: 834px) {
+  .footer-site-map-local {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-separator {
+    display: none;
+  }
 }

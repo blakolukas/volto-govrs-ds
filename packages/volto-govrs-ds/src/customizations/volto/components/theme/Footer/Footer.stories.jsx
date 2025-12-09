@@ -6,6 +6,7 @@ import { IntlProvider } from 'react-intl';
 import './Footer.css';
 import '../../../../../components/SiteMapFooter/SiteMapFooter.css';
 import '../../../../../components/RedesSociais/RedesSociais.css';
+import '../../../../../components/LocalData/LocalData.css';
 
 const mockStore = configureStore([]);
 
@@ -51,7 +52,19 @@ const mockNavigationItems = [
   },
 ];
 
-const createMockStore = (navigationItems = mockNavigationItems) => {
+// Mock local data for LocalData component
+const mockLocalData = {
+  '@id': '/local-1',
+  title: 'PROCERGS',
+  logradouro: 'Praça dos Açorianos - Av. Loureiro da Silva',
+  numero: 's/n',
+  bairro: 'Centro Histórico',
+  municipio: 'Porto Alegre',
+  estado: 'RS',
+  CEP: '90010-340',
+};
+
+const createMockStore = (navigationItems = mockNavigationItems, localData = mockLocalData) => {
   return mockStore({
     navigation: {
       items: navigationItems,
@@ -60,6 +73,24 @@ const createMockStore = (navigationItems = mockNavigationItems) => {
       locale: 'pt-BR',
       messages: {},
     },
+    content: {
+      subrequests: {
+        local: {
+          data: localData,
+          loading: false,
+          error: null,
+        },
+      },
+    },
+  });
+};
+
+// Mock fetch for Storybook
+const mockFetch = () => {
+  return Promise.resolve({
+    json: () => Promise.resolve({
+      items: mockNavigationItems,
+    }),
   });
 };
 
@@ -70,13 +101,18 @@ const meta = {
     layout: 'fullscreen',
   },
   decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <IntlProvider locale="pt-BR" messages={{}}>
-          <Story />
-        </IntlProvider>
-      </MemoryRouter>
-    ),
+    (Story) => {
+      // Mock fetch for navigation API
+      global.fetch = mockFetch;
+
+      return (
+        <MemoryRouter>
+          <IntlProvider locale="pt-BR" messages={{}}>
+            <Story />
+          </IntlProvider>
+        </MemoryRouter>
+      );
+    },
   ],
   argTypes: {
     images: {
@@ -111,9 +147,9 @@ export const FooterDocumentacao = () => (
     </h3>
 
     <p>
-      O componente Footer é o rodapé padrão da aplicação, composto por três
-      elementos principais: mapa do site (SiteMapFooter), redes sociais
-      (RedesSociais) e imagens customizáveis (FooterImages).
+      O componente Footer é o rodapé padrão da aplicação, composto por quatro
+      elementos principais: mapa do site (SiteMapFooter), dados locais (LocalData),
+      redes sociais (RedesSociais) e imagens customizáveis (FooterImages).
     </p>
 
     <h4 style={{ marginTop: 20 }}>Estrutura do Footer</h4>
@@ -125,6 +161,10 @@ export const FooterDocumentacao = () => (
       <li>
         <strong>SiteMapFooter:</strong> Mapa do site com navegação em
         accordion (apenas itens com subitems são exibidos)
+      </li>
+      <li>
+        <strong>LocalData:</strong> Exibe informações de endereço/localização
+        buscadas dinamicamente de uma URL (como logradouro, número, título)
       </li>
       <li>
         <strong>RedesSociais:</strong> Links para redes sociais
@@ -254,6 +294,49 @@ export const FooterDocumentacao = () => (
       </p>
     </div>
 
+    <h4 style={{ marginTop: 30 }}>Componente LocalData</h4>
+    <p>
+      O componente LocalData busca e exibe informações de endereço/localização
+      dinamicamente. Ele faz uma requisição para uma URL específica e renderiza
+      os dados recebidos.
+    </p>
+    <ul style={{ lineHeight: 1.8 }}>
+      <li>
+        <strong>URL configurável:</strong> Por padrão busca de{' '}
+        <code>/local-1</code>, mas pode ser customizada via prop{' '}
+        <code>url</code>
+      </li>
+      <li>
+        <strong>Estados de carregamento:</strong> Exibe "Carregando..." durante
+        a requisição
+      </li>
+      <li>
+        <strong>Renderização condicional:</strong> Só exibe o separador e dados
+        quando há informações disponíveis
+      </li>
+      <li>
+        <strong>Dados exibidos:</strong> <code>title</code> (título/nome do
+        local) e <code>logradouro</code> + <code>numero</code> (endereço)
+      </li>
+      <li>
+        <strong>Integração Redux:</strong> Usa subrequest com chave{' '}
+        <code>"local"</code> para armazenar dados separadamente
+      </li>
+    </ul>
+    <CodeSnippet
+      code={`// Uso no Footer
+<LocalData url="/local-1" />
+
+// Estrutura de dados esperada
+{
+  title: "Sede Central",
+  logradouro: "Av. Borges de Medeiros",
+  numero: "1501",
+  municipio: "Porto Alegre",
+  estado: "RS"
+}`}
+    />
+
     <h4 style={{ marginTop: 30 }}>Requisitos de Dados</h4>
     <p>
       O Footer depende do Redux store com a seguinte estrutura:
@@ -274,6 +357,19 @@ export const FooterDocumentacao = () => (
   },
   intl: {
     locale: "pt-BR"
+  },
+  content: {
+    subrequests: {
+      local: {
+        data: {
+          title: "Sede Central",
+          logradouro: "Av. Borges de Medeiros",
+          numero: "1501"
+        },
+        loading: false,
+        error: null
+      }
+    }
   }
 }`}
     />
@@ -287,6 +383,15 @@ export const FooterDocumentacao = () => (
       <li>
         Itens de navegação sem subitems <strong>não são exibidos</strong> no
         mapa do site
+      </li>
+      <li>
+        <strong>LocalData:</strong> Faz uma requisição automática ao montar o
+        componente. Se não houver dados, nada é renderizado (incluindo o
+        separador)
+      </li>
+      <li>
+        <strong>LocalData URL:</strong> Por padrão busca de <code>/local-1</code>.
+        Pode ser customizada passando a prop <code>url</code> para LocalData
       </li>
       <li>
         Imagens quebradas são automaticamente ocultadas (onError handler)
@@ -311,71 +416,7 @@ export const FooterPadrao = () => {
   );
 };
 
-FooterPadrao.storyName = '2. Padrão';
-
-export const FooterComMuitosItens = () => {
-  const extendedItems = [
-    ...mockNavigationItems,
-    {
-      title: 'Recursos',
-      url: '/recursos',
-      items: [
-        { title: 'Downloads', url: '/recursos/downloads' },
-        { title: 'Documentos', url: '/recursos/documentos' },
-        { title: 'Manuais', url: '/recursos/manuais' },
-        { title: 'FAQ', url: '/recursos/faq' },
-      ],
-    },
-    {
-      title: 'Acessibilidade',
-      url: '/acessibilidade',
-      items: [
-        { title: 'Declaração de Acessibilidade', url: '/acessibilidade/declaracao' },
-        { title: 'Recursos de Acessibilidade', url: '/acessibilidade/recursos' },
-      ],
-    },
-  ];
-
-  const store = createMockStore(extendedItems);
-
-  return (
-    <Provider store={store}>
-      <FooterComponent />
-    </Provider>
-  );
-};
-
-FooterComMuitosItens.storyName = '3. Com Muitos Itens';
-
-export const FooterPoucosItens = () => {
-  const limitedItems = [
-    {
-      title: 'Serviços',
-      url: '/servicos',
-      items: [
-        { title: 'Consulta de Processos', url: '/servicos/consulta-processos' },
-        { title: 'Emissão de Certidões', url: '/servicos/emissao-certidoes' },
-      ],
-    },
-    {
-      title: 'Contato',
-      url: '/contato',
-      items: [
-        { title: 'Fale Conosco', url: '/contato/fale-conosco' },
-      ],
-    },
-  ];
-
-  const store = createMockStore(limitedItems);
-
-  return (
-    <Provider store={store}>
-      <FooterComponent />
-    </Provider>
-  );
-};
-
-FooterPoucosItens.storyName = '4. Poucos Itens';
+FooterPadrao.storyName = 'Padrão';
 
 export const FooterComImagensCustomizadas = () => {
   const store = createMockStore();
@@ -393,7 +434,7 @@ export const FooterComImagensCustomizadas = () => {
   );
 };
 
-FooterComImagensCustomizadas.storyName = '5. Com Imagens Customizadas';
+FooterComImagensCustomizadas.storyName = 'Com Imagens Customizadas';
 
 export const FooterSemImagens = () => {
   const store = createMockStore();
@@ -409,7 +450,7 @@ export const FooterSemImagens = () => {
   );
 };
 
-FooterSemImagens.storyName = '6. Sem Imagens';
+FooterSemImagens.storyName = 'Sem Imagens';
 
 export const FooterMobile = () => {
   const store = createMockStore();
@@ -423,7 +464,7 @@ export const FooterMobile = () => {
   );
 };
 
-FooterMobile.storyName = '7. Mobile (375px)';
+FooterMobile.storyName = 'Mobile (375px)';
 FooterMobile.parameters = {
   viewport: {
     defaultViewport: 'mobile1',
@@ -442,30 +483,30 @@ export const FooterTablet = () => {
   );
 };
 
-FooterTablet.storyName = '8. Tablet (768px)';
+FooterTablet.storyName = 'Tablet (768px)';
 FooterTablet.parameters = {
   viewport: {
     defaultViewport: 'tablet',
   },
 };
 
-export const FooterSemItens = () => {
-  const store = createMockStore([]);
+export const FooterSemLocalData = () => {
+  const store = createMockStore(mockNavigationItems, null);
 
   return (
     <div style={{ padding: 16 }}>
       <h4 style={{ marginBottom: 16 }}>
-        Footer sem itens de navegação (SiteMapFooter não aparece)
+        Footer sem dados locais (LocalData não aparece)
       </h4>
       <Provider store={store}>
         <FooterComponent images={['/brasao-RS-contraste.svg', '/facebook.svg']} />
       </Provider>
       <p style={{ marginTop: 16, fontSize: 14, color: '#666' }}>
-        ℹ️ Quando não há itens de navegação com subitems, o SiteMapFooter não é
-        renderizado.
+        ℹ️ Quando não há dados locais disponíveis, o componente LocalData não é
+        renderizado (retorna null).
       </p>
     </div>
   );
 };
 
-FooterSemItens.storyName = '9. Sem Itens de Navegação';
+FooterSemLocalData.storyName = 'Sem Dados Locais';
