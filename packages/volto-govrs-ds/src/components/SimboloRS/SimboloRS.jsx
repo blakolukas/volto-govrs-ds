@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { UniversalLink } from '@plone/volto/components';
-import SimboloRSImg from './preto.png';
-import SimboloRSHighContrast from './branco.png';
 import './SimboloRS.css';
 
-const SimboloRS = () => {
+const SimboloRS = ({ normalImg, contrastImg }) => {
   const [isHighContrast, setIsHighContrast] = useState(false);
 
   useEffect(() => {
@@ -31,7 +28,7 @@ const SimboloRS = () => {
     <div className="simboloRS">
       <a href="https://casacivil.rs.gov.br/inicial" target="_self">
         <img
-          src={isHighContrast ? SimboloRSHighContrast : SimboloRSImg}
+          src={isHighContrast ? contrastImg : normalImg}
           alt="RS.GOV - Novas façanhas"
           className="simboloRS"
         />

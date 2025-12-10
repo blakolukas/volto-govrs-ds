@@ -20,11 +20,21 @@ const BarraAcessibilidade = () => {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.localStorage) {
       const mainElement = document.getElementById('main');
+      const headerElement = document.querySelector('.header-wrapper');
+
       if (mainElement) {
         if (isHighContrast) {
           mainElement.classList.add('high-contrast');
         } else {
           mainElement.classList.remove('high-contrast');
+        }
+      }
+
+      if (headerElement) {
+        if (isHighContrast) {
+          headerElement.classList.add('high-contrast');
+        } else {
+          headerElement.classList.remove('high-contrast');
         }
       }
 

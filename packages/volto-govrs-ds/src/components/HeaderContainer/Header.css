@@ -28,6 +28,10 @@ body.has-sidebar .btn-scroll {
   }
 }
 
+.header-wrapper {
+  position: relative;
+}
+
 .header-wrapper .header .tools-wrapper {
   flex-direction: row !important;
 }

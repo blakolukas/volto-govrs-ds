@@ -22,6 +22,8 @@ const HeaderContainer = ({
   token,
   siteAction,
   siteTitle,
+  normalImg,
+  contrastImg,
 }) => {
   const [searchActive, setSearchActive] = useState(false);
 
@@ -46,7 +48,7 @@ const HeaderContainer = ({
         <div className="logo-nav-wrapper">
           <div className={`simbolo ${searchActive ? 'hidden' : ''}`}>
             <MenuHamburger />
-            <SimboloRS />
+            <SimboloRS normalImg={normalImg} contrastImg={contrastImg} />
             <a className="header-titulo" href="/">
               {siteTitle}
             </a>

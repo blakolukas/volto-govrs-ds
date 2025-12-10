@@ -1,7 +1,3 @@
-#main {
-  height: max-content;
-}
-
 .high-contrast {
   background-color: #000 !important;
 }
@@ -83,13 +79,11 @@
 
 //button
 .high-contrast button {
-  background-color: #000 !important;
   color: #fff !important;
 }
 
 //search
 .high-contrast .s-wrapper {
-  border: 2px solid #fff !important;
   background-color: #000 !important;
   box-shadow: unset;
 }
@@ -232,4 +226,36 @@
     background-color: #000 !important;
     color: #fff !important;
   }
+}
+
+
+//menu hamburguer
+.high-contrast .menu-hamburger-content {
+  background: #000 !important;
+  border-bottom: 2px solid #fecd3a;
+}
+
+.high-contrast .menu-hamburger-list {
+  background: #1a1a1a !important;
+  border-right: 1px solid #333 !important;
+}
+
+.high-contrast .menu-hamburger-item a {
+  color: #fff !important;
+}
+
+.high-contrast .menu-hamburger-item:hover {
+  background-color: #333 !important;
+}
+
+.menu-hamburger-expand-button{
+  background-color: transparent !important;
+}
+
+.menu-hamburger-item-content.level-odd {
+  background-color: #000 !important;
+}
+
+.menu-hamburger-item-content.level-even{
+  background-color: #1a1a1a !important;
 }
